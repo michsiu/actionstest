@@ -3,7 +3,7 @@ name: sendtodiscord
 on:
   push:
     paths:
-      - 'task.txt'
+      - task.txt
 
 jobs:
   send-to-slack:
