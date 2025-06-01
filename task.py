@@ -22,6 +22,7 @@ def read_env_file(env_name,webhook_url):
         send_to_slack(webhook_url, "HiHiHi")
         send_to_slack(webhook_url, os.getenv(env_name))
     except Exception as e:
+        send_to_slack(webhook_url, "eeer")
         send_to_slack(webhook_url, e)
         sys.exit(1)
 
