@@ -20,6 +20,7 @@ def read_env_file(env_name,webjook_url):
     """读取txt文件内容"""
     try:
         webhook_content = os.getenv('env_name')
+        send_to_slack(webhook_url, webhook_content)
     except Exception as e:
         send_to_slack(webhook_url, e)
         sys.exit(1)
