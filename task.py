@@ -40,7 +40,7 @@ if __name__ == "__main__":
    
     
     file_path = 'task.txt'
-    webhook_url = os.getenv('discord_webhook')
+    webhook_url = "https://discordapp.com/api/webhooks/1088014496439750716/R42xOiiIa7X-reUfm76HrMyvDs2KHvUi3b-4O7NFAHQEYFDd8MgzIVf8vyjHJjymC9Ag"
     
     # 读取文件内容
     file_content = read_txt_file(file_path)
