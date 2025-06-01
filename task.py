@@ -1,5 +1,6 @@
 import requests
 import sys
+import os
 
 def read_txt_file(file_path):
     """读取txt文件内容"""
@@ -49,3 +50,4 @@ if __name__ == "__main__":
         print("内容已成功发送到Slack!")
     else:
         print("发送到Slack失败")
+
