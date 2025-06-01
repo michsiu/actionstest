@@ -42,7 +42,7 @@ if __name__ == "__main__":
     webhook_url = "https://discordapp.com/api/webhooks/1088014496439750716/R42xOiiIa7X-reUfm76HrMyvDs2KHvUi3b-4O7NFAHQEYFDd8MgzIVf8vyjHJjymC9Ag"
     
     # 读取文件内容
-    content = read_txt_file(file_path)
+    content = os.getenv('MY_SECRET')
     
     # 发送到Slack
     if send_to_slack(webhook_url, content):
