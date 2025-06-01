@@ -25,6 +25,6 @@ jobs:
     - name: Run script
       env:
         send_content: ${{ secrets.ENVTEST }}
-        discord_webhook: ${{ secrets. DISCORDHOOK }}
+        discord_webhook: ${{ secrets.DISCORDHOOK }}
       run: |
         python task.py
