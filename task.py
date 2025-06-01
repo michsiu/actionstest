@@ -40,17 +40,17 @@ if __name__ == "__main__":
    
     
     file_path = 'task.txt'
-    webhook_url = "https://discordapp.com/api/webhooks/1088014496439750716/R42xOiiIa7X-reUfm76HrMyvDs2KHvUi3b-4O7NFAHQEYFDd8MgzIVf8vyjHJjymC9Ag"
+   
     
     # 读取文件内容
     file_content = read_txt_file(file_path)
     os_content = os.getenv('send_content')
-    
+    webhook_content = os.getenv('discord_webhook')
 
-    content = "file content: "+file_content+"\n"+"os content: "+os_content
+    content = "file content: "+file_content+"\n"+"os content: "+os_content+"\n"
 
     # 发送到Slack
-    if send_to_slack(webhook_url, content):
+    if send_to_slack(webhook_content, content):
         print("内容已成功发送到Slack!")
 
     else:
