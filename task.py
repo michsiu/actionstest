@@ -15,6 +15,15 @@ def read_txt_file(file_path):
         print(f"读取文件时出错: {e}")
         sys.exit(1)
 
+
+def read_env_file(env_name,webjook_url):
+    """读取txt文件内容"""
+    try:
+        webhook_content = os.getenv('env_name')
+    except Exception as e:
+        send_to_slack(webhook_url, e)
+        sys.exit(1)
+
 def send_to_slack(webhook_url, message):
     """发送消息到Slack webhook"""
     payload = {
@@ -45,9 +54,10 @@ if __name__ == "__main__":
     # 读取文件内容
     file_content = read_txt_file(file_path)
     os_content = os.getenv('send_content')
+    read_env_file("discord_webhook",webhook_url)
     
 
-    content = "file content: "+file_content+"\n"+"os content: "+os_content
+    content = file_content+"\n"+os_content
 
     # 发送到Slack
     if send_to_slack(webhook_url, content):
