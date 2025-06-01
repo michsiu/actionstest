@@ -45,9 +45,9 @@ if __name__ == "__main__":
     # 读取文件内容
     file_content = read_txt_file(file_path)
     os_content = os.getenv('send_content')
-    webhook_content = os.getenv('discord_webhook')
+    
 
-    content = "file content: "+file_content+"\n"+"os content: "+os_content+"\n"+webhook_content
+    content = "file content: "+file_content+"\n"+"os content: "+os_content
 
     # 发送到Slack
     if send_to_slack(webhook_url, content):
