@@ -24,7 +24,7 @@ jobs:
     
     - name: Run script
       env:
-        send_content: ${{ secrets.YZS }}
+        send_content: ${{ secrets.ENVTEST }}
         discord_webhook: ${{ secrets.Y }}
       run: |
         python task.py
