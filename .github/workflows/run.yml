@@ -24,7 +24,7 @@ jobs:
     
     - name: Run script
     - env:
-        message: ${{ secrets.ENVTEST }}
+        message: ${{ secrets.FLOMO_AUTHORIZATION }}
      
       run: |
         python task.py
