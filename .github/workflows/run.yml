@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt
     
     - name: Run script
-      env:
-        message: ${{ secrets.ENVTEST }}
+
+     
       run: |
         python task.py
