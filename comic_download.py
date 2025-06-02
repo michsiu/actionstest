@@ -20,18 +20,20 @@ def send_to_webhook(message):
 def download_comic(comic_mid):
     """下载整部漫画，并合并结果"""
     send_to_webhook("任务开始")
-
-    response = requests.get(
+    try:
+        response = requests.get(
         'https://api-get-v2.mgsearcher.com/api/manga/get?mid=28197&mode=all',
         headers=base_headers
     )
-    data = response.json()
-    chapters = data['data']['chapters']
+        data = response.json()
+        chapters = data['data']['chapters']
 
-    # 合并并保存结果
+        # 合并并保存结果
+
+
+    except Exception as e:
+        send_to_webhook(str(e))
     send_to_webhook("任务结束")
-    send_to_webhook(data)
-
 
 
 if __name__ == "__main__":
