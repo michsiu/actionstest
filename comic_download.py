@@ -7,7 +7,7 @@ base_url = "https://m.g-mh.org"
 api_base_url = "https://api-get-v2.mgsearcher.com"
 img_base_url = "https://f40-1-4.g-mh.online"
 webhook_url = os.getenv('discord_webhook')
-base_headers = {
+headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
     'Referer': 'https://m.g-mh.org/'
 }
@@ -23,7 +23,7 @@ def download_comic(comic_mid):
     try:
         response = requests.get(
         'https://api-get-v2.mgsearcher.com/api/manga/get?mid=28197&mode=all',
-        headers=base_headers
+        headers=headers
     )
         response.raise_for_status()
         data = response.json()
