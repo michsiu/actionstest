@@ -2,7 +2,6 @@ import os
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import base64
-from datetime import datetime
 
 class ComicDownloader:
     def __init__(self, comic_mid, max_chapter_workers=5, max_image_workers=10):
@@ -20,7 +19,7 @@ class ComicDownloader:
               
         self.max_chapter_workers = max_chapter_workers
         self.max_image_workers = max_image_workers
-        self.all_results = {}  # 存储所有章节的图片数据
+        self.all_results = {'chapters': []}  # 存储所有章节的图片数据
 
     def send_to_webhook(self, message):
         payload = {"content": message}
@@ -53,7 +52,7 @@ class ComicDownloader:
         data = response.json()
         image_urls = data['data']['info']['images']['images']['urls']
 
-        chapter_results = {'chapter_num': chapter_num, 'images': []}
+        chapter_results = {'images': []}
 
         with ThreadPoolExecutor(max_workers=self.max_image_workers) as executor:
             futures = [executor.submit(self.download_image, url) for url in image_urls]
@@ -116,13 +115,7 @@ class ComicDownloader:
         data = response.json()
         chapters = data['data']['chapters']
 
-        with ThreadPoolExecutor(max_workers=self.max_chapter_workers) as executor:
-            futures = [executor.submit(self.process_chapter, chapter) for chapter in chapters]
-            
-            for future in as_completed(futures):
-                chapter_result = future.result()
-                if chapter_result and chapter_result['images']:
-                    self.all_results[chapter_result['chapter_num'] = chapter_result
+       
 
         # 合并并保存结果
         self.send_to_webhook("任务完成")
