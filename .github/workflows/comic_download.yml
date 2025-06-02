@@ -1,4 +1,4 @@
-name: sendtodiscord
+name: comic_download
 
 on:
   push:
