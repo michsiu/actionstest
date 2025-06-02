@@ -25,13 +25,14 @@ def download_comic(comic_mid):
         'https://api-get-v2.mgsearcher.com/api/manga/get?mid=28197&mode=all',
         headers=base_headers
     )
+        response.raise_for_status()
         data = response.json()
         chapters = data['data']['chapters']
 
         # 合并并保存结果
 
 
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         send_to_webhook(str(e))
     send_to_webhook("任务结束")
 
