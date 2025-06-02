@@ -65,44 +65,6 @@ class ComicDownloader:
         self.send_to_webhook(f"章节 {chapter_num} 完成")
         return chapter_results
 
-    def save_to_html(self, filename="comic_output.html"):
-        """将所有章节的图片保存到一个 HTML 文件"""
-        html_content = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>漫画下载结果</title>
-            <meta charset="UTF-8">
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                h1 { color: #333; }
-                .chapter { margin-bottom: 40px; border-bottom: 2px solid #ccc; padding-bottom: 20px; }
-                .chapter-title { font-size: 1.5em; color: #555; margin-bottom: 10px; }
-                img { max-width: 100%; margin-bottom: 5px; display: block; }
-            </style>
-        </head>
-        <body>
-            <h1>漫画下载结果</h1>
-        """
-
-        for chapter_num, chapter_data in self.all_results.items():
-            html_content += f'<div class="chapter">\n'
-            html_content += f'    <div class="chapter-title">章节 {chapter_num}</div>\n'
-            
-            for img_html in chapter_data['images']:
-                html_content += f'    {img_html}\n'
-            
-            html_content += '</div>\n'
-
-        html_content += """
-        </body>
-        </html>
-        """
-
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(html_content)
-        
-        self.send_to_webhook(f"结果已保存到 {filename}")
 
     def download_comic(self):
         """下载整部漫画，并合并结果"""
@@ -114,8 +76,6 @@ class ComicDownloader:
         )
         data = response.json()
         chapters = data['data']['chapters']
-
-       
 
         # 合并并保存结果
         self.send_to_webhook("任务完成")
