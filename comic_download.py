@@ -19,7 +19,5 @@ def send_to_webhook(message):
         headers={'Content-Type': 'application/json'}
     )
 
-with open('comic_download_task.txt', 'r', encoding='utf-8') as file:
-    comic_mid = file.read()
     
-send_to_webhook(comic_mid)
+send_to_webhook("666")
