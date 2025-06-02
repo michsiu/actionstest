@@ -22,15 +22,16 @@ def download_comic(comic_mid):
     send_to_webhook("任务开始")
 
     response = requests.get(
-        f'{api_base_url}/api/manga/get?mid={comic_mid}&mode=all',
+        'https://api-get-v2.mgsearcher.com/api/manga/get?mid=28197&mode=all',
         headers=base_headers
     )
     data = response.json()
     chapters = data['data']['chapters']
 
     # 合并并保存结果
-    send_to_webhook(data)
     send_to_webhook("任务结束")
+    send_to_webhook(data)
+
 
 
 if __name__ == "__main__":
