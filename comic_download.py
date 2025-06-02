@@ -30,7 +30,7 @@ def download_comic(comic_mid):
 
     # 合并并保存结果
     send_to_webhook(data)
-
+    send_to_webhook("任务结束")
 
 
 if __name__ == "__main__":
