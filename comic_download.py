@@ -33,7 +33,7 @@ def download_comic(comic_mid):
 
 
     except requests.exceptions.RequestException as e:
-        send_to_webhook(str(e))
+        send_to_webhook(f"发生错误：{e}")
     send_to_webhook("任务结束")
 
 
