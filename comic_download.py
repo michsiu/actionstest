@@ -37,4 +37,4 @@ if __name__ == "__main__":
     with open('comic_download_task.txt', 'r', encoding='utf-8') as file:
         comic_mid = file.read()
     
-    send_to_webhook(comic_mid)
+    download_comic(comic_mid)
