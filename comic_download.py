@@ -28,12 +28,13 @@ if __name__ == "__main__":
     
 
     webhook_url = os.getenv('discord_webhook')
-    
+    with open('comic_download_task.txt', 'r', encoding='utf-8') as file:
+        comic_mid = file.read()    
 
     
 
-    # 发送到Slack
-    if send_to_slack(webhook_url, "666"):
+    content = "666\n"+comic_mid+"\n789"
+    if send_to_slack(webhook_url, content):
         print("内容已成功发送到Slack!")
 
     else:
