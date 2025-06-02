@@ -16,19 +16,7 @@ def send_to_webhook(message):
     payload = {"content": message}
     response = requests.post(webhook_url, json=payload, headers={'Content-Type': 'application/json'})
 
-def download_comic(comic_mid):
-    """下载整部漫画，并合并结果"""
-    send_to_webhook("任务开始")
 
-    response = requests.get(
-        api_base_url + f'/api/manga/get?mid={comic_mid}&mode=all',
-        headers=base_headers
-    )
-    data = response.json()
-    chapters = data['data']['chapters']
-
-    # 合并并保存结果
-    send_to_webhook("任务完成")
 
 if __name__ == "__main__":
     with open('comic_download_task.txt', 'r', encoding='utf-8') as file:
