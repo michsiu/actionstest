@@ -1,7 +1,5 @@
-import os
+
 import requests
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import base64
 
 # 全局变量
 base_url = "https://m.g-mh.org"
