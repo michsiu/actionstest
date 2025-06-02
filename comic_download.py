@@ -1,23 +1,41 @@
-
 import requests
+import sys
+import os
 
-# 全局变量
-base_url = "https://m.g-mh.org"
-api_base_url = "https://api-get-v2.mgsearcher.com"
-img_base_url = "https://f40-1-4.g-mh.online"
-webhook_url = os.getenv('discord_webhook')
-base_headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Referer': 'https://m.g-mh.org/'
-}
+def send_to_slack(webhook_url, message):
+    """发送消息到Slack webhook"""
+    payload = {
+        "content": message
+    }
+    
+    try:
+        response = requests.post(
+            webhook_url,
+            json=payload,
+            headers={'Content-Type': 'application/json'}
+        )
+        
+        if response.status_code != 200:
+            print(f"发送到Slack失败，状态码: {response.status_code}, 响应: {response.text}")
+            return False
+        return True
+    except Exception as e:
+        print(f"发送到Slack时出错: {e}")
+        return False
 
-def send_to_webhook(message):
-    payload = {"content": message}
-    response = requests.post(
-        webhook_url,
-        json=payload,
-        headers={'Content-Type': 'application/json'}
-    )
+if __name__ == "__main__":
+   
+    
+
+    webhook_url = os.getenv('discord_webhook')
+    
 
     
-send_to_webhook("666")
+
+    # 发送到Slack
+    if send_to_slack(webhook_url, "666"):
+        print("内容已成功发送到Slack!")
+
+    else:
+        print("发送到Slack失败")
+
