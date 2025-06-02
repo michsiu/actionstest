@@ -7,7 +7,7 @@ base_url = "https://m.g-mh.org"
 api_base_url = "https://api-get-v2.mgsearcher.com"
 img_base_url = "https://f40-1-4.g-mh.online"
 webhook_url = os.getenv('discord_webhook')
-base_ headers = {
+base_headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
     'Referer': 'https://m.g-mh.org/',
     'Accept': 'application/json, text/javascript, */*; q=0.01',
