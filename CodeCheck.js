@@ -1,4 +1,4 @@
-const fm=FileManager.local()
+const fm = FileManager.local()
 
 const mid ='29310'
 const apiBaseUrl = 'https://api-get-v2.mgsearcher.com'
