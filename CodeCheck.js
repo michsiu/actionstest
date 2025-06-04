@@ -11,23 +11,20 @@ testChapterUrls =["https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310
 chaptersHtml = testChapterUrls.map(async (url,index) => {
     console.log('task '+ index +' start')
     
-    chapterImageHtml = ''
-    
     const req = new Request(url);
     req.headers = headers;
     req.method = 'GET';
     chapterRes = await req.loadJSON();
-    
-    console.log('task '+ index +' end');
-    
-    chatperTitle = chapterRes.data.info.title;
-    chapterImageHtml += '<h1>' + chatperTitle + '</h1>\n'
-    chatperImagesInfo = chapterRes.data.info.images.images;
-    chapterImageUrls = chatperImagesInfo.map((imageInfo)=>{
+
+    chapterImageHtml = ''        
+    chapterTitle = chapterRes.data.info.title;
+    chapterImageHtml += '<h1>' + chapterTitle + '</h1>\n'
+    chapterImagesInfo = chapterRes.data.info.images.images;
+    chapterImageUrls = chapterImagesInfo.map((imageInfo)=>{
       return imageInfo.url
     });
     
-    console.log('task ' + index + '-' + chapterTitle + ' Start get Images');
+    console.log('task ' + index + ' - ' + chapterTitle + ' Start get Images');
     
     chapterImageUrls.map(async (url)=>{
         const reqImage = new Request(`${imageBaseUrl}${url}`);
