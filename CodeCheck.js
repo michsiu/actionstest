@@ -1,24 +1,23 @@
-const apiBaseUrl = 'https://api-get-v2.mgsearcher.com'
-const imageBaseUrl = 'https://f40-1-4.g-mh.online'
+const fm=FileManager.local()
 
 const mid ='29310'
-
+const apiBaseUrl = 'https://api-get-v2.mgsearcher.com'
+const imageBaseUrl = 'https://f40-1-4.g-mh.online'
 const headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36','Referer':'https://m.g-mh.org/'}
-
-
 
 
 testChapterUrls =["https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310&c=1694296","https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310&c=1694478","https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310&c=1694827"]
 
-
- chaptersHtml = testChapterUrls.map(async (url,index) => {
+chaptersHtml = testChapterUrls.map(async (url,index) => {
     console.log('task '+index+' start')
+    chapterImageHtml = ''
     const req = new Request(url);
     req.headers = headers;
     req.method = 'GET';
     chapterRes = await req.loadJSON();
     console.log('task '+index+' end');
     chatperTitle = chapterRes.data.info.title;
+    chapterImageHtml += '<h1>' + chatperTitle + '</h1>\n'
 
     chatperImagesInfo = chapterRes.data.info.images.images;
 
@@ -26,8 +25,9 @@ testChapterUrls =["https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310
 
       return imageInfo.url
     });
-    console.log('task '+index+' imageUrls: '+chapterImageUrls);
-    chapterImageHtml = chapterImageUrls.map(async (url)=>{
+    
+    console.log('task ' + index + '-' + chapterTitle + ' imageUrls: ');
+    chapterImageUrls.map(async (url)=>{
           
     const reqImage = new Request(`${imageBaseUrl}${url}`);
     reqImage.headers = headers;
@@ -37,28 +37,19 @@ testChapterUrls =["https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310
 
     imageData = Data.fromJPEG(imageRes);
     imageBase64 = imageData.toBase64String();
-
-    return `<img src="${imageBase64}">`
+    
+    chapterImageHtml += '<img src="' + imageBase64 + '"\n'
       
     })
-    chapterImageHtml.join('')
+    return chapterImageHtml
 });
 
 
-console.log('Start All Chapter Tasks End')
-// 统一处理结果
-// const chapters = await Promise.allSettled(chapterPromises);
+console.log('All Chapter Tasks End')
 
-
-
-// chapterImages = chapters.map((chapter, index) => {
-//     const imagesInfo = chapter.value.data.info.images.images;
-//     return imagesInfo.map(image => {
-//         return {
-//             url: image.url,
-//             title: chapter.value.data.info.title
-//         };
-//     });
-// }).flat(); // Flatten the array of arrays into a single arra
-// console.log(chapterImages)
-
+await chaptersHtml.then((res)=>{
+    
+    
+})
+const dataPath = fileManager.documentsDirectory() + "/quanqiubingfeng.html"
+fileManager.writeString(dataPath, chaptersHtml)
