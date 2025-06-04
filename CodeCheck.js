@@ -47,5 +47,5 @@ chaptersHtml = testChapterUrls.map(async (url,index) => {
 
 console.log('All Chapter Tasks End')
 
-const dataPath = fileManager.documentsDirectory() + "/quanqiubingfeng.html"
-fileManager.writeString(dataPath, chaptersHtml)
+const dataPath = fm.documentsDirectory() + "/quanqiubingfeng.html"
+fm.writeString(dataPath, chaptersHtml)
