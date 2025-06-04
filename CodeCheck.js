@@ -1,48 +1,64 @@
+const apiBaseUrl = 'https://api-get-v2.mgsearcher.com'
+const imageBaseUrl = 'https://f40-1-4.g-mh.online'
 
-import requests
-import os
+const mid ='29310'
 
-# 全局变量
-base_url = "https://m.g-mh.org"
-api_base_url = "https://api-get-v2.mgsearcher.com"
-img_base_url = "https://f40-1-4.g-mh.online"
-webhook_url = os.getenv('discord_webhook')
-base_headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Referer': 'https://m.g-mh.org/',
-    'Accept': 'application/json, text/javascript, */*; q=0.01',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Origin': 'https://m.g-mh.org',
-    'Connection': 'keep-alive',
-}
-
-def send_to_webhook(message):
-
-    payload = {"content": message}
-    response = requests.post(webhook_url, json=payload, headers={'Content-Type': 'application/json'})
-
-def download_comic(comic_mid):
-    """下载整部漫画，并合并结果"""
-    send_to_webhook("任务开始")
-    try:
-        session = requests.Session()
-        session.headers.update(base_headers)
-        response = session.get('https://api-get-v2.mgsearcher.com/api/manga/get?mid=28197&mode=all')
-       
-        response.raise_for_status()
-        data = response.json()
-        chapters = data['data']['chapters']
-
-        # 合并并保存结果
-        send_to_webhook(f"任务成功！")
-
-    except requests.exceptions.RequestException as e:
-        send_to_webhook(f"发生错误：{e}")
-    send_to_webhook("任务结束")
+const headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36','Referer':'https://m.g-mh.org/'}
 
 
-if __name__ == "__main__":
-    with open('comic_download_task.txt', 'r', encoding='utf-8') as file:
-        comic_mid = file.read()
-    
-    download_comic(comic_mid)
+
+
+testChapterUrls =["https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310&c=1694296","https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310&c=1694478","https://api-get-v2.mgsearcher.com/api/chapter/getinfo?m=29310&c=1694827"]
+
+
+ chaptersHtml = testChapterUrls.map(async (url,index) => {
+    console.log('task '+index+' start')
+    const req = new Request(url);
+    req.headers = headers;
+    req.method = 'GET';
+    chapterRes = await req.loadJSON();
+    console.log('task '+index+' end');
+    chatperTitle = chapterRes.data.info.title;
+
+    chatperImagesInfo = chapterRes.data.info.images.images;
+
+    chapterImageUrls = chatperImagesInfo.map((imageInfo)=>{
+
+      return imageInfo.url
+    });
+    console.log('task '+index+' imageUrls: '+chapterImageUrls);
+    chapterImageHtml = chapterImageUrls.map(async (url)=>{
+          
+    const reqImage = new Request(`${imageBaseUrl}${url}`);
+    reqImage.headers = headers;
+    reqImage.method = 'GET';
+
+    imageRes =  await reqImage.loadImage();
+
+    imageData = Data.fromJPEG(imageRes);
+    imageBase64 = imageData.toBase64String();
+
+    return `<img src="${imageBase64}">`
+      
+    })
+    chapterImageHtml.join('')
+});
+
+
+console.log('Start All Chapter Tasks End')
+// 统一处理结果
+// const chapters = await Promise.allSettled(chapterPromises);
+
+
+
+// chapterImages = chapters.map((chapter, index) => {
+//     const imagesInfo = chapter.value.data.info.images.images;
+//     return imagesInfo.map(image => {
+//         return {
+//             url: image.url,
+//             title: chapter.value.data.info.title
+//         };
+//     });
+// }).flat(); // Flatten the array of arrays into a single arra
+// console.log(chapterImages)
+
