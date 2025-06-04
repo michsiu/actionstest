@@ -42,5 +42,10 @@ chaptersHtml = testChapterUrls.map(async (url,index) => {
 
 console.log('All Chapter Tasks End')
 
+
+chapters = await Promise.all(chaptersHtml)
 const dataPath = fm.documentsDirectory() + "/quanqiubingfeng.html"
-fm.writeString(dataPath, chaptersHtml)
+fm.writeString(dataPath, chapters)    
+    
+
+
