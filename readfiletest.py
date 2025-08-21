@@ -9,6 +9,8 @@ def send_to_webhook(message):
     payload = {"content": message}
     response = requests.post(webhook_url, json=payload, headers={'Content-Type': 'application/json'})
 
+send_to_webhook('Task Start')
+
 if __name__ == "__main__":
     with open('foldertesst/foldertest.txt', 'r', encoding='utf-8') as file:
         send_to_webhook(file)
