@@ -42,7 +42,7 @@ def send_to_webhook(message):
 
 def read_and_send_file():
     """读取文件并发送内容"""
-    file_path = 'foldertesst/foldertest.txt'
+    file_path = 'foldertest/foldertest.txt'
     
     # 检查文件是否存在
     if not os.path.exists(file_path):
