@@ -1,9 +1,9 @@
-name: comic_download
+name: readfiletest
 
 on:
   push:
     paths:
-      - 'comic_download_task.txt'
+      - 'readfiletest.txt'
 
 jobs:
   send-to-slack:
@@ -26,4 +26,4 @@ jobs:
       env:
         discord_webhook: ${{ secrets.DISCORDHOOK }}
       run: |
-        readfiletest.py
+        python readfiletest.py
