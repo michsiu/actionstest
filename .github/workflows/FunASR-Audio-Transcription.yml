@@ -224,21 +224,17 @@ jobs:
 
       - name: Commit transcription results
         run: |
-          # 配置git用户
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # 添加生成的文件
           git add recognized_text.txt full_run.log transcription.log 2>/dev/null || true
-          
-          # 只有在有变更时才提交
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Update transcription results [skip ci]"
             git push
-            echo "Results committed to repository"
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 添加这一行
 
       - name: Upload transcription artifacts (for debugging)
         uses: actions/upload-artifact@v4
