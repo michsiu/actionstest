@@ -19,7 +19,11 @@ on:
       - '*.wav'
       - '*.mp3'
       - '*.m4a'
-name: FunASR Audio Transcription
+      
+      
+permissions:
+  contents: write
+
 
 
 
