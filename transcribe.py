@@ -18,7 +18,7 @@ DOWNLOAD_DIR = os.path.join(os.getcwd(), 'downloads')
 CONVERTED_DIR = os.path.join(os.getcwd(), 'converted')
 
 # 并行数：可根据需要调整
-MAX_WORKERS = 3
+MAX_WORKERS = 7
 
 logging.basicConfig(
     level=logging.INFO,
