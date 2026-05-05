@@ -1,5024 +1,661 @@
 funasr version: 1.3.1.
 Downloading Model from https://www.modelscope.cn to directory: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch
-2026-05-05 19:44:44,097 - modelscope - INFO - Got 9 files, start to download ...
-Processing 9 items:   0%|          | 0.00/9.00 [00:00<?, ?it/s]
-Downloading [am.mvn]:   0%|          | 0.00/10.9k [00:00<?, ?B/s][A
-
-Downloading [example/asr_example.wav]:   0%|          | 0.00/173k [00:00<?, ?B/s][A[A
-
-
-Downloading [configuration.json]:   0%|          | 0.00/472 [00:00<?, ?B/s][A[A[A
-
-
-
-
-
-Downloading [seg_dict]:   0%|          | 0.00/7.90M [00:00<?, ?B/s][A[A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   0%|          | 0.00/840M [00:00<?, ?B/s][A[A[A[A[A
-
-
-
-Downloading [config.yaml]:   0%|          | 0.00/2.45k [00:00<?, ?B/s][A[A[A[A
-
-
-
-
-
-
-
-Downloading [fig/struct.png]:   0%|          | 0.00/48.7k [00:00<?, ?B/s][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Downloading [README.md]:   0%|          | 0.00/19.2k [00:00<?, ?B/s][A[A[A[A[A[A[A
-
-
-Downloading [configuration.json]: 100%|██████████| 472/472 [00:00<00:00, 662B/s][A[A[ADownloading [configuration.json]: 100%|██████████| 472/472 [00:00<00:00, 662B/s]
-
-
-
-Downloading [tokens.json]:   0%|          | 0.00/91.5k [00:00<?, ?B/s][A[A[AProcessing 9 items:  11%|█         | 1.00/9.00 [00:00<00:05, 1.39it/s]
-
-
-
-Downloading [config.yaml]: 100%|██████████| 2.45k/2.45k [00:00<00:00, 3.41kB/s][A[A[A[ADownloading [config.yaml]: 100%|██████████| 2.45k/2.45k [00:00<00:00, 3.41kB/s]
-
-
-
-
-
-
-
-
-Downloading [fig/struct.png]: 100%|██████████| 48.7k/48.7k [00:01<00:00, 48.8kB/s][A[A[A[A[A[A[A[ADownloading [fig/struct.png]: 100%|██████████| 48.7k/48.7k [00:01<00:00, 48.8kB/s]
-
-
-
-
-
-
-
-Downloading [README.md]: 100%|██████████| 19.2k/19.2k [00:01<00:00, 19.3kB/s][A[A[A[A[A[A[ADownloading [README.md]: 100%|██████████| 19.2k/19.2k [00:01<00:00, 19.2kB/s]
-Processing 9 items:  33%|███▎      | 3.00/9.00 [00:01<00:01, 3.29it/s]
-
-Downloading [example/asr_example.wav]: 100%|██████████| 173k/173k [00:01<00:00, 170kB/s][A[ADownloading [example/asr_example.wav]: 100%|██████████| 173k/173k [00:01<00:00, 170kB/s]
-
-Downloading [am.mvn]:  35%|███▍      | 3.81k/10.9k [00:01<00:01, 3.71kB/s][ADownloading [am.mvn]: 100%|██████████| 10.9k/10.9k [00:01<00:00, 10.6kB/s]
-
-
-
-
-
-
-Downloading [seg_dict]:   0%|          | 3.80k/7.90M [00:01<43:17, 3.19kB/s][A[A[A[A[A[A
-
-
-
-
-
-Downloading [seg_dict]:   4%|▎         | 292k/7.90M [00:01<00:26, 300kB/s]  [A[A[A[A[A[A
-
-
-Downloading [tokens.json]:   4%|▍         | 3.81k/91.5k [00:00<00:15, 5.70kB/s][A[A[A
-
-
-
-
-Downloading [model.pt]:   0%|          | 1.00M/840M [00:01<19:49, 739kB/s][A[A[A[A[ADownloading [tokens.json]: 100%|██████████| 91.5k/91.5k [00:00<00:00, 128kB/s] 
-Processing 9 items:  78%|███████▊  | 7.00/9.00 [00:01<00:00, 5.94it/s]
-
-
-
-
-
-Downloading [seg_dict]:  11%|█         | 896k/7.90M [00:01<00:07, 990kB/s][A[A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   0%|          | 2.00M/840M [00:01<09:00, 1.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   0%|          | 3.00M/840M [00:01<05:32, 2.64MB/s][A[A[A[A[A
-
-
-
-
-
-Downloading [seg_dict]:  26%|██▌       | 2.07M/7.90M [00:01<00:02, 2.54MB/s][A[A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   1%|          | 5.00M/840M [00:01<02:48, 5.21MB/s][A[A[A[A[A
-
-
-
-
-
-Downloading [seg_dict]:  48%|████▊     | 3.77M/7.90M [00:01<00:00, 4.74MB/s][A[A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   1%|          | 10.0M/840M [00:01<01:06, 13.0MB/s][A[A[A[A[A
-
-
-
-
-
-Downloading [seg_dict]:  80%|████████  | 6.36M/7.90M [00:01<00:00, 8.77MB/s][A[A[A[A[A[ADownloading [seg_dict]: 100%|██████████| 7.90M/7.90M [00:01<00:00, 4.30MB/s]
-Processing 9 items:  89%|████████▉ | 8.00/9.00 [00:01<00:00, 4.31it/s]
-
-
-
-
-Downloading [model.pt]:   2%|▏         | 16.0M/840M [00:02<00:46, 18.6MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   2%|▏         | 19.0M/840M [00:02<00:41, 20.8MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   3%|▎         | 22.0M/840M [00:02<01:29, 9.58MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   3%|▎         | 24.0M/840M [00:03<01:22, 10.4MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   4%|▍         | 32.0M/840M [00:03<00:45, 18.6MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   5%|▍         | 38.0M/840M [00:03<00:34, 24.1MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   5%|▌         | 42.0M/840M [00:03<00:31, 26.8MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   5%|▌         | 46.0M/840M [00:03<00:28, 29.1MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   6%|▌         | 52.0M/840M [00:03<00:24, 33.6MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   7%|▋         | 58.0M/840M [00:03<00:20, 40.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   8%|▊         | 64.0M/840M [00:03<00:18, 43.7MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   8%|▊         | 69.0M/840M [00:04<00:18, 43.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   9%|▉         | 74.0M/840M [00:04<00:19, 42.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:   9%|▉         | 79.0M/840M [00:04<00:18, 44.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  10%|█         | 84.0M/840M [00:04<00:19, 41.4MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  11%|█         | 89.0M/840M [00:04<00:18, 43.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  11%|█         | 94.0M/840M [00:04<00:17, 44.4MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  12%|█▏        | 99.0M/840M [00:04<00:18, 42.1MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  12%|█▏        | 104M/840M [00:04<00:17, 43.4MB/s] [A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  13%|█▎        | 109M/840M [00:05<00:16, 45.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  14%|█▎        | 114M/840M [00:05<00:19, 38.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  14%|█▍        | 119M/840M [00:05<00:19, 39.5MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  15%|█▍        | 123M/840M [00:05<00:20, 36.5MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  15%|█▌        | 127M/840M [00:05<00:20, 36.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  16%|█▌        | 131M/840M [00:05<00:21, 34.1MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  16%|█▌        | 135M/840M [00:05<00:21, 34.6MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  17%|█▋        | 139M/840M [00:05<00:22, 33.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  17%|█▋        | 143M/840M [00:06<00:21, 33.9MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  18%|█▊        | 147M/840M [00:06<00:25, 28.3MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  18%|█▊        | 150M/840M [00:06<00:25, 27.8MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  18%|█▊        | 153M/840M [00:06<00:26, 26.9MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  19%|█▊        | 156M/840M [00:06<00:31, 22.9MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  19%|█▉        | 159M/840M [00:06<00:33, 21.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  19%|█▉        | 162M/840M [00:07<00:36, 19.5MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  20%|█▉        | 164M/840M [00:07<00:36, 19.2MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  20%|█▉        | 166M/840M [00:07<00:37, 19.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  20%|██        | 168M/840M [00:07<00:48, 14.5MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  20%|██        | 170M/840M [00:07<00:50, 14.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  20%|██        | 172M/840M [00:08<01:03, 11.0MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  21%|██        | 174M/840M [00:08<01:15, 9.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  21%|██        | 176M/840M [00:08<01:23, 8.35MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  21%|██        | 177M/840M [00:08<01:26, 8.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  21%|██        | 178M/840M [00:08<01:29, 7.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  21%|██▏       | 179M/840M [00:09<01:31, 7.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  21%|██▏       | 180M/840M [00:09<01:33, 7.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 181M/840M [00:09<01:35, 7.24MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 182M/840M [00:09<01:35, 7.24MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 183M/840M [00:09<01:35, 7.18MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 184M/840M [00:09<01:33, 7.36MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 185M/840M [00:10<01:33, 7.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 186M/840M [00:10<01:34, 7.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 187M/840M [00:10<01:34, 7.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  22%|██▏       | 188M/840M [00:10<01:35, 7.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 189M/840M [00:10<01:30, 7.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 190M/840M [00:10<01:32, 7.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 191M/840M [00:10<01:32, 7.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 192M/840M [00:11<01:30, 7.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 193M/840M [00:11<01:29, 7.54MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 194M/840M [00:11<01:31, 7.36MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 195M/840M [00:11<01:31, 7.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 196M/840M [00:11<01:28, 7.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  23%|██▎       | 197M/840M [00:11<01:29, 7.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▎       | 198M/840M [00:11<01:29, 7.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▎       | 199M/840M [00:12<01:41, 6.60MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▍       | 200M/840M [00:12<01:36, 6.93MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▍       | 201M/840M [00:12<01:44, 6.42MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▍       | 202M/840M [00:12<01:49, 6.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▍       | 203M/840M [00:12<01:48, 6.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▍       | 204M/840M [00:12<01:48, 6.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  24%|██▍       | 205M/840M [00:13<01:49, 6.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▍       | 206M/840M [00:13<01:47, 6.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▍       | 207M/840M [00:13<01:45, 6.29MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▍       | 208M/840M [00:13<01:43, 6.42MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▍       | 209M/840M [00:13<01:42, 6.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▌       | 210M/840M [00:13<01:41, 6.53MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▌       | 211M/840M [00:14<01:39, 6.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▌       | 212M/840M [00:14<01:37, 6.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▌       | 213M/840M [00:14<01:36, 6.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  25%|██▌       | 214M/840M [00:14<01:35, 6.89MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▌       | 215M/840M [00:14<01:35, 6.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▌       | 216M/840M [00:14<01:34, 6.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▌       | 217M/840M [00:14<01:33, 7.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▌       | 218M/840M [00:15<01:29, 7.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▌       | 219M/840M [00:15<01:29, 7.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▌       | 220M/840M [00:15<01:30, 7.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▋       | 221M/840M [00:15<01:29, 7.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  26%|██▋       | 222M/840M [00:15<01:30, 7.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 223M/840M [00:15<01:25, 7.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 224M/840M [00:15<01:27, 7.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 225M/840M [00:16<01:27, 7.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 226M/840M [00:16<01:25, 7.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 227M/840M [00:16<01:25, 7.52MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 228M/840M [00:16<01:26, 7.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 229M/840M [00:16<01:27, 7.34MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  27%|██▋       | 230M/840M [00:16<01:23, 7.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 231M/840M [00:16<01:25, 7.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 232M/840M [00:17<01:25, 7.46MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 233M/840M [00:17<01:22, 7.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 234M/840M [00:17<01:24, 7.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 235M/840M [00:17<01:24, 7.51MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 236M/840M [00:17<01:22, 7.68MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 237M/840M [00:17<01:23, 7.61MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 238M/840M [00:17<01:23, 7.54MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  28%|██▊       | 239M/840M [00:17<01:22, 7.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▊       | 240M/840M [00:18<01:22, 7.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▊       | 241M/840M [00:18<01:37, 6.43MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▉       | 242M/840M [00:18<01:48, 5.78MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▉       | 243M/840M [00:18<01:49, 5.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▉       | 244M/840M [00:19<02:04, 5.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▉       | 245M/840M [00:19<02:13, 4.69MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▉       | 246M/840M [00:19<02:36, 3.99MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  29%|██▉       | 247M/840M [00:19<02:43, 3.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|██▉       | 248M/840M [00:20<02:53, 3.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|██▉       | 249M/840M [00:20<02:59, 3.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|██▉       | 250M/840M [00:21<03:29, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|██▉       | 251M/840M [00:21<04:13, 2.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|███       | 252M/840M [00:22<04:31, 2.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|███       | 253M/840M [00:22<04:40, 2.20MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|███       | 254M/840M [00:23<04:41, 2.18MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|███       | 255M/840M [00:23<04:34, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  30%|███       | 256M/840M [00:24<04:27, 2.29MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███       | 257M/840M [00:24<04:18, 2.36MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███       | 258M/840M [00:24<04:06, 2.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███       | 259M/840M [00:25<04:00, 2.53MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███       | 260M/840M [00:25<03:50, 2.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███       | 261M/840M [00:25<03:40, 2.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███       | 262M/840M [00:26<03:33, 2.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███▏      | 263M/840M [00:26<03:25, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  31%|███▏      | 264M/840M [00:26<03:20, 3.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 265M/840M [00:27<03:13, 3.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 266M/840M [00:27<03:10, 3.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 267M/840M [00:28<03:50, 2.61MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 268M/840M [00:28<04:11, 2.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 269M/840M [00:29<04:21, 2.29MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 270M/840M [00:29<04:28, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 271M/840M [00:30<04:22, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  32%|███▏      | 272M/840M [00:30<04:34, 2.17MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 273M/840M [00:31<04:42, 2.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 274M/840M [00:31<04:41, 2.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 275M/840M [00:32<04:35, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 276M/840M [00:32<04:24, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 277M/840M [00:33<04:19, 2.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 278M/840M [00:33<04:24, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 279M/840M [00:34<04:37, 2.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 280M/840M [00:34<04:37, 2.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  33%|███▎      | 281M/840M [00:35<04:27, 2.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▎      | 282M/840M [00:35<04:22, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▎      | 283M/840M [00:35<04:13, 2.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▍      | 284M/840M [00:36<04:09, 2.33MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▍      | 285M/840M [00:36<04:03, 2.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▍      | 286M/840M [00:37<03:53, 2.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▍      | 287M/840M [00:37<03:47, 2.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▍      | 288M/840M [00:37<03:38, 2.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  34%|███▍      | 289M/840M [00:38<03:27, 2.78MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▍      | 290M/840M [00:38<03:20, 2.87MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▍      | 291M/840M [00:38<03:14, 2.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▍      | 292M/840M [00:39<03:11, 3.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▍      | 293M/840M [00:39<03:15, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▌      | 294M/840M [00:39<03:23, 2.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▌      | 295M/840M [00:40<03:20, 2.85MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▌      | 296M/840M [00:40<03:15, 2.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▌      | 297M/840M [00:41<03:11, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  35%|███▌      | 298M/840M [00:41<03:07, 3.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▌      | 299M/840M [00:41<02:59, 3.17MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▌      | 300M/840M [00:41<02:53, 3.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▌      | 301M/840M [00:42<03:10, 2.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▌      | 302M/840M [00:42<03:17, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▌      | 303M/840M [00:43<03:20, 2.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▌      | 304M/840M [00:43<03:17, 2.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▋      | 305M/840M [00:43<03:17, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  36%|███▋      | 306M/840M [00:44<03:13, 2.89MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 307M/840M [00:44<03:09, 2.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 308M/840M [00:44<03:02, 3.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 309M/840M [00:45<02:58, 3.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 310M/840M [00:45<02:53, 3.21MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 311M/840M [00:45<02:47, 3.31MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 312M/840M [00:46<02:43, 3.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 313M/840M [00:46<02:39, 3.47MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  37%|███▋      | 314M/840M [00:46<02:37, 3.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 315M/840M [00:46<02:29, 3.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 316M/840M [00:47<02:24, 3.80MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 317M/840M [00:47<02:24, 3.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 318M/840M [00:47<02:20, 3.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 319M/840M [00:47<02:17, 3.98MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 320M/840M [00:48<02:14, 4.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 321M/840M [00:48<02:11, 4.14MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 322M/840M [00:48<02:08, 4.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  38%|███▊      | 323M/840M [00:48<02:06, 4.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▊      | 324M/840M [00:49<02:19, 3.89MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▊      | 325M/840M [00:49<02:45, 3.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▉      | 326M/840M [00:50<03:02, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▉      | 327M/840M [00:50<03:08, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▉      | 328M/840M [00:50<03:11, 2.80MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▉      | 329M/840M [00:51<03:13, 2.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▉      | 330M/840M [00:51<03:11, 2.80MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  39%|███▉      | 331M/840M [00:52<03:05, 2.87MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|███▉      | 332M/840M [00:52<02:58, 2.98MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|███▉      | 333M/840M [00:52<02:54, 3.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|███▉      | 334M/840M [00:53<02:52, 3.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|███▉      | 335M/840M [00:53<02:44, 3.21MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|████      | 336M/840M [00:53<02:39, 3.31MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|████      | 337M/840M [00:53<02:35, 3.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|████      | 338M/840M [00:54<02:32, 3.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|████      | 339M/840M [00:54<02:34, 3.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  40%|████      | 340M/840M [00:54<02:51, 3.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████      | 341M/840M [00:55<03:15, 2.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████      | 342M/840M [00:55<03:29, 2.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████      | 343M/840M [00:56<03:32, 2.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████      | 344M/840M [00:56<03:33, 2.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████      | 345M/840M [00:57<03:27, 2.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████      | 346M/840M [00:57<03:48, 2.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████▏     | 347M/840M [00:58<04:23, 1.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  41%|████▏     | 348M/840M [00:59<04:37, 1.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 349M/840M [00:59<04:37, 1.85MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 350M/840M [01:00<04:32, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 351M/840M [01:00<04:22, 1.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 352M/840M [01:01<04:07, 2.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 353M/840M [01:01<03:57, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 354M/840M [01:02<04:04, 2.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 355M/840M [01:02<04:23, 1.93MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  42%|████▏     | 356M/840M [01:03<04:36, 1.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 357M/840M [01:03<04:37, 1.82MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 358M/840M [01:04<04:27, 1.89MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 359M/840M [01:04<04:17, 1.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 360M/840M [01:05<04:07, 2.03MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 361M/840M [01:05<03:51, 2.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 362M/840M [01:06<03:42, 2.26MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 363M/840M [01:06<03:27, 2.41MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 364M/840M [01:07<03:20, 2.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  43%|████▎     | 365M/840M [01:07<03:09, 2.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▎     | 366M/840M [01:07<03:00, 2.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▎     | 367M/840M [01:08<02:54, 2.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▍     | 368M/840M [01:08<02:47, 2.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▍     | 369M/840M [01:08<02:41, 3.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▍     | 370M/840M [01:08<02:34, 3.20MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▍     | 371M/840M [01:09<02:28, 3.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▍     | 372M/840M [01:09<02:25, 3.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  44%|████▍     | 373M/840M [01:09<02:22, 3.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▍     | 374M/840M [01:10<02:17, 3.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▍     | 375M/840M [01:10<02:13, 3.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▍     | 376M/840M [01:10<02:10, 3.72MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▍     | 377M/840M [01:10<02:08, 3.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▌     | 378M/840M [01:11<02:03, 3.92MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▌     | 379M/840M [01:11<02:00, 4.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▌     | 380M/840M [01:11<01:57, 4.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▌     | 381M/840M [01:11<01:55, 4.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  45%|████▌     | 382M/840M [01:12<01:54, 4.17MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▌     | 383M/840M [01:12<02:00, 3.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▌     | 384M/840M [01:12<01:57, 4.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▌     | 385M/840M [01:13<02:15, 3.51MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▌     | 386M/840M [01:13<02:08, 3.71MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▌     | 387M/840M [01:13<02:15, 3.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▌     | 388M/840M [01:13<02:17, 3.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▋     | 389M/840M [01:14<02:19, 3.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  46%|████▋     | 390M/840M [01:14<02:17, 3.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 391M/840M [01:14<02:15, 3.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 392M/840M [01:15<02:14, 3.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 393M/840M [01:15<02:25, 3.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 394M/840M [01:15<02:33, 3.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 395M/840M [01:16<02:33, 3.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 396M/840M [01:16<02:32, 3.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 397M/840M [01:16<02:28, 3.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  47%|████▋     | 398M/840M [01:17<02:39, 2.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 399M/840M [01:17<02:42, 2.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 400M/840M [01:18<02:48, 2.74MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 401M/840M [01:18<02:48, 2.72MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 402M/840M [01:19<02:52, 2.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 403M/840M [01:19<03:04, 2.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 404M/840M [01:19<03:06, 2.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 405M/840M [01:20<03:04, 2.47MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 406M/840M [01:20<02:59, 2.53MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  48%|████▊     | 407M/840M [01:21<02:55, 2.59MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▊     | 408M/840M [01:21<02:51, 2.64MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▊     | 409M/840M [01:21<02:46, 2.71MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▉     | 410M/840M [01:22<02:44, 2.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▉     | 411M/840M [01:22<02:38, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▉     | 412M/840M [01:22<02:34, 2.90MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▉     | 413M/840M [01:23<02:28, 3.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▉     | 414M/840M [01:23<02:24, 3.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  49%|████▉     | 415M/840M [01:23<02:19, 3.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|████▉     | 416M/840M [01:24<02:15, 3.29MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|████▉     | 417M/840M [01:24<02:22, 3.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|████▉     | 418M/840M [01:24<02:24, 3.07MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|████▉     | 419M/840M [01:25<02:28, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|█████     | 420M/840M [01:25<02:26, 3.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|█████     | 421M/840M [01:25<02:20, 3.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|█████     | 422M/840M [01:26<02:19, 3.13MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|█████     | 423M/840M [01:26<02:14, 3.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  50%|█████     | 424M/840M [01:26<02:10, 3.34MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████     | 425M/840M [01:27<02:07, 3.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████     | 426M/840M [01:27<02:13, 3.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████     | 427M/840M [01:27<02:21, 3.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████     | 428M/840M [01:28<02:25, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████     | 429M/840M [01:28<02:25, 2.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████     | 430M/840M [01:28<02:27, 2.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████▏    | 431M/840M [01:29<02:25, 2.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  51%|█████▏    | 432M/840M [01:29<02:19, 3.07MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 433M/840M [01:29<02:17, 3.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 434M/840M [01:30<02:11, 3.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 435M/840M [01:30<02:09, 3.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 436M/840M [01:30<02:21, 2.99MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 437M/840M [01:31<02:22, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 438M/840M [01:31<02:24, 2.92MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 439M/840M [01:32<02:18, 3.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 440M/840M [01:32<02:15, 3.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 441M/840M [01:32<02:15, 3.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 442M/840M [01:32<02:09, 3.21MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 443M/840M [01:33<02:18, 3.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 444M/840M [01:33<02:23, 2.89MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 445M/840M [01:34<02:26, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 446M/840M [01:34<02:28, 2.78MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 447M/840M [01:34<02:28, 2.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 448M/840M [01:35<02:23, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 449M/840M [01:35<02:20, 2.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▎    | 450M/840M [01:35<02:13, 3.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▎    | 451M/840M [01:36<02:12, 3.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 452M/840M [01:36<02:37, 2.58MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 453M/840M [01:37<03:26, 1.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 454M/840M [01:38<03:45, 1.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 455M/840M [01:38<03:48, 1.76MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 456M/840M [01:39<03:43, 1.80MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 457M/840M [01:40<03:35, 1.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▍    | 458M/840M [01:40<03:25, 1.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▍    | 459M/840M [01:40<03:13, 2.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▍    | 460M/840M [01:41<03:10, 2.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▍    | 461M/840M [01:42<03:14, 2.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▌    | 462M/840M [01:42<03:10, 2.07MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▌    | 463M/840M [01:42<03:03, 2.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▌    | 464M/840M [01:43<02:57, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▌    | 465M/840M [01:43<02:53, 2.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  55%|█████▌    | 466M/840M [01:44<02:46, 2.35MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 467M/840M [01:44<02:42, 2.41MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 468M/840M [01:44<02:32, 2.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 469M/840M [01:45<02:28, 2.61MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 470M/840M [01:45<02:21, 2.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 471M/840M [01:46<02:16, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 472M/840M [01:46<02:11, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▋    | 473M/840M [01:46<02:06, 3.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  56%|█████▋    | 474M/840M [01:46<02:00, 3.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 475M/840M [01:47<01:57, 3.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 476M/840M [01:47<01:52, 3.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 477M/840M [01:47<01:50, 3.43MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 478M/840M [01:48<01:48, 3.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 479M/840M [01:48<01:43, 3.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 480M/840M [01:48<01:42, 3.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 481M/840M [01:48<01:38, 3.82MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 482M/840M [01:49<01:35, 3.93MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 483M/840M [01:49<01:33, 4.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 484M/840M [01:49<01:41, 3.69MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 485M/840M [01:50<01:46, 3.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 486M/840M [01:50<01:45, 3.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 487M/840M [01:50<01:44, 3.53MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 488M/840M [01:50<01:43, 3.56MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 489M/840M [01:51<01:40, 3.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 490M/840M [01:51<01:38, 3.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 491M/840M [01:51<01:45, 3.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▊    | 492M/840M [01:52<01:50, 3.31MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▊    | 493M/840M [01:52<01:56, 3.13MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 494M/840M [01:53<02:08, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 495M/840M [01:53<02:14, 2.68MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 496M/840M [01:53<02:15, 2.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 497M/840M [01:54<02:29, 2.41MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 498M/840M [01:54<02:39, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 499M/840M [01:55<02:41, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|█████▉    | 500M/840M [01:55<02:37, 2.26MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|█████▉    | 501M/840M [01:56<02:34, 2.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|█████▉    | 502M/840M [01:56<02:30, 2.35MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|█████▉    | 503M/840M [01:57<02:24, 2.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|██████    | 504M/840M [01:57<02:18, 2.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|██████    | 505M/840M [01:57<02:12, 2.64MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|██████    | 506M/840M [01:58<02:08, 2.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|██████    | 507M/840M [01:58<02:09, 2.70MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  60%|██████    | 508M/840M [01:59<02:13, 2.60MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 509M/840M [01:59<02:13, 2.60MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 510M/840M [01:59<02:10, 2.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 511M/840M [02:00<02:08, 2.69MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 512M/840M [02:00<02:03, 2.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 513M/840M [02:01<02:30, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 514M/840M [02:01<02:46, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████▏   | 515M/840M [02:02<02:53, 1.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  61%|██████▏   | 516M/840M [02:03<02:54, 1.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 517M/840M [02:03<03:06, 1.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 518M/840M [02:04<03:03, 1.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 519M/840M [02:04<02:59, 1.87MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 520M/840M [02:05<02:56, 1.90MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 521M/840M [02:05<02:58, 1.87MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 522M/840M [02:06<02:57, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 523M/840M [02:06<02:54, 1.90MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 524M/840M [02:07<02:48, 1.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 525M/840M [02:07<02:43, 2.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 526M/840M [02:08<02:38, 2.07MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 527M/840M [02:08<02:28, 2.20MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 528M/840M [02:09<02:34, 2.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 529M/840M [02:09<02:36, 2.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 530M/840M [02:10<02:30, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 531M/840M [02:10<02:35, 2.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 532M/840M [02:11<02:33, 2.10MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 533M/840M [02:11<02:40, 2.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▎   | 534M/840M [02:12<02:37, 2.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▎   | 535M/840M [02:12<02:34, 2.07MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 536M/840M [02:13<02:27, 2.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 537M/840M [02:13<02:19, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 538M/840M [02:14<02:16, 2.32MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 539M/840M [02:14<02:06, 2.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 540M/840M [02:14<02:02, 2.56MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 541M/840M [02:15<01:56, 2.68MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▍   | 542M/840M [02:15<01:51, 2.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▍   | 543M/840M [02:15<01:48, 2.87MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▍   | 544M/840M [02:16<01:42, 3.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▍   | 545M/840M [02:16<01:40, 3.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 546M/840M [02:16<01:36, 3.20MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 547M/840M [02:17<01:33, 3.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 548M/840M [02:17<01:30, 3.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 549M/840M [02:17<01:24, 3.59MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 550M/840M [02:18<01:32, 3.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 551M/840M [02:18<01:47, 2.82MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 552M/840M [02:19<01:57, 2.58MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 553M/840M [02:19<01:59, 2.51MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 554M/840M [02:19<02:01, 2.47MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 555M/840M [02:20<02:01, 2.46MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 556M/840M [02:20<01:57, 2.52MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▋   | 557M/840M [02:21<01:51, 2.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  66%|██████▋   | 558M/840M [02:21<01:50, 2.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 559M/840M [02:21<01:45, 2.78MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 560M/840M [02:22<01:39, 2.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 561M/840M [02:22<01:37, 3.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 562M/840M [02:22<01:36, 3.03MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 563M/840M [02:23<01:36, 3.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 564M/840M [02:23<01:39, 2.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 565M/840M [02:23<01:41, 2.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 566M/840M [02:24<01:39, 2.90MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 567M/840M [02:24<01:37, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 568M/840M [02:25<01:35, 2.99MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 569M/840M [02:25<01:30, 3.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 570M/840M [02:25<01:27, 3.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 571M/840M [02:25<01:27, 3.21MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 572M/840M [02:26<01:28, 3.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 573M/840M [02:26<01:33, 2.98MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 574M/840M [02:27<01:37, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 575M/840M [02:27<01:38, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▊   | 576M/840M [02:27<01:38, 2.80MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▊   | 577M/840M [02:28<01:36, 2.85MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 578M/840M [02:28<01:34, 2.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 579M/840M [02:28<01:31, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 580M/840M [02:29<01:30, 3.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 581M/840M [02:29<01:25, 3.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 582M/840M [02:29<01:30, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 583M/840M [02:30<01:38, 2.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|██████▉   | 584M/840M [02:30<01:48, 2.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|██████▉   | 585M/840M [02:31<01:52, 2.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|██████▉   | 586M/840M [02:31<01:52, 2.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|██████▉   | 587M/840M [02:32<01:51, 2.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|███████   | 588M/840M [02:32<01:49, 2.41MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|███████   | 589M/840M [02:33<01:49, 2.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|███████   | 590M/840M [02:33<01:54, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  70%|███████   | 591M/840M [02:34<01:54, 2.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 592M/840M [02:34<01:51, 2.33MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 593M/840M [02:34<01:47, 2.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 594M/840M [02:35<01:44, 2.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 595M/840M [02:35<01:44, 2.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 596M/840M [02:36<01:48, 2.35MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 597M/840M [02:36<01:52, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████   | 598M/840M [02:37<01:52, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████▏  | 599M/840M [02:37<01:50, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  71%|███████▏  | 600M/840M [02:38<01:53, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 601M/840M [02:38<01:57, 2.13MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 602M/840M [02:39<01:56, 2.13MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 603M/840M [02:39<01:52, 2.20MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 604M/840M [02:40<02:00, 2.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 605M/840M [02:40<02:03, 1.99MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 606M/840M [02:41<02:01, 2.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 607M/840M [02:41<01:58, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 608M/840M [02:42<01:53, 2.14MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 609M/840M [02:42<01:48, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 610M/840M [02:43<01:47, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 611M/840M [02:43<01:54, 2.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 612M/840M [02:44<01:49, 2.17MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 613M/840M [02:44<01:46, 2.23MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 614M/840M [02:45<01:43, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 615M/840M [02:45<01:38, 2.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 616M/840M [02:46<02:00, 1.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 617M/840M [02:46<02:12, 1.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▎  | 618M/840M [02:47<02:12, 1.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▎  | 619M/840M [02:48<02:10, 1.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 620M/840M [02:48<02:05, 1.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 621M/840M [02:49<01:57, 1.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 622M/840M [02:49<01:53, 2.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 623M/840M [02:49<01:45, 2.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 624M/840M [02:50<01:50, 2.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 625M/840M [02:51<02:04, 1.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▍  | 626M/840M [02:51<02:07, 1.76MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▍  | 627M/840M [02:52<02:07, 1.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▍  | 628M/840M [02:53<02:13, 1.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▍  | 629M/840M [02:53<02:12, 1.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▌  | 630M/840M [02:54<02:21, 1.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▌  | 631M/840M [02:55<02:23, 1.52MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▌  | 632M/840M [02:55<02:16, 1.59MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  75%|███████▌  | 633M/840M [02:56<02:11, 1.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 634M/840M [02:56<02:01, 1.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 635M/840M [02:57<01:54, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 636M/840M [02:57<01:46, 2.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 637M/840M [02:58<01:43, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 638M/840M [02:58<01:44, 2.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 639M/840M [02:59<01:42, 2.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 640M/840M [02:59<01:37, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▋  | 641M/840M [03:00<01:33, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  76%|███████▋  | 642M/840M [03:00<01:31, 2.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 643M/840M [03:01<01:26, 2.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 644M/840M [03:01<01:34, 2.17MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 645M/840M [03:02<01:34, 2.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 646M/840M [03:02<01:31, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 647M/840M [03:03<01:28, 2.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 648M/840M [03:03<01:24, 2.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 649M/840M [03:03<01:23, 2.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 650M/840M [03:04<01:23, 2.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 651M/840M [03:04<01:22, 2.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 652M/840M [03:05<01:24, 2.34MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 653M/840M [03:05<01:21, 2.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 654M/840M [03:06<01:20, 2.42MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 655M/840M [03:06<01:17, 2.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 656M/840M [03:06<01:15, 2.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 657M/840M [03:07<01:13, 2.60MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 658M/840M [03:07<01:10, 2.70MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 659M/840M [03:08<01:17, 2.43MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▊  | 660M/840M [03:08<01:17, 2.42MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▊  | 661M/840M [03:09<01:16, 2.43MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 662M/840M [03:09<01:14, 2.51MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 663M/840M [03:09<01:12, 2.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 664M/840M [03:10<01:09, 2.67MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 665M/840M [03:10<01:07, 2.71MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 666M/840M [03:10<01:05, 2.78MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 667M/840M [03:11<01:03, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|███████▉  | 668M/840M [03:11<01:00, 2.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|███████▉  | 669M/840M [03:11<00:59, 3.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|███████▉  | 670M/840M [03:12<00:57, 3.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|███████▉  | 671M/840M [03:12<00:54, 3.24MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|████████  | 672M/840M [03:12<00:52, 3.33MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|████████  | 673M/840M [03:13<00:51, 3.41MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|████████  | 674M/840M [03:13<00:50, 3.47MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  80%|████████  | 675M/840M [03:13<00:48, 3.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 676M/840M [03:13<00:46, 3.68MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 677M/840M [03:14<00:45, 3.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 678M/840M [03:14<00:44, 3.82MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 679M/840M [03:14<00:42, 3.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 680M/840M [03:14<00:41, 4.04MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 681M/840M [03:15<00:40, 4.12MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████  | 682M/840M [03:15<00:39, 4.18MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████▏ | 683M/840M [03:15<00:38, 4.24MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  81%|████████▏ | 684M/840M [03:15<00:38, 4.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 685M/840M [03:16<00:37, 4.36MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 686M/840M [03:16<00:35, 4.52MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 687M/840M [03:16<00:35, 4.49MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 688M/840M [03:16<00:40, 3.92MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 689M/840M [03:17<00:43, 3.60MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 690M/840M [03:17<00:48, 3.27MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 691M/840M [03:18<00:50, 3.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 692M/840M [03:18<00:52, 2.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 693M/840M [03:19<01:06, 2.32MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 694M/840M [03:19<01:13, 2.07MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 695M/840M [03:20<01:15, 2.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 696M/840M [03:20<01:15, 1.99MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 697M/840M [03:21<01:19, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 698M/840M [03:22<01:20, 1.85MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 699M/840M [03:22<01:18, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 700M/840M [03:23<01:16, 1.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 701M/840M [03:23<01:13, 1.98MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▎ | 702M/840M [03:24<01:11, 2.01MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▎ | 703M/840M [03:24<01:13, 1.96MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 704M/840M [03:25<01:11, 2.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 705M/840M [03:25<01:08, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 706M/840M [03:26<01:15, 1.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 707M/840M [03:26<01:15, 1.84MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 708M/840M [03:27<01:13, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 709M/840M [03:27<01:10, 1.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▍ | 710M/840M [03:28<01:06, 2.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▍ | 711M/840M [03:28<01:02, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▍ | 712M/840M [03:29<01:07, 1.98MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▍ | 713M/840M [03:30<01:14, 1.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▌ | 714M/840M [03:30<01:16, 1.71MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▌ | 715M/840M [03:31<01:15, 1.74MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▌ | 716M/840M [03:31<01:11, 1.82MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  85%|████████▌ | 717M/840M [03:32<01:07, 1.91MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 718M/840M [03:32<01:04, 1.98MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 719M/840M [03:33<01:00, 2.10MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 720M/840M [03:33<00:56, 2.24MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 721M/840M [03:34<00:52, 2.36MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 722M/840M [03:34<00:50, 2.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 723M/840M [03:34<00:46, 2.61MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 724M/840M [03:35<00:46, 2.61MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▋ | 725M/840M [03:35<00:46, 2.58MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  86%|████████▋ | 726M/840M [03:36<00:46, 2.58MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 727M/840M [03:36<00:45, 2.61MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 728M/840M [03:36<00:44, 2.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 729M/840M [03:37<00:43, 2.70MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 730M/840M [03:37<00:41, 2.80MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 731M/840M [03:37<00:39, 2.85MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 732M/840M [03:38<00:38, 2.92MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 733M/840M [03:38<00:37, 2.97MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 734M/840M [03:38<00:36, 3.03MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 735M/840M [03:39<00:34, 3.14MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 736M/840M [03:39<00:34, 3.16MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 737M/840M [03:39<00:32, 3.28MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 738M/840M [03:40<00:31, 3.37MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 739M/840M [03:40<00:30, 3.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 740M/840M [03:40<00:32, 3.26MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 741M/840M [03:41<00:36, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 742M/840M [03:41<00:39, 2.59MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 743M/840M [03:42<00:41, 2.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▊ | 744M/840M [03:42<00:41, 2.43MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▊ | 745M/840M [03:43<00:40, 2.43MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 746M/840M [03:43<00:39, 2.50MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 747M/840M [03:43<00:36, 2.64MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 748M/840M [03:44<00:36, 2.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 749M/840M [03:44<00:34, 2.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 750M/840M [03:44<00:32, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 751M/840M [03:45<00:31, 2.93MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|████████▉ | 752M/840M [03:45<00:29, 3.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|████████▉ | 753M/840M [03:46<00:33, 2.72MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|████████▉ | 754M/840M [03:46<00:38, 2.36MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|████████▉ | 755M/840M [03:47<00:39, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|█████████ | 756M/840M [03:47<00:40, 2.19MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|█████████ | 757M/840M [03:48<00:39, 2.20MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|█████████ | 758M/840M [03:48<00:37, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  90%|█████████ | 759M/840M [03:48<00:36, 2.32MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 760M/840M [03:49<00:34, 2.42MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 761M/840M [03:50<00:39, 2.11MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 762M/840M [03:50<00:42, 1.90MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 763M/840M [03:51<00:43, 1.85MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 764M/840M [03:51<00:42, 1.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 765M/840M [03:52<00:43, 1.78MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████ | 766M/840M [03:53<00:43, 1.76MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████▏| 767M/840M [03:53<00:42, 1.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  91%|█████████▏| 768M/840M [03:54<00:40, 1.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 769M/840M [03:54<00:38, 1.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 770M/840M [03:55<00:35, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 771M/840M [03:55<00:33, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 772M/840M [03:55<00:31, 2.29MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 773M/840M [03:56<00:29, 2.40MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 774M/840M [03:56<00:27, 2.48MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 775M/840M [03:57<00:27, 2.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 776M/840M [03:57<00:27, 2.39MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 777M/840M [03:58<00:26, 2.44MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 778M/840M [03:58<00:25, 2.51MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 779M/840M [03:58<00:24, 2.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 780M/840M [03:59<00:23, 2.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 781M/840M [03:59<00:22, 2.72MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 782M/840M [03:59<00:21, 2.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 783M/840M [04:00<00:21, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 784M/840M [04:00<00:19, 2.95MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 785M/840M [04:00<00:19, 3.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▎| 786M/840M [04:01<00:19, 2.90MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▎| 787M/840M [04:01<00:20, 2.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 788M/840M [04:02<00:19, 2.81MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 789M/840M [04:02<00:19, 2.79MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 790M/840M [04:02<00:18, 2.87MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 791M/840M [04:03<00:17, 2.94MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 792M/840M [04:03<00:17, 2.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 793M/840M [04:03<00:18, 2.70MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▍| 794M/840M [04:04<00:17, 2.70MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▍| 795M/840M [04:04<00:18, 2.60MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▍| 796M/840M [04:05<00:17, 2.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▍| 797M/840M [04:05<00:16, 2.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▌| 798M/840M [04:05<00:15, 2.74MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▌| 799M/840M [04:06<00:16, 2.53MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▌| 800M/840M [04:07<00:19, 2.18MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  95%|█████████▌| 801M/840M [04:07<00:19, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 802M/840M [04:08<00:19, 2.02MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 803M/840M [04:08<00:18, 2.06MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 804M/840M [04:09<00:17, 2.14MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 805M/840M [04:09<00:17, 2.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 806M/840M [04:10<00:18, 1.88MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 807M/840M [04:10<00:19, 1.77MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 808M/840M [04:11<00:20, 1.65MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▋| 809M/840M [04:12<00:22, 1.42MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  96%|█████████▋| 810M/840M [04:13<00:22, 1.38MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 811M/840M [04:14<00:20, 1.45MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 812M/840M [04:14<00:19, 1.51MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 813M/840M [04:15<00:17, 1.62MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 814M/840M [04:15<00:15, 1.75MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 815M/840M [04:16<00:13, 1.86MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 816M/840M [04:16<00:12, 2.00MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 817M/840M [04:17<00:11, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 818M/840M [04:17<00:09, 2.29MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 819M/840M [04:17<00:09, 2.41MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 820M/840M [04:18<00:08, 2.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 821M/840M [04:18<00:07, 2.70MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 822M/840M [04:18<00:07, 2.62MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 823M/840M [04:19<00:06, 2.55MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 824M/840M [04:19<00:06, 2.57MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 825M/840M [04:20<00:05, 2.63MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 826M/840M [04:20<00:05, 2.73MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 827M/840M [04:20<00:04, 2.74MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▊| 828M/840M [04:21<00:04, 2.83MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▊| 829M/840M [04:21<00:04, 2.66MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 830M/840M [04:22<00:04, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 831M/840M [04:22<00:04, 2.09MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 832M/840M [04:23<00:03, 2.05MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 833M/840M [04:23<00:03, 2.08MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 834M/840M [04:24<00:02, 2.15MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 835M/840M [04:24<00:02, 2.22MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]: 100%|█████████▉| 836M/840M [04:25<00:01, 2.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]: 100%|█████████▉| 837M/840M [04:25<00:01, 2.30MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]: 100%|█████████▉| 838M/840M [04:26<00:00, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]: 100%|█████████▉| 839M/840M [04:26<00:00, 2.25MB/s][A[A[A[A[A
-
-
-
-
-Downloading [model.pt]: 100%|██████████| 840M/840M [04:26<00:00, 2.29MB/s][A[A[A[A[ADownloading [model.pt]: 100%|██████████| 840M/840M [04:26<00:00, 3.30MB/s]
-Processing 9 items: 100%|██████████| 9.00/9.00 [04:26<00:00, 58.0s/it]Processing 9 items: 100%|██████████| 9.00/9.00 [04:26<00:00, 29.7s/it]
-2026-05-05 19:49:11,077 - modelscope - INFO - Finish downloading 9 files for repo 'damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch'
 WARNING:root:trust_remote_code: False
 Downloading Model from https://www.modelscope.cn to directory: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch
-2026-05-05 19:49:15,635 - modelscope - INFO - Got 7 files, start to download ...
-Processing 7 items:   0%|          | 0.00/7.00 [00:00<?, ?it/s]
-Downloading [am.mvn]:   0%|          | 0.00/7.85k [00:00<?, ?B/s][A
-
-Downloading [config.yaml]:   0%|          | 0.00/1.19k [00:00<?, ?B/s][A[A
-
-
-Downloading [configuration.json]:   0%|          | 0.00/365 [00:00<?, ?B/s][A[A[A
-
-
-
-Downloading [model.pt]:   0%|          | 0.00/1.64M [00:00<?, ?B/s][A[A[A[A
-
-
-
-
-Downloading [README.md]:   0%|          | 0.00/10.6k [00:00<?, ?B/s][A[A[A[A[A
-
-
-
-
-
-Downloading [fig/struct.png]:   0%|          | 0.00/27.3k [00:00<?, ?B/s][A[A[A[A[A[A
-
-
-
-
-
-
-Downloading [example/vad_example.wav]:   0%|          | 0.00/2.16M [00:00<?, ?B/s][A[A[A[A[A[A[A
-Downloading [am.mvn]:  49%|████▊     | 3.81k/7.85k [00:00<00:00, 5.75kB/s][ADownloading [am.mvn]: 100%|██████████| 7.85k/7.85k [00:00<00:00, 11.8kB/s]
-
-
-
-
-
-
-Downloading [fig/struct.png]: 100%|██████████| 27.3k/27.3k [00:00<00:00, 39.8kB/s][A[A[A[A[A[ADownloading [fig/struct.png]: 100%|██████████| 27.3k/27.3k [00:00<00:00, 39.8kB/s]
-
-
-
-Downloading [configuration.json]: 100%|██████████| 365/365 [00:00<00:00, 513B/s][A[A[ADownloading [configuration.json]: 100%|██████████| 365/365 [00:00<00:00, 513B/s]
-Processing 7 items:  14%|█▍        | 1.00/7.00 [00:00<00:04, 1.40it/s]
-
-
-
-
-Downloading [README.md]:  36%|███▌      | 3.81k/10.6k [00:00<00:01, 4.46kB/s][A[A[A[A[ADownloading [README.md]: 100%|██████████| 10.6k/10.6k [00:00<00:00, 12.4kB/s]
-
-
-Downloading [config.yaml]: 100%|██████████| 1.19k/1.19k [00:00<00:00, 1.37kB/s][A[ADownloading [config.yaml]: 100%|██████████| 1.19k/1.19k [00:00<00:00, 1.37kB/s]
-
-
-
-
-Downloading [model.pt]:  61%|██████    | 1.00M/1.64M [00:01<00:00, 955kB/s][A[A[A[ADownloading [model.pt]: 100%|██████████| 1.64M/1.64M [00:01<00:00, 1.50MB/s]
-
-
-
-
-
-
-
-Downloading [example/vad_example.wav]:  46%|████▋     | 1.00M/2.16M [00:01<00:01, 818kB/s][A[A[A[A[A[A[AProcessing 7 items:  57%|█████▋    | 4.00/7.00 [00:01<00:00, 3.32it/s]
-
-
-
-
-
-
-Downloading [example/vad_example.wav]:  93%|█████████▎| 2.00M/2.16M [00:01<00:00, 1.70MB/s][A[A[A[A[A[A[ADownloading [example/vad_example.wav]: 100%|██████████| 2.16M/2.16M [00:01<00:00, 1.53MB/s]
-Processing 7 items: 100%|██████████| 7.00/7.00 [00:01<00:00, 5.96it/s]Processing 7 items: 100%|██████████| 7.00/7.00 [00:01<00:00, 4.71it/s]
-2026-05-05 19:49:17,123 - modelscope - INFO - Finish downloading 7 files for repo 'damo/speech_fsmn_vad_zh-cn-16k-common-pytorch'
 WARNING:root:trust_remote_code: False
 Downloading Model from https://www.modelscope.cn to directory: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch
-2026-05-05 19:49:20,005 - modelscope - INFO - Got 8 files, start to download ...
-Processing 8 items:   0%|          | 0.00/8.00 [00:00<?, ?it/s]
-Downloading [.DS_Store]:   0%|          | 0.00/6.00k [00:00<?, ?B/s][A
-
-Downloading [config.yaml]:   0%|          | 0.00/810 [00:00<?, ?B/s][A[A
-
-
-Downloading [configuration.json]:   0%|          | 0.00/373 [00:00<?, ?B/s][A[A[A
-
-
-
-Downloading [model.pt]:   0%|          | 0.00/278M [00:00<?, ?B/s][A[A[A[A
-
-
-
-
-Downloading [example/punc_example.txt]:   0%|          | 0.00/863 [00:00<?, ?B/s][A[A[A[A[A
-
-
-
-
-
-Downloading [README.md]:   0%|          | 0.00/10.5k [00:00<?, ?B/s][A[A[A[A[A[A
-
-
-
-
-
-
-Downloading [fig/struct.png]:   0%|          | 0.00/151k [00:00<?, ?B/s][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Downloading [tokens.json]:   0%|          | 0.00/4.01M [00:00<?, ?B/s][A[A[A[A[A[A[A[A
-
-
-
-
-Downloading [example/punc_example.txt]: 100%|██████████| 863/863 [00:00<00:00, 1.36kB/s][A[A[A[A[ADownloading [example/punc_example.txt]: 100%|██████████| 863/863 [00:00<00:00, 1.36kB/s]
-Processing 8 items:  12%|█▎        | 1.00/8.00 [00:00<00:04, 1.55it/s]
-
-
-
-
-
-Downloading [README.md]: 100%|██████████| 10.5k/10.5k [00:00<00:00, 16.4kB/s][A[A[A[A[A[ADownloading [README.md]: 100%|██████████| 10.5k/10.5k [00:00<00:00, 16.4kB/s]
-
-
-
-Downloading [configuration.json]: 100%|██████████| 373/373 [00:00<00:00, 561B/s][A[A[ADownloading [configuration.json]: 100%|██████████| 373/373 [00:00<00:00, 561B/s]
-
-
-Downloading [config.yaml]: 100%|██████████| 810/810 [00:00<00:00, 1.14kB/s][A[ADownloading [config.yaml]: 100%|██████████| 810/810 [00:00<00:00, 1.14kB/s]
-
-Downloading [.DS_Store]: 100%|██████████| 6.00k/6.00k [00:00<00:00, 8.36kB/s][ADownloading [.DS_Store]: 100%|██████████| 6.00k/6.00k [00:00<00:00, 8.36kB/s]
-
-
-
-
-
-
-
-
-Downloading [tokens.json]:   0%|          | 3.80k/4.01M [00:00<14:14, 4.92kB/s][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Downloading [fig/struct.png]: 100%|██████████| 151k/151k [00:00<00:00, 187kB/s][A[A[A[A[A[A[ADownloading [fig/struct.png]: 100%|██████████| 151k/151k [00:00<00:00, 187kB/s]
-
-
-
-
-
-
-
-
-Downloading [tokens.json]:   1%|          | 47.8k/4.01M [00:01<01:10, 58.8kB/s][A[A[A[A[A[A[A[AProcessing 8 items:  75%|███████▌  | 6.00/8.00 [00:01<00:00, 6.18it/s]
-
-
-
-
-
-
-
-Downloading [tokens.json]:  18%|█▊        | 728k/4.01M [00:01<00:03, 1.09MB/s] [A[A[A[A[A[A[A[A
-
-
-
-Downloading [model.pt]:   0%|          | 1.00M/278M [00:01<05:47, 837kB/s][A[A[A[A
-
-
-
-
-
-
-
-Downloading [tokens.json]:  35%|███▌      | 1.41M/4.01M [00:01<00:01, 2.19MB/s][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Downloading [tokens.json]:  53%|█████▎    | 2.14M/4.01M [00:01<00:00, 3.28MB/s][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Downloading [tokens.json]:  70%|██████▉   | 2.80M/4.01M [00:01<00:00, 4.09MB/s][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Downloading [tokens.json]:  90%|████████▉ | 3.60M/4.01M [00:01<00:00, 5.13MB/s][A[A[A[A[A[A[A[ADownloading [tokens.json]: 100%|██████████| 4.01M/4.01M [00:01<00:00, 2.63MB/s]
-Processing 8 items:  88%|████████▊ | 7.00/8.00 [00:01<00:00, 4.38it/s]
-
-
-
-Downloading [model.pt]:   1%|          | 2.00M/278M [00:01<04:02, 1.20MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   1%|▏         | 4.00M/278M [00:02<01:43, 2.79MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   2%|▏         | 6.00M/278M [00:02<01:04, 4.45MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   3%|▎         | 8.00M/278M [00:02<00:46, 6.10MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   4%|▎         | 10.0M/278M [00:02<00:35, 7.91MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   4%|▍         | 12.0M/278M [00:02<00:29, 9.50MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   5%|▌         | 14.0M/278M [00:02<00:26, 10.5MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   6%|▌         | 16.0M/278M [00:02<00:24, 11.3MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   6%|▋         | 18.0M/278M [00:03<00:22, 12.0MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   7%|▋         | 20.0M/278M [00:03<00:22, 12.3MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   8%|▊         | 22.0M/278M [00:03<00:23, 11.6MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   9%|▊         | 24.0M/278M [00:03<00:22, 11.6MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:   9%|▉         | 26.0M/278M [00:03<00:23, 11.5MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  10%|█         | 28.0M/278M [00:04<00:23, 11.1MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  11%|█         | 30.0M/278M [00:04<00:23, 11.3MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  11%|█▏        | 32.0M/278M [00:04<00:23, 11.2MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  12%|█▏        | 34.0M/278M [00:04<00:22, 11.4MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  13%|█▎        | 36.0M/278M [00:04<00:26, 9.63MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  13%|█▎        | 37.0M/278M [00:05<00:28, 8.76MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  14%|█▎        | 38.0M/278M [00:05<00:30, 8.17MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  14%|█▍        | 39.0M/278M [00:05<00:33, 7.42MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  14%|█▍        | 40.0M/278M [00:05<00:34, 7.21MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  15%|█▍        | 41.0M/278M [00:05<00:35, 6.93MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  15%|█▌        | 42.0M/278M [00:05<00:36, 6.86MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  15%|█▌        | 43.0M/278M [00:06<00:36, 6.73MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  16%|█▌        | 44.0M/278M [00:06<00:46, 5.24MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  16%|█▌        | 45.0M/278M [00:06<00:54, 4.51MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  17%|█▋        | 46.0M/278M [00:06<00:59, 4.12MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  17%|█▋        | 47.0M/278M [00:07<01:01, 3.93MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  17%|█▋        | 48.0M/278M [00:07<01:02, 3.89MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  18%|█▊        | 49.0M/278M [00:07<01:03, 3.78MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  18%|█▊        | 50.0M/278M [00:08<01:10, 3.40MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  18%|█▊        | 51.0M/278M [00:08<01:13, 3.22MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  19%|█▊        | 52.0M/278M [00:08<01:16, 3.11MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  19%|█▉        | 53.0M/278M [00:09<01:16, 3.09MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  19%|█▉        | 54.0M/278M [00:09<01:15, 3.10MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  20%|█▉        | 55.0M/278M [00:09<01:15, 3.09MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  20%|██        | 56.0M/278M [00:10<01:14, 3.12MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  20%|██        | 57.0M/278M [00:10<01:12, 3.18MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  21%|██        | 58.0M/278M [00:10<01:11, 3.24MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  21%|██        | 59.0M/278M [00:11<01:10, 3.27MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  22%|██▏       | 60.0M/278M [00:11<01:13, 3.13MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  22%|██▏       | 61.0M/278M [00:11<01:16, 2.98MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  22%|██▏       | 62.0M/278M [00:12<01:17, 2.95MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  23%|██▎       | 63.0M/278M [00:12<01:15, 3.00MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  23%|██▎       | 64.0M/278M [00:12<01:12, 3.10MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  23%|██▎       | 65.0M/278M [00:13<01:10, 3.17MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  24%|██▎       | 66.0M/278M [00:13<01:09, 3.21MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  24%|██▍       | 67.0M/278M [00:13<01:08, 3.25MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  24%|██▍       | 68.0M/278M [00:14<01:07, 3.29MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  25%|██▍       | 69.0M/278M [00:14<01:04, 3.40MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  25%|██▌       | 70.0M/278M [00:14<01:04, 3.39MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  25%|██▌       | 71.0M/278M [00:15<01:02, 3.46MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  26%|██▌       | 72.0M/278M [00:15<01:02, 3.47MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  26%|██▌       | 73.0M/278M [00:15<01:01, 3.49MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  27%|██▋       | 74.0M/278M [00:15<01:00, 3.56MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  27%|██▋       | 75.0M/278M [00:16<00:58, 3.66MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  27%|██▋       | 76.0M/278M [00:16<00:58, 3.65MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  28%|██▊       | 77.0M/278M [00:16<00:56, 3.75MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  28%|██▊       | 78.0M/278M [00:17<00:54, 3.83MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  28%|██▊       | 79.0M/278M [00:17<00:54, 3.82MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  29%|██▊       | 80.0M/278M [00:17<01:09, 3.01MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  29%|██▉       | 81.0M/278M [00:18<01:25, 2.43MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  29%|██▉       | 82.0M/278M [00:19<01:50, 1.86MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  30%|██▉       | 83.0M/278M [00:20<02:06, 1.61MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  30%|███       | 84.0M/278M [00:21<02:19, 1.46MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  31%|███       | 85.0M/278M [00:21<02:19, 1.45MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  31%|███       | 86.0M/278M [00:22<02:16, 1.48MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  31%|███       | 87.0M/278M [00:23<02:10, 1.53MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  32%|███▏      | 88.0M/278M [00:23<02:03, 1.61MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  32%|███▏      | 89.0M/278M [00:24<01:52, 1.76MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  32%|███▏      | 90.0M/278M [00:24<01:48, 1.83MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  33%|███▎      | 91.0M/278M [00:25<01:50, 1.78MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  33%|███▎      | 92.0M/278M [00:25<01:48, 1.80MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  33%|███▎      | 93.0M/278M [00:26<01:44, 1.86MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  34%|███▍      | 94.0M/278M [00:26<01:38, 1.95MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  34%|███▍      | 95.0M/278M [00:27<01:34, 2.03MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  34%|███▍      | 96.0M/278M [00:27<01:31, 2.09MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  35%|███▍      | 97.0M/278M [00:28<01:26, 2.20MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  35%|███▌      | 98.0M/278M [00:28<01:24, 2.23MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  36%|███▌      | 99.0M/278M [00:29<01:19, 2.37MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  36%|███▌      | 100M/278M [00:29<01:17, 2.42MB/s] [A[A[A[A
-
-
-
-Downloading [model.pt]:  36%|███▋      | 101M/278M [00:29<01:13, 2.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  37%|███▋      | 102M/278M [00:30<01:10, 2.63MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  37%|███▋      | 103M/278M [00:30<01:08, 2.70MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  37%|███▋      | 104M/278M [00:30<01:03, 2.87MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  38%|███▊      | 105M/278M [00:31<01:02, 2.89MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  38%|███▊      | 106M/278M [00:31<01:00, 3.00MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  38%|███▊      | 107M/278M [00:31<00:57, 3.11MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  39%|███▉      | 108M/278M [00:32<00:56, 3.18MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  39%|███▉      | 109M/278M [00:32<00:52, 3.38MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  40%|███▉      | 110M/278M [00:32<00:52, 3.38MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  40%|███▉      | 111M/278M [00:33<00:49, 3.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  40%|████      | 112M/278M [00:33<00:49, 3.50MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  41%|████      | 113M/278M [00:33<00:47, 3.62MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  41%|████      | 114M/278M [00:33<00:51, 3.36MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  41%|████▏     | 115M/278M [00:34<00:53, 3.19MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  42%|████▏     | 116M/278M [00:34<00:52, 3.24MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  42%|████▏     | 117M/278M [00:34<00:51, 3.28MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  42%|████▏     | 118M/278M [00:35<00:53, 3.14MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  43%|████▎     | 119M/278M [00:35<00:57, 2.92MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  43%|████▎     | 120M/278M [00:36<00:57, 2.91MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  43%|████▎     | 121M/278M [00:36<00:56, 2.90MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  44%|████▍     | 122M/278M [00:36<00:56, 2.88MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  44%|████▍     | 123M/278M [00:37<00:56, 2.90MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  45%|████▍     | 124M/278M [00:37<00:55, 2.90MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  45%|████▍     | 125M/278M [00:37<00:53, 3.01MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  45%|████▌     | 126M/278M [00:38<00:51, 3.10MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  46%|████▌     | 127M/278M [00:38<00:50, 3.17MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  46%|████▌     | 128M/278M [00:38<00:48, 3.23MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  46%|████▋     | 129M/278M [00:39<00:47, 3.28MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  47%|████▋     | 130M/278M [00:39<00:46, 3.32MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  47%|████▋     | 131M/278M [00:39<00:44, 3.48MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  47%|████▋     | 132M/278M [00:39<00:42, 3.60MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  48%|████▊     | 133M/278M [00:40<00:42, 3.57MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  48%|████▊     | 134M/278M [00:40<00:41, 3.68MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  48%|████▊     | 135M/278M [00:40<00:39, 3.77MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  49%|████▉     | 136M/278M [00:41<00:38, 3.84MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  49%|████▉     | 137M/278M [00:41<00:38, 3.90MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  50%|████▉     | 138M/278M [00:41<00:37, 3.97MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  50%|████▉     | 139M/278M [00:41<00:35, 4.17MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  50%|█████     | 140M/278M [00:42<00:35, 4.13MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  51%|█████     | 141M/278M [00:42<00:34, 4.16MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  51%|█████     | 142M/278M [00:42<00:33, 4.32MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  51%|█████▏    | 143M/278M [00:42<00:33, 4.30MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 144M/278M [00:43<00:34, 4.12MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 145M/278M [00:43<00:35, 3.93MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  52%|█████▏    | 146M/278M [00:43<00:35, 3.88MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 147M/278M [00:43<00:36, 3.78MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  53%|█████▎    | 148M/278M [00:44<00:36, 3.79MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  54%|█████▎    | 149M/278M [00:44<00:35, 3.86MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 150M/278M [00:44<00:33, 3.99MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  54%|█████▍    | 151M/278M [00:45<00:37, 3.57MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  55%|█████▍    | 152M/278M [00:45<00:38, 3.43MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  55%|█████▍    | 153M/278M [00:45<00:39, 3.31MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  55%|█████▌    | 154M/278M [00:46<00:39, 3.32MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 155M/278M [00:46<00:38, 3.34MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  56%|█████▌    | 156M/278M [00:46<00:38, 3.35MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  56%|█████▋    | 157M/278M [00:46<00:36, 3.45MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 158M/278M [00:47<00:36, 3.49MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 159M/278M [00:47<00:35, 3.56MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  57%|█████▋    | 160M/278M [00:47<00:35, 3.48MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 161M/278M [00:48<00:33, 3.63MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  58%|█████▊    | 162M/278M [00:48<00:39, 3.13MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  59%|█████▊    | 163M/278M [00:48<00:39, 3.05MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 164M/278M [00:49<00:38, 3.13MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  59%|█████▉    | 165M/278M [00:49<00:37, 3.19MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  60%|█████▉    | 166M/278M [00:49<00:36, 3.25MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  60%|█████▉    | 167M/278M [00:50<00:35, 3.28MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  60%|██████    | 168M/278M [00:50<00:35, 3.30MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  61%|██████    | 169M/278M [00:50<00:32, 3.49MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  61%|██████    | 170M/278M [00:51<00:33, 3.44MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  61%|██████▏   | 171M/278M [00:51<00:31, 3.60MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 172M/278M [00:51<00:30, 3.71MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 173M/278M [00:51<00:30, 3.61MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  62%|██████▏   | 174M/278M [00:52<00:29, 3.69MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 175M/278M [00:52<00:28, 3.78MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  63%|██████▎   | 176M/278M [00:52<00:27, 3.85MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  64%|██████▎   | 177M/278M [00:52<00:28, 3.69MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 178M/278M [00:53<00:30, 3.40MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  64%|██████▍   | 179M/278M [00:53<00:32, 3.23MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  65%|██████▍   | 180M/278M [00:54<00:31, 3.26MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 181M/278M [00:54<00:31, 3.29MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  65%|██████▌   | 182M/278M [00:54<00:30, 3.31MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 183M/278M [00:54<00:30, 3.32MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  66%|██████▌   | 184M/278M [00:55<00:32, 3.04MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  66%|██████▋   | 185M/278M [00:55<00:32, 2.98MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 186M/278M [00:56<00:32, 2.95MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  67%|██████▋   | 187M/278M [00:56<00:32, 2.94MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 188M/278M [00:56<00:32, 2.91MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 189M/278M [00:57<00:35, 2.66MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  68%|██████▊   | 190M/278M [00:57<00:36, 2.53MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  69%|██████▊   | 191M/278M [00:58<00:36, 2.52MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 192M/278M [00:58<00:35, 2.52MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  69%|██████▉   | 193M/278M [00:59<00:35, 2.52MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  70%|██████▉   | 194M/278M [00:59<00:33, 2.61MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  70%|███████   | 195M/278M [00:59<00:32, 2.68MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  70%|███████   | 196M/278M [01:00<00:31, 2.74MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  71%|███████   | 197M/278M [01:01<00:47, 1.81MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  71%|███████   | 198M/278M [01:02<00:59, 1.43MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  71%|███████▏  | 199M/278M [01:03<01:01, 1.35MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 200M/278M [01:03<00:59, 1.37MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  72%|███████▏  | 201M/278M [01:04<00:55, 1.45MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 202M/278M [01:05<00:57, 1.39MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 203M/278M [01:05<00:55, 1.43MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  73%|███████▎  | 204M/278M [01:06<00:52, 1.50MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  74%|███████▎  | 205M/278M [01:07<00:48, 1.58MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 206M/278M [01:07<00:45, 1.66MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  74%|███████▍  | 207M/278M [01:08<00:41, 1.79MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  75%|███████▍  | 208M/278M [01:08<00:38, 1.90MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  75%|███████▌  | 209M/278M [01:09<00:36, 2.00MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  75%|███████▌  | 210M/278M [01:09<00:33, 2.13MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 211M/278M [01:09<00:31, 2.23MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  76%|███████▌  | 212M/278M [01:10<00:29, 2.39MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  76%|███████▋  | 213M/278M [01:10<00:27, 2.45MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 214M/278M [01:11<00:26, 2.57MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  77%|███████▋  | 215M/278M [01:11<00:24, 2.74MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 216M/278M [01:11<00:24, 2.66MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 217M/278M [01:12<00:25, 2.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  78%|███████▊  | 218M/278M [01:12<00:24, 2.61MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  79%|███████▊  | 219M/278M [01:13<00:24, 2.58MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 220M/278M [01:14<00:35, 1.71MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  79%|███████▉  | 221M/278M [01:14<00:33, 1.79MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  80%|███████▉  | 222M/278M [01:15<00:30, 1.96MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  80%|████████  | 223M/278M [01:15<00:28, 2.04MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  80%|████████  | 224M/278M [01:16<00:26, 2.16MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  81%|████████  | 225M/278M [01:16<00:24, 2.26MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  81%|████████  | 226M/278M [01:16<00:23, 2.33MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 227M/278M [01:17<00:25, 2.15MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 228M/278M [01:18<00:34, 1.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  82%|████████▏ | 229M/278M [01:19<00:32, 1.57MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 230M/278M [01:19<00:33, 1.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 231M/278M [01:20<00:32, 1.53MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  83%|████████▎ | 232M/278M [01:21<00:31, 1.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  84%|████████▎ | 233M/278M [01:22<00:32, 1.47MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 234M/278M [01:22<00:31, 1.46MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  84%|████████▍ | 235M/278M [01:23<00:29, 1.52MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  85%|████████▍ | 236M/278M [01:23<00:27, 1.60MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  85%|████████▌ | 237M/278M [01:24<00:25, 1.71MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  85%|████████▌ | 238M/278M [01:24<00:23, 1.84MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 239M/278M [01:25<00:21, 1.94MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  86%|████████▌ | 240M/278M [01:25<00:19, 2.02MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 241M/278M [01:26<00:18, 2.15MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 242M/278M [01:26<00:18, 2.04MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  87%|████████▋ | 243M/278M [01:27<00:18, 2.04MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 244M/278M [01:27<00:17, 2.11MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 245M/278M [01:28<00:15, 2.20MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  88%|████████▊ | 246M/278M [01:28<00:14, 2.29MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  89%|████████▊ | 247M/278M [01:29<00:14, 2.35MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 248M/278M [01:29<00:13, 2.42MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  89%|████████▉ | 249M/278M [01:29<00:12, 2.52MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  90%|████████▉ | 250M/278M [01:30<00:11, 2.54MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  90%|█████████ | 251M/278M [01:30<00:10, 2.63MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  90%|█████████ | 252M/278M [01:31<00:10, 2.70MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  91%|█████████ | 253M/278M [01:31<00:09, 2.84MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  91%|█████████ | 254M/278M [01:31<00:09, 2.76MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 255M/278M [01:32<00:09, 2.66MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 256M/278M [01:32<00:08, 2.62MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  92%|█████████▏| 257M/278M [01:32<00:08, 2.69MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 258M/278M [01:33<00:07, 2.74MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 259M/278M [01:33<00:07, 2.81MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  93%|█████████▎| 260M/278M [01:34<00:06, 2.92MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  94%|█████████▎| 261M/278M [01:34<00:06, 2.91MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 262M/278M [01:34<00:05, 3.02MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  94%|█████████▍| 263M/278M [01:35<00:05, 3.02MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  95%|█████████▍| 264M/278M [01:35<00:05, 2.82MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  95%|█████████▌| 265M/278M [01:35<00:05, 2.71MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 266M/278M [01:36<00:04, 2.66MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 267M/278M [01:36<00:04, 2.60MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  96%|█████████▌| 268M/278M [01:37<00:04, 2.39MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 269M/278M [01:37<00:04, 2.34MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 270M/278M [01:38<00:03, 2.33MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  97%|█████████▋| 271M/278M [01:38<00:03, 2.37MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 272M/278M [01:39<00:02, 2.41MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 273M/278M [01:39<00:02, 2.47MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  98%|█████████▊| 274M/278M [01:40<00:02, 2.09MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 275M/278M [01:40<00:01, 1.88MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 276M/278M [01:41<00:01, 1.82MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]:  99%|█████████▉| 277M/278M [01:41<00:00, 1.83MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]: 100%|█████████▉| 278M/278M [01:42<00:00, 1.88MB/s][A[A[A[A
-
-
-
-Downloading [model.pt]: 100%|██████████| 278M/278M [01:42<00:00, 1.92MB/s][A[A[A[ADownloading [model.pt]: 100%|██████████| 278M/278M [01:42<00:00, 2.84MB/s]
-Processing 8 items: 100%|██████████| 8.00/8.00 [01:42<00:00, 22.7s/it]Processing 8 items: 100%|██████████| 8.00/8.00 [01:42<00:00, 12.9s/it]
-2026-05-05 19:51:02,912 - modelscope - INFO - Finish downloading 8 files for repo 'damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch'
 WARNING:root:trust_remote_code: False
-  0%|[34m          [0m| 0/1 [00:00<?, ?it/s]100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.22s/it]{'load_data': '0.899', 'extract_feat': '1.256', 'forward': '2.225', 'batch_size': '1', 'rtf': '0.054'}, : 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.22s/it]rtf_avg: 0.054: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.22s/it]                                                                                          rtf_avg: 0.054: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.23s/it]
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s]100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.19s/it]{'load_data': '0.547', 'extract_feat': '2.628', 'forward': '3.186', 'batch_size': '1', 'rtf': '0.969'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.19s/it]rtf_avg: 0.969: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.19s/it]                                                                                          rtf_avg: 0.969: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.19s/it]
   0%|[31m          [0m| 0/1 [00:00<?, ?it/s]
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.67it/s][A
-{'load_data': '0.000', 'extract_feat': '0.001', 'forward': '0.103', 'batch_size': '1', 'rtf': '0.172'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.67it/s][A
-rtf_avg: 0.172: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.67it/s]                                                                                          [Artf_avg: 0.172: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.60it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.24it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.138', 'batch_size': '1', 'rtf': '0.230'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.24it/s][A
+rtf_avg: 0.230: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.24it/s]                                                                                          [Artf_avg: 0.230: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.21it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.82it/s][A
-{'load_data': '0.000', 'extract_feat': '0.001', 'forward': '0.102', 'batch_size': '1', 'rtf': '0.170'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.82it/s][A
-rtf_avg: 0.170: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.82it/s]                                                                                          [Artf_avg: 0.170: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  9.75it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.18it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.139', 'batch_size': '1', 'rtf': '0.211'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.18it/s][A
+rtf_avg: 0.211: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.18it/s]                                                                                          [Artf_avg: 0.211: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.91it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.92it/s][A
-{'load_data': '0.000', 'extract_feat': '0.001', 'forward': '0.145', 'batch_size': '1', 'rtf': '0.096'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.92it/s][A
-rtf_avg: 0.096: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.92it/s]                                                                                          [Artf_avg: 0.096: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.88it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.96it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.144', 'batch_size': '1', 'rtf': '0.218'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.96it/s][A
+rtf_avg: 0.218: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.96it/s]                                                                                          [Artf_avg: 0.218: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.88it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.97it/s][A
-{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.509', 'batch_size': '1', 'rtf': '0.053'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.97it/s][A
-rtf_avg: 0.053: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.97it/s]                                                                                          [Artf_avg: 0.053: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.96it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.40it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.135', 'batch_size': '1', 'rtf': '0.205'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.40it/s][A
+rtf_avg: 0.205: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.40it/s]                                                                                          [Artf_avg: 0.205: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.32it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.22it/s][A
-{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.822', 'batch_size': '1', 'rtf': '0.049'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.22it/s][A
-rtf_avg: 0.049: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.22it/s]                                                                                          [Artf_avg: 0.049: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.22it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.48it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.134', 'batch_size': '1', 'rtf': '0.186'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.48it/s][A
+rtf_avg: 0.186: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.48it/s]                                                                                          [Artf_avg: 0.186: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.38it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.10it/s][A
-{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.911', 'batch_size': '1', 'rtf': '0.049'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.10it/s][A
-rtf_avg: 0.049: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.10it/s]                                                                                          [Artf_avg: 0.049: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.10it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.52it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.133', 'batch_size': '1', 'rtf': '0.185'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.52it/s][A
+rtf_avg: 0.185: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.52it/s]                                                                                          [Artf_avg: 0.185: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.42it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.11it/s][A
-{'load_data': '0.000', 'extract_feat': '0.008', 'forward': '0.904', 'batch_size': '1', 'rtf': '0.046'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.11it/s][A
-rtf_avg: 0.046: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.11it/s]                                                                                          [Artf_avg: 0.046: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.10it/s]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.26it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.138', 'batch_size': '1', 'rtf': '0.191'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.26it/s][A
+rtf_avg: 0.191: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.26it/s]                                                                                          [Artf_avg: 0.191: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.21it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.15s/it][A
-{'load_data': '0.000', 'extract_feat': '0.009', 'forward': '1.147', 'batch_size': '1', 'rtf': '0.050'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.15s/it][A
-rtf_avg: 0.050: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.15s/it]                                                                                          [Artf_avg: 0.050: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.15s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.33it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.136', 'batch_size': '1', 'rtf': '0.189'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.33it/s][A
+rtf_avg: 0.189: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.33it/s]                                                                                          [Artf_avg: 0.189: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.27it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.46s/it][A
-{'load_data': '0.000', 'extract_feat': '0.011', 'forward': '1.463', 'batch_size': '1', 'rtf': '0.049'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.46s/it][A
-rtf_avg: 0.049: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.46s/it]                                                                                          [Artf_avg: 0.049: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.46s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.43it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.135', 'batch_size': '1', 'rtf': '0.187'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.43it/s][A
+rtf_avg: 0.187: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.43it/s]                                                                                          [Artf_avg: 0.187: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.35it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.84s/it][A
-{'load_data': '0.000', 'extract_feat': '0.014', 'forward': '1.843', 'batch_size': '1', 'rtf': '0.050'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.84s/it][A
-rtf_avg: 0.050: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.84s/it]                                                                                          [Artf_avg: 0.050: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.84s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.47it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.134', 'batch_size': '1', 'rtf': '0.186'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.47it/s][A
+rtf_avg: 0.186: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.47it/s]                                                                                          [Artf_avg: 0.186: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.39it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.96s/it][A
-{'load_data': '0.000', 'extract_feat': '0.020', 'forward': '2.957', 'batch_size': '1', 'rtf': '0.053'}, : 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.96s/it][A
-rtf_avg: 0.053: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.96s/it]                                                                                          [Artf_avg: 0.053: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.96s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.01it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.143', 'batch_size': '1', 'rtf': '0.183'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.01it/s][A
+rtf_avg: 0.183: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  7.01it/s]                                                                                          [Artf_avg: 0.183: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.95it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.32s/it][A
-{'load_data': '0.000', 'extract_feat': '0.020', 'forward': '3.323', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.32s/it][A
-rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.32s/it]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.32s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.68it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.150', 'batch_size': '1', 'rtf': '0.166'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.68it/s][A
+rtf_avg: 0.166: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.68it/s]                                                                                          [Artf_avg: 0.166: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.62it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.45s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.454', 'batch_size': '1', 'rtf': '0.058'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.45s/it][A
-rtf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.45s/it]                                                                                          [Artf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.46s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.86it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.146', 'batch_size': '1', 'rtf': '0.162'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.86it/s][A
+rtf_avg: 0.162: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.86it/s]                                                                                          [Artf_avg: 0.162: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.81it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.42s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.417', 'batch_size': '1', 'rtf': '0.057'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.42s/it][A
-rtf_avg: 0.057: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.42s/it]                                                                                          [Artf_avg: 0.057: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.42s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.60it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.151', 'batch_size': '1', 'rtf': '0.168'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.60it/s][A
+rtf_avg: 0.168: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.60it/s]                                                                                          [Artf_avg: 0.168: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.56it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.35s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.355', 'batch_size': '1', 'rtf': '0.056'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.35s/it][A
-rtf_avg: 0.056: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.35s/it]                                                                                          [Artf_avg: 0.056: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.36s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.63it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.151', 'batch_size': '1', 'rtf': '0.168'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.63it/s][A
+rtf_avg: 0.168: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.63it/s]                                                                                          [Artf_avg: 0.168: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.58it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.40s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.399', 'batch_size': '1', 'rtf': '0.057'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.40s/it][A
-rtf_avg: 0.057: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.40s/it]                                                                                          [Artf_avg: 0.057: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.40s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.44it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.155', 'batch_size': '1', 'rtf': '0.162'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.44it/s][A
+rtf_avg: 0.162: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.44it/s]                                                                                          [Artf_avg: 0.162: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.39it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.33s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.325', 'batch_size': '1', 'rtf': '0.055'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.33s/it][A
-rtf_avg: 0.055: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.33s/it]                                                                                          [Artf_avg: 0.055: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.33s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.72it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.149', 'batch_size': '1', 'rtf': '0.155'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.72it/s][A
+rtf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.72it/s]                                                                                          [Artf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.66it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.38s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.383', 'batch_size': '1', 'rtf': '0.056'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.38s/it][A
-rtf_avg: 0.056: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.38s/it]                                                                                          [Artf_avg: 0.056: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.38s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.71it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.149', 'batch_size': '1', 'rtf': '0.155'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.71it/s][A
+rtf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.71it/s]                                                                                          [Artf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.64it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.25s/it][A
-{'load_data': '0.000', 'extract_feat': '0.022', 'forward': '3.253', 'batch_size': '1', 'rtf': '0.054'}, : 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.25s/it][A
-rtf_avg: 0.054: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.25s/it]                                                                                          [Artf_avg: 0.054: 100%|[34m██████████[0m| 1/1 [00:03<00:00,  3.25s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.31it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.158', 'batch_size': '1', 'rtf': '0.155'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.31it/s][A
+rtf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.31it/s]                                                                                          [Artf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.26it/s]
 
   0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
-100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.04it/s][A
-{'load_data': 0.0, 'extract_feat': 0.0, 'forward': '0.964', 'batch_size': '1', 'rtf': '-0.964'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.04it/s][A
-rtf_avg: -0.964: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.04it/s]                                                                                  [Artf_avg: -0.964: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.04it/s]
-100%|[31m██████████[0m| 1/1 [00:39<00:00, 39.79s/it]rtf_avg: 0.055, time_speech:  701.180, time_escape: 38.873: 100%|[31m██████████[0m| 1/1 [00:39<00:00, 39.79s/it]rtf_avg: 0.055, time_speech:  701.180, time_escape: 38.873: 100%|[31m██████████[0m| 1/1 [00:39<00:00, 39.79s/it]
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.33it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.158', 'batch_size': '1', 'rtf': '0.155'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.33it/s][A
+rtf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.33it/s]                                                                                          [Artf_avg: 0.155: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.29it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.97it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.167', 'batch_size': '1', 'rtf': '0.147'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.97it/s][A
+rtf_avg: 0.147: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.97it/s]                                                                                          [Artf_avg: 0.147: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.93it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.87it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.170', 'batch_size': '1', 'rtf': '0.149'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.87it/s][A
+rtf_avg: 0.149: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.87it/s]                                                                                          [Artf_avg: 0.149: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.82it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.11it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.164', 'batch_size': '1', 'rtf': '0.143'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.11it/s][A
+rtf_avg: 0.143: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.11it/s]                                                                                          [Artf_avg: 0.143: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.05it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.28it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.159', 'batch_size': '1', 'rtf': '0.140'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.28it/s][A
+rtf_avg: 0.140: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.28it/s]                                                                                          [Artf_avg: 0.140: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.21it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.63it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.177', 'batch_size': '1', 'rtf': '0.148'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.63it/s][A
+rtf_avg: 0.148: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.63it/s]                                                                                          [Artf_avg: 0.148: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.58it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.39it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.157', 'batch_size': '1', 'rtf': '0.130'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.39it/s][A
+rtf_avg: 0.130: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.39it/s]                                                                                          [Artf_avg: 0.130: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  6.31it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.96it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.168', 'batch_size': '1', 'rtf': '0.133'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.96it/s][A
+rtf_avg: 0.133: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.96it/s]                                                                                          [Artf_avg: 0.133: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.90it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.72it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.175', 'batch_size': '1', 'rtf': '0.127'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.72it/s][A
+rtf_avg: 0.127: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.72it/s]                                                                                          [Artf_avg: 0.127: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.66it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.90it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.169', 'batch_size': '1', 'rtf': '0.118'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.90it/s][A
+rtf_avg: 0.118: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.90it/s]                                                                                          [Artf_avg: 0.118: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.84it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.84it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.171', 'batch_size': '1', 'rtf': '0.119'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.84it/s][A
+rtf_avg: 0.119: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.84it/s]                                                                                          [Artf_avg: 0.119: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.77it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.39it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.186', 'batch_size': '1', 'rtf': '0.110'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.39it/s][A
+rtf_avg: 0.110: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.39it/s]                                                                                          [Artf_avg: 0.110: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.36it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.30it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.189', 'batch_size': '1', 'rtf': '0.105'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.30it/s][A
+rtf_avg: 0.105: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.30it/s]                                                                                          [Artf_avg: 0.105: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.25it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.97it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.201', 'batch_size': '1', 'rtf': '0.102'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.97it/s][A
+rtf_avg: 0.102: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.97it/s]                                                                                          [Artf_avg: 0.102: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.92it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.98it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.201', 'batch_size': '1', 'rtf': '0.101'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.98it/s][A
+rtf_avg: 0.101: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.98it/s]                                                                                          [Artf_avg: 0.101: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.93it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.09it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.196', 'batch_size': '1', 'rtf': '0.099'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.09it/s][A
+rtf_avg: 0.099: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.09it/s]                                                                                          [Artf_avg: 0.099: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  5.04it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.83it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.546', 'batch_size': '1', 'rtf': '0.268'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.83it/s][A
+rtf_avg: 0.268: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.83it/s]                                                                                          [Artf_avg: 0.268: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.83it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.79it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.209', 'batch_size': '1', 'rtf': '0.102'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.79it/s][A
+rtf_avg: 0.102: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.79it/s]                                                                                          [Artf_avg: 0.102: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.76it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.98it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.201', 'batch_size': '1', 'rtf': '0.098'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.98it/s][A
+rtf_avg: 0.098: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.98it/s]                                                                                          [Artf_avg: 0.098: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.96it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.76it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.210', 'batch_size': '1', 'rtf': '0.100'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.76it/s][A
+rtf_avg: 0.100: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.76it/s]                                                                                          [Artf_avg: 0.100: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.74it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.85it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.206', 'batch_size': '1', 'rtf': '0.098'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.85it/s][A
+rtf_avg: 0.098: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.85it/s]                                                                                          [Artf_avg: 0.098: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.82it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.59it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.218', 'batch_size': '1', 'rtf': '0.101'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.59it/s][A
+rtf_avg: 0.101: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.59it/s]                                                                                          [Artf_avg: 0.101: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.56it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.75it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.211', 'batch_size': '1', 'rtf': '0.095'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.75it/s][A
+rtf_avg: 0.095: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.75it/s]                                                                                          [Artf_avg: 0.095: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.72it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.75it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.211', 'batch_size': '1', 'rtf': '0.095'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.75it/s][A
+rtf_avg: 0.095: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.75it/s]                                                                                          [Artf_avg: 0.095: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.71it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.69it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.213', 'batch_size': '1', 'rtf': '0.093'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.69it/s][A
+rtf_avg: 0.093: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.69it/s]                                                                                          [Artf_avg: 0.093: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.67it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.51it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.222', 'batch_size': '1', 'rtf': '0.092'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.51it/s][A
+rtf_avg: 0.092: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.51it/s]                                                                                          [Artf_avg: 0.092: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.49it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.59it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.218', 'batch_size': '1', 'rtf': '0.091'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.59it/s][A
+rtf_avg: 0.091: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.59it/s]                                                                                          [Artf_avg: 0.091: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.57it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.53it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.221', 'batch_size': '1', 'rtf': '0.090'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.53it/s][A
+rtf_avg: 0.090: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.53it/s]                                                                                          [Artf_avg: 0.090: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.51it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.49it/s][A
+{'load_data': '0.000', 'extract_feat': '0.002', 'forward': '0.222', 'batch_size': '1', 'rtf': '0.088'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.49it/s][A
+rtf_avg: 0.088: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.49it/s]                                                                                          [Artf_avg: 0.088: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.47it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.23it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.236', 'batch_size': '1', 'rtf': '0.092'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.23it/s][A
+rtf_avg: 0.092: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.23it/s]                                                                                          [Artf_avg: 0.092: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.21it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.31it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.232', 'batch_size': '1', 'rtf': '0.088'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.31it/s][A
+rtf_avg: 0.088: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.31it/s]                                                                                          [Artf_avg: 0.088: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.29it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.48it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.223', 'batch_size': '1', 'rtf': '0.085'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.48it/s][A
+rtf_avg: 0.085: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.48it/s]                                                                                          [Artf_avg: 0.085: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.45it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.43it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.226', 'batch_size': '1', 'rtf': '0.085'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.43it/s][A
+rtf_avg: 0.085: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.43it/s]                                                                                          [Artf_avg: 0.085: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.41it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.28it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.234', 'batch_size': '1', 'rtf': '0.089'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.28it/s][A
+rtf_avg: 0.089: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.28it/s]                                                                                          [Artf_avg: 0.089: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.26it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.241', 'batch_size': '1', 'rtf': '0.089'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s][A
+rtf_avg: 0.089: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s]                                                                                          [Artf_avg: 0.089: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.13it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.241', 'batch_size': '1', 'rtf': '0.089'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s][A
+rtf_avg: 0.089: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s]                                                                                          [Artf_avg: 0.089: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.13it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.21it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.238', 'batch_size': '1', 'rtf': '0.086'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.21it/s][A
+rtf_avg: 0.086: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.21it/s]                                                                                          [Artf_avg: 0.086: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.18it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.241', 'batch_size': '1', 'rtf': '0.085'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s][A
+rtf_avg: 0.085: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.15it/s]                                                                                          [Artf_avg: 0.085: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.14it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.11it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.243', 'batch_size': '1', 'rtf': '0.086'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.11it/s][A
+rtf_avg: 0.086: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.11it/s]                                                                                          [Artf_avg: 0.086: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  4.09it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.96it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.253', 'batch_size': '1', 'rtf': '0.086'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.96it/s][A
+rtf_avg: 0.086: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.96it/s]                                                                                          [Artf_avg: 0.086: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.94it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.99it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.251', 'batch_size': '1', 'rtf': '0.084'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.99it/s][A
+rtf_avg: 0.084: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.99it/s]                                                                                          [Artf_avg: 0.084: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.97it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.91it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.256', 'batch_size': '1', 'rtf': '0.084'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.91it/s][A
+rtf_avg: 0.084: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.91it/s]                                                                                          [Artf_avg: 0.084: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.89it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.99it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.251', 'batch_size': '1', 'rtf': '0.080'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.99it/s][A
+rtf_avg: 0.080: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.99it/s]                                                                                          [Artf_avg: 0.080: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.97it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.85it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.260', 'batch_size': '1', 'rtf': '0.082'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.85it/s][A
+rtf_avg: 0.082: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.85it/s]                                                                                          [Artf_avg: 0.082: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.83it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.89it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.257', 'batch_size': '1', 'rtf': '0.079'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.89it/s][A
+rtf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.89it/s]                                                                                          [Artf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.88it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.77it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.265', 'batch_size': '1', 'rtf': '0.082'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.77it/s][A
+rtf_avg: 0.082: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.77it/s]                                                                                          [Artf_avg: 0.082: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.75it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.80it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.263', 'batch_size': '1', 'rtf': '0.081'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.80it/s][A
+rtf_avg: 0.081: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.80it/s]                                                                                          [Artf_avg: 0.081: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.79it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.74it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.267', 'batch_size': '1', 'rtf': '0.081'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.74it/s][A
+rtf_avg: 0.081: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.74it/s]                                                                                          [Artf_avg: 0.081: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.72it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.84it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.260', 'batch_size': '1', 'rtf': '0.079'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.84it/s][A
+rtf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.84it/s]                                                                                          [Artf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.83it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.78it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.264', 'batch_size': '1', 'rtf': '0.079'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.78it/s][A
+rtf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.78it/s]                                                                                          [Artf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.77it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.67it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.273', 'batch_size': '1', 'rtf': '0.080'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.67it/s][A
+rtf_avg: 0.080: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.67it/s]                                                                                          [Artf_avg: 0.080: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.65it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.70it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.270', 'batch_size': '1', 'rtf': '0.078'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.70it/s][A
+rtf_avg: 0.078: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.70it/s]                                                                                          [Artf_avg: 0.078: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.68it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.53it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.283', 'batch_size': '1', 'rtf': '0.079'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.53it/s][A
+rtf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.53it/s]                                                                                          [Artf_avg: 0.079: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.52it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.43it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.292', 'batch_size': '1', 'rtf': '0.077'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.43it/s][A
+rtf_avg: 0.077: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.43it/s]                                                                                          [Artf_avg: 0.077: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.41it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.40it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.294', 'batch_size': '1', 'rtf': '0.072'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.40it/s][A
+rtf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.40it/s]                                                                                          [Artf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.39it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.30it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.303', 'batch_size': '1', 'rtf': '0.073'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.30it/s][A
+rtf_avg: 0.073: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.30it/s]                                                                                          [Artf_avg: 0.073: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.29it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.19it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.313', 'batch_size': '1', 'rtf': '0.073'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.19it/s][A
+rtf_avg: 0.073: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.19it/s]                                                                                          [Artf_avg: 0.073: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.18it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.22it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.310', 'batch_size': '1', 'rtf': '0.073'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.22it/s][A
+rtf_avg: 0.073: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.22it/s]                                                                                          [Artf_avg: 0.073: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.20it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.21it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.311', 'batch_size': '1', 'rtf': '0.072'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.21it/s][A
+rtf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.21it/s]                                                                                          [Artf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.20it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.11it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.321', 'batch_size': '1', 'rtf': '0.072'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.11it/s][A
+rtf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.11it/s]                                                                                          [Artf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.09it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.00it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.333', 'batch_size': '1', 'rtf': '0.072'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.00it/s][A
+rtf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  3.00it/s]                                                                                          [Artf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.99it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.96it/s][A
+{'load_data': '0.000', 'extract_feat': '0.003', 'forward': '0.337', 'batch_size': '1', 'rtf': '0.072'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.96it/s][A
+rtf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.96it/s]                                                                                          [Artf_avg: 0.072: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.95it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.77it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.361', 'batch_size': '1', 'rtf': '0.077'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.77it/s][A
+rtf_avg: 0.077: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.77it/s]                                                                                          [Artf_avg: 0.077: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.76it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.84it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.352', 'batch_size': '1', 'rtf': '0.070'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.84it/s][A
+rtf_avg: 0.070: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.84it/s]                                                                                          [Artf_avg: 0.070: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.83it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.72it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.368', 'batch_size': '1', 'rtf': '0.068'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.72it/s][A
+rtf_avg: 0.068: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.72it/s]                                                                                          [Artf_avg: 0.068: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.70it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.68it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.373', 'batch_size': '1', 'rtf': '0.067'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.68it/s][A
+rtf_avg: 0.067: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.68it/s]                                                                                          [Artf_avg: 0.067: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.67it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.70it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.370', 'batch_size': '1', 'rtf': '0.064'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.70it/s][A
+rtf_avg: 0.064: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.70it/s]                                                                                          [Artf_avg: 0.064: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.69it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.54it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.394', 'batch_size': '1', 'rtf': '0.066'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.54it/s][A
+rtf_avg: 0.066: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.54it/s]                                                                                          [Artf_avg: 0.066: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.53it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.53it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.395', 'batch_size': '1', 'rtf': '0.066'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.53it/s][A
+rtf_avg: 0.066: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.53it/s]                                                                                          [Artf_avg: 0.066: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.52it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.401', 'batch_size': '1', 'rtf': '0.065'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s][A
+rtf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s]                                                                                          [Artf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.49it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.399', 'batch_size': '1', 'rtf': '0.065'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s][A
+rtf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s]                                                                                          [Artf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.50it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.30it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.434', 'batch_size': '1', 'rtf': '0.066'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.30it/s][A
+rtf_avg: 0.066: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.30it/s]                                                                                          [Artf_avg: 0.066: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.30it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.22it/s][A
+{'load_data': '0.000', 'extract_feat': '0.004', 'forward': '0.451', 'batch_size': '1', 'rtf': '0.065'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.22it/s][A
+rtf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.22it/s]                                                                                          [Artf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.21it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.19it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.457', 'batch_size': '1', 'rtf': '0.065'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.19it/s][A
+rtf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.19it/s]                                                                                          [Artf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.18it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.14it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.468', 'batch_size': '1', 'rtf': '0.065'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.14it/s][A
+rtf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.14it/s]                                                                                          [Artf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.13it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.16it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.463', 'batch_size': '1', 'rtf': '0.064'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.16it/s][A
+rtf_avg: 0.064: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.16it/s]                                                                                          [Artf_avg: 0.064: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.15it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.02it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.496', 'batch_size': '1', 'rtf': '0.064'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.02it/s][A
+rtf_avg: 0.064: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.02it/s]                                                                                          [Artf_avg: 0.064: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.01it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.92it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.522', 'batch_size': '1', 'rtf': '0.065'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.92it/s][A
+rtf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.92it/s]                                                                                          [Artf_avg: 0.065: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.91it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.95it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.512', 'batch_size': '1', 'rtf': '0.063'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.95it/s][A
+rtf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.95it/s]                                                                                          [Artf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.95it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.00it/s][A
+{'load_data': '0.000', 'extract_feat': '0.005', 'forward': '0.500', 'batch_size': '1', 'rtf': '0.062'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.00it/s][A
+rtf_avg: 0.062: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  2.00it/s]                                                                                          [Artf_avg: 0.062: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.99it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.75it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.573', 'batch_size': '1', 'rtf': '0.061'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.75it/s][A
+rtf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.75it/s]                                                                                          [Artf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.74it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.77it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.566', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.77it/s][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.77it/s]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.76it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.70it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.587', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.70it/s][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.70it/s]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.70it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.71it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.586', 'batch_size': '1', 'rtf': '0.058'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.71it/s][A
+rtf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.71it/s]                                                                                          [Artf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.70it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.63it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.614', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.63it/s][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.63it/s]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.63it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.65it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.608', 'batch_size': '1', 'rtf': '0.058'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.65it/s][A
+rtf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.65it/s]                                                                                          [Artf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.64it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.59it/s][A
+{'load_data': '0.000', 'extract_feat': '0.006', 'forward': '0.630', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.59it/s][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.59it/s]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.58it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.42it/s][A
+{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.702', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.42it/s][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.42it/s]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.42it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.44it/s][A
+{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.695', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.44it/s][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.44it/s]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.43it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.28it/s][A
+{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.782', 'batch_size': '1', 'rtf': '0.063'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.28it/s][A
+rtf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.28it/s]                                                                                          [Artf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.28it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.36it/s][A
+{'load_data': '0.000', 'extract_feat': '0.008', 'forward': '0.738', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.36it/s][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.36it/s]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.35it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.37it/s][A
+{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.732', 'batch_size': '1', 'rtf': '0.058'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.37it/s][A
+rtf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.37it/s]                                                                                          [Artf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.36it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.30it/s][A
+{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.772', 'batch_size': '1', 'rtf': '0.058'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.30it/s][A
+rtf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.30it/s]                                                                                          [Artf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.29it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.27it/s][A
+{'load_data': '0.000', 'extract_feat': '0.007', 'forward': '0.787', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.27it/s][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.27it/s]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.27it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.18it/s][A
+{'load_data': '0.000', 'extract_feat': '0.008', 'forward': '0.851', 'batch_size': '1', 'rtf': '0.061'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.18it/s][A
+rtf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.18it/s]                                                                                          [Artf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.17it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.17it/s][A
+{'load_data': '0.000', 'extract_feat': '0.008', 'forward': '0.853', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.17it/s][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.17it/s]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.17it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.14it/s][A
+{'load_data': '0.000', 'extract_feat': '0.008', 'forward': '0.876', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.14it/s][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.14it/s]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.14it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.07it/s][A
+{'load_data': '0.000', 'extract_feat': '0.009', 'forward': '0.937', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.07it/s][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.07it/s]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.06it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.02it/s][A
+{'load_data': '0.000', 'extract_feat': '0.009', 'forward': '0.985', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.02it/s][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.02it/s]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.01it/s]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.02s/it][A
+{'load_data': '0.000', 'extract_feat': '0.009', 'forward': '1.018', 'batch_size': '1', 'rtf': '0.061'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.02s/it][A
+rtf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.02s/it]                                                                                          [Artf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.02s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.03s/it][A
+{'load_data': '0.000', 'extract_feat': '0.009', 'forward': '1.031', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.03s/it][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.03s/it]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.03s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.07s/it][A
+{'load_data': '0.000', 'extract_feat': '0.010', 'forward': '1.066', 'batch_size': '1', 'rtf': '0.058'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.07s/it][A
+rtf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.07s/it]                                                                                          [Artf_avg: 0.058: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.07s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.37s/it][A
+{'load_data': '0.000', 'extract_feat': '0.012', 'forward': '1.369', 'batch_size': '1', 'rtf': '0.059'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.37s/it][A
+rtf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.37s/it]                                                                                          [Artf_avg: 0.059: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.37s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.39s/it][A
+{'load_data': '0.000', 'extract_feat': '0.012', 'forward': '1.391', 'batch_size': '1', 'rtf': '0.060'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.39s/it][A
+rtf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.39s/it]                                                                                          [Artf_avg: 0.060: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.39s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.61s/it][A
+{'load_data': '0.000', 'extract_feat': '0.013', 'forward': '1.612', 'batch_size': '1', 'rtf': '0.061'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.61s/it][A
+rtf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.61s/it]                                                                                          [Artf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.61s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.86s/it][A
+{'load_data': '0.000', 'extract_feat': '0.015', 'forward': '1.864', 'batch_size': '1', 'rtf': '0.063'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.86s/it][A
+rtf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.86s/it]                                                                                          [Artf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.87s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.92s/it][A
+{'load_data': '0.000', 'extract_feat': '0.016', 'forward': '1.923', 'batch_size': '1', 'rtf': '0.061'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.92s/it][A
+rtf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.92s/it]                                                                                          [Artf_avg: 0.061: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.93s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  2.00s/it][A
+{'load_data': '0.000', 'extract_feat': '0.016', 'forward': '1.999', 'batch_size': '1', 'rtf': '0.062'}, : 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.00s/it][A
+rtf_avg: 0.062: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.00s/it]                                                                                          [Artf_avg: 0.062: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.00s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.10s/it][A
+{'load_data': '0.000', 'extract_feat': '0.017', 'forward': '2.100', 'batch_size': '1', 'rtf': '0.063'}, : 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.10s/it][A
+rtf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.10s/it]                                                                                          [Artf_avg: 0.063: 100%|[34m██████████[0m| 1/1 [00:02<00:00,  2.10s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:04<00:00,  4.12s/it][A
+{'load_data': '0.000', 'extract_feat': '0.028', 'forward': '4.120', 'batch_size': '1', 'rtf': '0.069'}, : 100%|[34m██████████[0m| 1/1 [00:04<00:00,  4.12s/it][A
+rtf_avg: 0.069: 100%|[34m██████████[0m| 1/1 [00:04<00:00,  4.12s/it]                                                                                          [Artf_avg: 0.069: 100%|[34m██████████[0m| 1/1 [00:04<00:00,  4.12s/it]
+
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s][A
+100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.55s/it][A
+{'load_data': 0.0, 'extract_feat': 0.0, 'forward': '1.551', 'batch_size': '1', 'rtf': '-1.551'}, : 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.55s/it][A
+rtf_avg: -1.551: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.55s/it]                                                                                  [Artf_avg: -1.551: 100%|[34m██████████[0m| 1/1 [00:01<00:00,  1.55s/it]
+100%|[31m██████████[0m| 1/1 [01:01<00:00, 61.50s/it]rtf_avg: 0.060, time_speech:  1023.268, time_escape: 60.953: 100%|[31m██████████[0m| 1/1 [01:01<00:00, 61.50s/it]rtf_avg: 0.060, time_speech:  1023.268, time_escape: 60.953: 100%|[31m██████████[0m| 1/1 [01:01<00:00, 61.50s/it]
 
 === Transcription Completed ===
