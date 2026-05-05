@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       audio_file:
-        description: '音频文件名'
-        required: true
-        default: 'sample.wav'
+        description: '音频文件名（可选，留空则使用 VideoUrlTask.txt）'
+        required: false
+        default: ''
         type: string
   push:
     paths:
@@ -14,6 +14,7 @@ on:
       - '*.mp3'
       - '*.m4a'
       - '*.mp4'
+      - 'VideoUrlTask.txt'
 
 env:
   IMAGE_NAME: funasr-transcriber
@@ -31,28 +32,49 @@ jobs:
         with:
           fetch-depth: 2
 
-      # ========== 查找音频文件 ==========
-      - name: Find audio/video files
+      # ========== 查找音频文件或URL任务 ==========
+      - name: Find audio/video files or URL tasks
         id: find-files
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "FILE=${{ github.event.inputs.audio_file }}" >> $GITHUB_OUTPUT
-            echo "SKIP=false" >> $GITHUB_OUTPUT
-            echo "Source: workflow_dispatch input" >> $GITHUB_STEP_SUMMARY
-          else
-            CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD 2>/dev/null || echo "")
-            AUDIO_FILE=$(echo "$CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' | head -1)
-            if [ -z "$AUDIO_FILE" ]; then
-              echo "SKIP=true" >> $GITHUB_OUTPUT
-              echo "⚠️ No audio files in this push, skipping." >> $GITHUB_STEP_SUMMARY
-            else
-              echo "FILE=$AUDIO_FILE" >> $GITHUB_OUTPUT
+            if [ -n "${{ github.event.inputs.audio_file }}" ]; then
+              echo "MODE=single" >> $GITHUB_OUTPUT
+              echo "FILE=${{ github.event.inputs.audio_file }}" >> $GITHUB_OUTPUT
               echo "SKIP=false" >> $GITHUB_OUTPUT
-              echo "✅ Found: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
+              echo "Source: workflow_dispatch input" >> $GITHUB_STEP_SUMMARY
+            elif [ -f "VideoUrlTask.txt" ]; then
+              echo "MODE=url" >> $GITHUB_OUTPUT
+              echo "SKIP=false" >> $GITHUB_OUTPUT
+              echo "Source: VideoUrlTask.txt (workflow_dispatch)" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "SKIP=true" >> $GITHUB_OUTPUT
+              echo "⚠️ No audio file specified and no VideoUrlTask.txt found" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            # Push 事件
+            CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD 2>/dev/null || echo "")
+            
+            # 检查是否有 VideoUrlTask.txt 变更
+            if echo "$CHANGED" | grep -q "VideoUrlTask.txt"; then
+              echo "MODE=url" >> $GITHUB_OUTPUT
+              echo "SKIP=false" >> $GITHUB_OUTPUT
+              echo "✅ Found VideoUrlTask.txt in push" >> $GITHUB_STEP_SUMMARY
+            else
+              # 查找音频文件
+              AUDIO_FILE=$(echo "$CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' | head -1)
+              if [ -z "$AUDIO_FILE" ]; then
+                echo "SKIP=true" >> $GITHUB_OUTPUT
+                echo "⚠️ No audio files or VideoUrlTask.txt in this push, skipping." >> $GITHUB_STEP_SUMMARY
+              else
+                echo "MODE=single" >> $GITHUB_OUTPUT
+                echo "FILE=$AUDIO_FILE" >> $GITHUB_OUTPUT
+                echo "SKIP=false" >> $GITHUB_OUTPUT
+                echo "✅ Found: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
+              fi
             fi
           fi
 
-      - name: Skip (no audio files)
+      - name: Skip (no tasks)
         if: steps.find-files.outputs.SKIP == 'true'
         run: |
           echo "Nothing to transcribe."
@@ -73,20 +95,40 @@ jobs:
           docker pull ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           echo "✅ Image pulled." >> $GITHUB_STEP_SUMMARY
 
-      # ========== 运行转录 ==========
-      - name: Run transcription in container
-        if: steps.find-files.outputs.SKIP != 'true'
+      # ========== URL模式运行转录 ==========
+      - name: Run URL-based transcription
+        if: steps.find-files.outputs.SKIP != 'true' && steps.find-files.outputs.MODE == 'url'
+        run: |
+          echo "🚀 Running URL batch transcription mode"
+          # 先显示任务文件内容
+          echo "📋 Task file content:"
+          cat VideoUrlTask.txt
+          echo ""
+          
+          docker run --rm \
+            -v ${{ github.workspace }}:${{ github.workspace }} \
+            -w ${{ github.workspace }} \
+            ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest \
+            python3 transcribe.py 2>&1 | tee ${{ github.workspace }}/full_run.log
+          
+          echo "✅ URL batch transcription done." >> $GITHUB_STEP_SUMMARY
+
+      # ========== 单文件模式运行转录 ==========
+      - name: Run single file transcription
+        if: steps.find-files.outputs.SKIP != 'true' && steps.find-files.outputs.MODE == 'single'
         env:
           AUDIO_FILE: ${{ steps.find-files.outputs.FILE }}
         run: |
-          # 使用宿主机的工作目录挂载，tee 输出到宿主机目录避免路径问题
+          echo "🚀 Running single file transcription mode"
+          
           docker run --rm \
             -v ${{ github.workspace }}:${{ github.workspace }} \
             -w ${{ github.workspace }} \
             -e AUDIO_FILE="$AUDIO_FILE" \
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest \
             python3 transcribe.py 2>&1 | tee ${{ github.workspace }}/full_run.log
-          echo "✅ Transcription done." >> $GITHUB_STEP_SUMMARY
+          
+          echo "✅ Single file transcription done." >> $GITHUB_STEP_SUMMARY
 
       # ========== 提交结果 ==========
       - name: Commit transcription results
@@ -94,11 +136,20 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add recognized_text.txt full_run.log transcription.log 2>/dev/null || true
+          
+          # 添加所有结果文件，包括下载的目录
+          git add recognized_text.txt full_run.log transcription.log downloads/ 2>/dev/null || true
+          
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update transcription results [skip ci]"
+            # 判断提交信息
+            if [ "${{ steps.find-files.outputs.MODE }}" = "url" ]; then
+              COMMIT_MSG="Update URL batch transcription results [skip ci]"
+            else
+              COMMIT_MSG="Update transcription results [skip ci]"
+            fi
+            git commit -m "$COMMIT_MSG"
             git push
           fi
         env:
@@ -114,4 +165,5 @@ jobs:
             recognized_text.txt
             full_run.log
             transcription.log
+            downloads/
           retention-days: 7
