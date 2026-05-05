@@ -1,86 +1,87 @@
-import requests
+#!/usr/bin/env python3
+import sys
 import os
+import logging
+import subprocess
+from datetime import datetime
+from funasr import AutoModel
 
-def send_to_webhook(message):
-    """发送消息到Discord webhook"""
-    webhook_url = os.getenv('discord_webhook')
-    
-    # 检查webhook URL是否设置
-    if not webhook_url:
-        print("错误: 未设置 discord_webhook 环境变量")
-        return False
-    
-    # 确保消息是字符串且不为空
-    if not message or not isinstance(message, str):
-        message = "空消息或非字符串内容"
-    
-    payload = {"content": message}
-    
-    try:
-        response = requests.post(
-            webhook_url, 
-            json=payload, 
-            headers={'Content-Type': 'application/json'},
-            timeout=10  # 添加超时
-        )
-        
-        # 检查响应状态
-        if response.status_code == 204:
-            print("消息发送成功")
-            return True
-        else:
-            print(f"发送失败，状态码: {response.status_code}")
-            print(f"响应内容: {response.text}")
-            return False
-            
-    except requests.exceptions.RequestException as e:
-        print(f"网络请求错误: {e}")
-        return False
-    except Exception as e:
-        print(f"未知错误: {e}")
-        return False
+# 日志文件写在当前工作目录
+LOG_FILE = os.path.join(os.getcwd(), 'transcription.log')
+RESULT_FILE = os.path.join(os.getcwd(), 'recognized_text.txt')
 
-def read_and_send_file():
-    """读取文件并发送内容"""
-    file_path = 'foldertest/foldertest.txt'
-    
-    # 检查文件是否存在
-    if not os.path.exists(file_path):
-        error_msg = f"错误: 文件不存在 - {file_path}"
-        print(error_msg)
-        send_to_webhook(error_msg)
-        return
-    
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            content = file.read().strip()  # ✅ 读取内容并去除首尾空白
-            
-        # 检查文件是否为空
-        if not content:
-            send_to_webhook("文件内容为空")
-            return
-            
-        # 限制消息长度（Discord限制2000字符）
-        if len(content) > 1900:
-            content = content[:1900] + "...（内容过长已截断）"
-            
-        send_to_webhook(content)
-        
-    except UnicodeDecodeError:
-        error_msg = "错误: 文件编码问题，无法读取为UTF-8"
-        print(error_msg)
-        send_to_webhook(error_msg)
-    except Exception as e:
-        error_msg = f"读取文件时出错: {e}"
-        print(error_msg)
-        send_to_webhook(error_msg)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
 
-if __name__ == "__main__":
-    # 先发送开始通知
-    send_to_webhook('🚀 Task Start')
-    
-    # 读取并发送文件内容
-    read_and_send_file()
-    
-    # 可选：发送完成通知
-    send_to_webhook('✅ Task Complete')
+audio_file = os.environ.get('AUDIO_FILE', 'audio.mp3')
+
+# 如果传入的是纯文件名，确保在工作目录下找
+if not os.path.isabs(audio_file):
+    audio_file = os.path.join(os.getcwd(), audio_file)
+
+if not os.path.exists(audio_file):
+    logging.error(f"Audio file not found: {audio_file}")
+    logging.info(f"Current directory: {os.getcwd()}")
+    logging.info(f"Contents: {os.listdir('.')}")
+    sys.exit(1)
+
+# MP4/M4A 转 WAV
+file_ext = os.path.splitext(audio_file)[1].lower()
+if file_ext in ['.mp4', '.m4a']:
+    logging.info(f"Converting {audio_file} to 16kHz mono WAV...")
+    wav_file = audio_file.rsplit('.', 1)[0] + '_converted.wav'
+    cmd = [
+        'ffmpeg', '-i', audio_file,
+        '-vn', '-acodec', 'pcm_s16le',
+        '-ar', '16000', '-ac', '1',
+        '-y', wav_file
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        logging.error(f"FFmpeg conversion failed: {result.stderr}")
+        sys.exit(1)
+    logging.info(f"Converted to: {wav_file}")
+    audio_file = wav_file
+
+logging.info(f"Starting transcription for: {audio_file}")
+
+try:
+    logging.info("Loading models...")
+    model = AutoModel(
+        model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+        vad_model="damo/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+        punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
+        disable_update=True
+    )
+    logging.info("Models loaded.")
+
+    logging.info(f"Processing: {audio_file}")
+    result = model.generate(input=audio_file, batch_size_s=300)
+
+    if result and len(result) > 0:
+        transcribed_text = result[0].get('text', 'No text output')
+        logging.info(f"Result: {transcribed_text}")
+    else:
+        transcribed_text = "No result returned from model"
+        logging.warning("Empty result from model")
+
+    with open(RESULT_FILE, 'w', encoding='utf-8') as f:
+        f.write(f"Audio file: {audio_file}\n")
+        f.write(f"Transcription time: {datetime.now().isoformat()}\n")
+        f.write(f"\nRecognized Text:\n{transcribed_text}\n")
+
+    logging.info(f"Saved to {RESULT_FILE}")
+
+except Exception as e:
+    logging.error(f"Transcription failed: {e}")
+    import traceback
+    logging.error(traceback.format_exc())
+    sys.exit(1)
+
+print("\n=== Transcription Completed ===")
