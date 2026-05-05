@@ -19,6 +19,16 @@ on:
       - '*.wav'
       - '*.mp3'
       - '*.m4a'
+name: FunASR Audio Transcription
+
+on:
+  # ... 触发器配置保持不变
+
+
+permissions:
+  contents: write
+
+
 
 jobs:
   # 任务1：仅刷新缓存（定时任务专用）
