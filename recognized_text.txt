@@ -1,5 +1,5 @@
-Audio file: oAefGAzE8CBLcFEgARJDzJAeKTgApTh5GB7gIv_converted.wav
-Transcription time: 2026-05-05T19:22:01.452201
+Audio file: o8jDXPdicDBTIu1rYaQjwJhEsiAUiEQSVkIvA_converted.wav
+Transcription time: 2026-05-05T19:31:58.634281
 
 Recognized Text:
-嗯，快快快快年糕这个假期你要怎么过呀？你干什么呢？主人，那天你把我的头打上了，这个假期，我要养伤，把我的身体恢复到最佳状态，臭猫。
+继谷歌发布姆四后在ji OS平台又悄悄上架了一款AI应用google AIH gallery让键码小模型可以在iphone本地离线运行，不需要联网飞行模式也能用。而且谷歌这次给的还挺全多轮对话图像问答、录音转写，甚至还有个小游戏a卷的模式，能让AI帮你操作手机。比如开关手电筒创建日历事件，关键是免费，无需够号，不要API密钥。最有意思的是，这款APP在苹果芯片上跑本地模型的效率很高。 James四的一二b和一四b两个小尺寸版本，就是为手机端设计的，上下文窗口达到一百二十八k日常用完全够了。当然目前APP只有英文界面，而且建议iphone有六GB以上运存。不过它已经让人看到了一个趋势以后，手机里就能跑大模型云端那套按token收费的声意，怕是要被重新定义了。
