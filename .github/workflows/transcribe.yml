@@ -1,4 +1,4 @@
-name: FunASR Audio Transcription
+name: FunASR Docker Audio Transcription
 
 on:
   workflow_dispatch:
