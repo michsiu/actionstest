@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 import sys
 import os
+
+# 关键：在导入 funasr 之前设置缓存路径
+os.environ['MODELSCOPE_CACHE'] = '/modelscope_cache'
+
 import logging
 import subprocess
 from datetime import datetime
 from funasr import AutoModel
 
-# 日志文件写在当前工作目录
 LOG_FILE = os.path.join(os.getcwd(), 'transcription.log')
 RESULT_FILE = os.path.join(os.getcwd(), 'recognized_text.txt')
 
@@ -19,9 +22,13 @@ logging.basicConfig(
     ]
 )
 
+# 确认模型缓存路径
+logging.info(f"MODELSCOPE_CACHE: {os.environ.get('MODELSCOPE_CACHE')}")
+if os.path.exists('/modelscope_cache'):
+    logging.info(f"Model cache size: {os.popen('du -sh /modelscope_cache').read().strip()}")
+
 audio_file = os.environ.get('AUDIO_FILE', 'audio.mp3')
 
-# 如果传入的是纯文件名，确保在工作目录下找
 if not os.path.isabs(audio_file):
     audio_file = os.path.join(os.getcwd(), audio_file)
 
@@ -59,7 +66,7 @@ try:
         punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
         disable_update=True
     )
-    logging.info("Models loaded.")
+    logging.info("Models loaded from pre-downloaded cache (no download)")
 
     logging.info(f"Processing: {audio_file}")
     result = model.generate(input=audio_file, batch_size_s=300)
