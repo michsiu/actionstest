@@ -1,0 +1,251 @@
+name: FunASR Audio Transcription
+
+on:
+  # 定时触发：每日缓存刷新任务（不执行具体识别）
+  schedule:
+    - cron: '22 22 * * *'  # 每天22:22 UTC
+  # 手动触发：执行完整识别任务（缓存刷新 + 音频转录）
+  workflow_dispatch:
+    inputs:
+      audio_file:
+        description: '音频文件名（位于仓库根目录或提供路径）'
+        required: true
+        default: 'sample.wav'
+        type: string
+  # 当音频文件或此配置文件变更时触发（可选）
+  push:
+    paths:
+      - '.github/workflows/funasr-transcribe.yml'
+      - '*.wav'
+      - '*.mp3'
+      - '*.m4a'
+
+jobs:
+  # 任务1：仅刷新缓存（定时任务专用）
+  refresh-cache:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache FunASR models
+        id: cache-models
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/modelscope
+            ~/.cache/huggingface
+            ~/.cache/torch
+            ~/.cache/funasr
+          key: funasr-models-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            funasr-models-
+
+      - name: Cache ffmpeg
+        id: cache-ffmpeg
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/ffmpeg
+          key: ffmpeg-${{ runner.os }}-${{ hashFiles('scripts/ffmpeg-version.txt') }}
+          restore-keys: |
+            ffmpeg-${{ runner.os }}-
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies (cache refresh only)
+        run: |
+          python -m pip install --upgrade pip
+          pip install funasr modelscope torch torchaudio
+
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg &> /dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version
+
+      - name: Preload models to refresh cache
+        run: |
+          cat > preload_models.py << 'EOF'
+          import sys
+          import logging
+          logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+          print("=== Cache Refresh Started ===")
+          from funasr import AutoModel
+          print("Loading ASR model...")
+          model = AutoModel(
+              model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+              disable_update=True
+          )
+          print("ASR model cached successfully")
+          print("Loading punctuation model...")
+          punc_model = AutoModel(
+              model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
+              disable_update=True
+          )
+          print("Punctuation model cached successfully")
+          print("=== Cache Refresh Completed ===")
+          EOF
+          python preload_models.py 2>&1 | tee cache_refresh.log
+
+      - name: Save cache refresh log
+        uses: actions/upload-artifact@v4
+        with:
+          name: cache-refresh-log-${{ github.run_id }}
+          path: cache_refresh.log
+          retention-days: 1
+
+  # 任务2：完整识别任务（手动触发或push触发）
+  transcribe-audio:
+    if: github.event_name != 'schedule'  # 定时任务不执行识别
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache FunASR models
+        id: cache-models
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/modelscope
+            ~/.cache/huggingface
+            ~/.cache/torch
+            ~/.cache/funasr
+          key: funasr-models-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            funasr-models-
+
+      - name: Cache ffmpeg
+        id: cache-ffmpeg
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/ffmpeg
+          key: ffmpeg-${{ runner.os }}-${{ hashFiles('scripts/ffmpeg-version.txt') }}
+          restore-keys: |
+            ffmpeg-${{ runner.os }}-
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install funasr modelscope torch torchaudio
+
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg &> /dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version
+
+      - name: Run audio transcription
+        env:
+          AUDIO_FILE: ${{ github.event.inputs.audio_file || 'audio.mp3' }}
+        run: |
+          cat > transcribe.py << 'EOF'
+          import sys
+          import os
+          import logging
+          from datetime import datetime
+          from funasr import AutoModel
+          
+          # 配置日志记录到文件和控制台
+          logging.basicConfig(
+              level=logging.INFO,
+              format='%(asctime)s - %(levelname)s - %(message)s',
+              handlers=[
+                  logging.FileHandler('transcription.log'),
+                  logging.StreamHandler(sys.stdout)
+              ]
+          )
+          
+          audio_file = os.environ.get('AUDIO_FILE', 'audio.mp3')
+          
+          # 检查音频文件是否存在
+          if not os.path.exists(audio_file):
+              logging.error(f"Audio file not found: {audio_file}")
+              logging.info(f"Current directory contents: {os.listdir('.')}")
+              sys.exit(1)
+          
+          logging.info(f"Starting transcription for: {audio_file}")
+          
+          try:
+              # 加载模型
+              logging.info("Loading ASR model...")
+              model = AutoModel(
+                  model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+                  vad_model="damo/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+                  punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
+                  disable_update=True
+              )
+              logging.info("Models loaded successfully")
+              
+              # 执行识别
+              logging.info(f"Processing audio file: {audio_file}")
+              result = model.generate(input=audio_file, batch_size_s=300)
+              
+              # 提取识别文本
+              if result and len(result) > 0:
+                  transcribed_text = result[0].get('text', 'No text output')
+                  logging.info(f"Transcription result: {transcribed_text}")
+              else:
+                  transcribed_text = "No result returned from model"
+                  logging.warning("Empty result from model")
+              
+              # 保存识别结果到文件
+              with open('recognized_text.txt', 'w', encoding='utf-8') as f:
+                  f.write(f"Audio file: {audio_file}\n")
+                  f.write(f"Transcription time: {datetime.now().isoformat()}\n")
+                  f.write(f"\nRecognized Text:\n{transcribed_text}\n")
+              
+              logging.info("Results saved to recognized_text.txt")
+              
+          except Exception as e:
+              logging.error(f"Transcription failed: {str(e)}")
+              import traceback
+              logging.error(traceback.format_exc())
+              sys.exit(1)
+          
+          print("\n=== Transcription Completed ===")
+          EOF
+          
+          # 执行转录脚本（stdout和stderr都会被记录）
+          python transcribe.py 2>&1 | tee -a full_run.log
+
+      - name: Commit transcription results
+        run: |
+          # 配置git用户
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 添加生成的文件
+          git add recognized_text.txt full_run.log transcription.log 2>/dev/null || true
+          
+          # 只有在有变更时才提交
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update transcription results [skip ci]"
+            git push
+            echo "Results committed to repository"
+          fi
+
+      - name: Upload transcription artifacts (for debugging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: transcription-results-${{ github.run_id }}
+          path: |
+            recognized_text.txt
+            full_run.log
+            transcription.log
+          retention-days: 7
