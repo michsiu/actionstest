@@ -1,25 +1,41 @@
 #!/usr/bin/env python3
 import sys
 import os
+
+# 关键：在导入 funasr 之前设置缓存路径
+os.environ['MODELSCOPE_CACHE'] = '/modelscope_cache'
+
 import logging
 import subprocess
 from datetime import datetime
 from funasr import AutoModel
 
+LOG_FILE = os.path.join(os.getcwd(), 'transcription.log')
+RESULT_FILE = os.path.join(os.getcwd(), 'recognized_text.txt')
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('transcription.log'),
+        logging.FileHandler(LOG_FILE),
         logging.StreamHandler(sys.stdout)
     ]
 )
 
+# 确认模型缓存路径
+logging.info(f"MODELSCOPE_CACHE: {os.environ.get('MODELSCOPE_CACHE')}")
+if os.path.exists('/modelscope_cache'):
+    logging.info(f"Model cache size: {os.popen('du -sh /modelscope_cache').read().strip()}")
+
 audio_file = os.environ.get('AUDIO_FILE', 'audio.mp3')
+
+if not os.path.isabs(audio_file):
+    audio_file = os.path.join(os.getcwd(), audio_file)
 
 if not os.path.exists(audio_file):
     logging.error(f"Audio file not found: {audio_file}")
-    logging.info(f"Current directory contents: {os.listdir('.')}")
+    logging.info(f"Current directory: {os.getcwd()}")
+    logging.info(f"Contents: {os.listdir('.')}")
     sys.exit(1)
 
 # MP4/M4A 转 WAV
@@ -50,7 +66,7 @@ try:
         punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
         disable_update=True
     )
-    logging.info("Models loaded.")
+    logging.info("Models loaded from pre-downloaded cache (no download)")
 
     logging.info(f"Processing: {audio_file}")
     result = model.generate(input=audio_file, batch_size_s=300)
@@ -62,12 +78,12 @@ try:
         transcribed_text = "No result returned from model"
         logging.warning("Empty result from model")
 
-    with open('recognized_text.txt', 'w', encoding='utf-8') as f:
+    with open(RESULT_FILE, 'w', encoding='utf-8') as f:
         f.write(f"Audio file: {audio_file}\n")
         f.write(f"Transcription time: {datetime.now().isoformat()}\n")
         f.write(f"\nRecognized Text:\n{transcribed_text}\n")
 
-    logging.info("Saved to recognized_text.txt")
+    logging.info(f"Saved to {RESULT_FILE}")
 
 except Exception as e:
     logging.error(f"Transcription failed: {e}")
