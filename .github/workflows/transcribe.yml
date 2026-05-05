@@ -5,8 +5,8 @@ on:
     inputs:
       audio_file:
         description: '音频文件名'
-        required: false
-        default: ''
+        required: true
+        default: 'sample.wav'
         type: string
   push:
     paths:
@@ -14,7 +14,6 @@ on:
       - '*.mp3'
       - '*.m4a'
       - '*.mp4'
-      - 'VideoUrlTask.txt'
 
 env:
   IMAGE_NAME: funasr-transcriber
@@ -32,39 +31,36 @@ jobs:
         with:
           fetch-depth: 2
 
-      # ========== 判断是否有任务 ==========
-      - name: Check for tasks
-        id: check-tasks
+      # ========== 查找音频文件 ==========
+      - name: Find audio/video files
+        id: find-files
         run: |
-          if [ -f "VideoUrlTask.txt" ]; then
-            echo "SKIP=false" >> $GITHUB_OUTPUT
-            echo "🔗 Found VideoUrlTask.txt" >> $GITHUB_STEP_SUMMARY
-            exit 0
-          fi
-
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "FILE=${{ github.event.inputs.audio_file }}" >> $GITHUB_OUTPUT
             echo "SKIP=false" >> $GITHUB_OUTPUT
-            echo "Source: workflow_dispatch" >> $GITHUB_STEP_SUMMARY
-            exit 0
-          fi
-
-          CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD 2>/dev/null || echo "")
-          AUDIO_FILE=$(echo "$CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' | head -1)
-          if [ -z "$AUDIO_FILE" ]; then
-            echo "SKIP=true" >> $GITHUB_OUTPUT
-            echo "⚠️ No audio files, skipping." >> $GITHUB_STEP_SUMMARY
+            echo "Source: workflow_dispatch input" >> $GITHUB_STEP_SUMMARY
           else
-            echo "SKIP=false" >> $GITHUB_OUTPUT
-            echo "✅ Found: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
+            CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD 2>/dev/null || echo "")
+            AUDIO_FILE=$(echo "$CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' | head -1)
+            if [ -z "$AUDIO_FILE" ]; then
+              echo "SKIP=true" >> $GITHUB_OUTPUT
+              echo "⚠️ No audio files in this push, skipping." >> $GITHUB_STEP_SUMMARY
+            else
+              echo "FILE=$AUDIO_FILE" >> $GITHUB_OUTPUT
+              echo "SKIP=false" >> $GITHUB_OUTPUT
+              echo "✅ Found: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
+            fi
           fi
 
-      - name: Skip
-        if: steps.check-tasks.outputs.SKIP == 'true'
-        run: exit 0
+      - name: Skip (no audio files)
+        if: steps.find-files.outputs.SKIP == 'true'
+        run: |
+          echo "Nothing to transcribe."
+          exit 0
 
-      # ========== 登录拉取镜像 ==========
+      # ========== 登录并拉取镜像 ==========
       - name: Login to GitHub Container Registry
-        if: steps.check-tasks.outputs.SKIP != 'true'
+        if: steps.find-files.outputs.SKIP != 'true'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -72,32 +68,33 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull Docker image
-        if: steps.check-tasks.outputs.SKIP != 'true'
+        if: steps.find-files.outputs.SKIP != 'true'
         run: |
           docker pull ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           echo "✅ Image pulled." >> $GITHUB_STEP_SUMMARY
 
       # ========== 运行转录 ==========
-      - name: Run transcription
-        if: steps.check-tasks.outputs.SKIP != 'true'
+      - name: Run transcription in container
+        if: steps.find-files.outputs.SKIP != 'true'
         env:
-          AUDIO_FILE: ${{ github.event.inputs.audio_file || '' }}
+          AUDIO_FILE: ${{ steps.find-files.outputs.FILE }}
         run: |
+          # 使用宿主机的工作目录挂载，tee 输出到宿主机目录避免路径问题
           docker run --rm \
             -v ${{ github.workspace }}:${{ github.workspace }} \
             -w ${{ github.workspace }} \
             -e AUDIO_FILE="$AUDIO_FILE" \
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest \
             python3 transcribe.py 2>&1 | tee ${{ github.workspace }}/full_run.log
-          echo "✅ Done." >> $GITHUB_STEP_SUMMARY
+          echo "✅ Transcription done." >> $GITHUB_STEP_SUMMARY
 
       # ========== 提交结果 ==========
-      - name: Commit results
-        if: steps.check-tasks.outputs.SKIP != 'true'
+      - name: Commit transcription results
+        if: steps.find-files.outputs.SKIP != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add recognized_text.txt full_run.log transcription.log VideoUrlTask.txt 2>/dev/null || true
+          git add recognized_text.txt full_run.log transcription.log 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
@@ -108,8 +105,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # ========== 上传制品 ==========
-      - name: Upload artifacts
-        if: steps.check-tasks.outputs.SKIP != 'true'
+      - name: Upload transcription artifacts
+        if: steps.find-files.outputs.SKIP != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: transcription-results-${{ github.run_id }}
