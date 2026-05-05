@@ -21,8 +21,7 @@ on:
       - '*.m4a'
 name: FunASR Audio Transcription
 
-on:
-  # ... 触发器配置保持不变
+
 
 
 permissions:
