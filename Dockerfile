@@ -20,7 +20,8 @@ RUN pip3 install --break-system-packages --no-cache-dir \
     funasr==1.3.1 \
     modelscope \
     torch \
-    torchaudio
+    torchaudio \
+    yt-dlp
 
 # 关键：预下载模型，禁用更新检查
 RUN mkdir -p ${MODELSCOPE_CACHE} && \
