@@ -325,12 +325,10 @@ def setup_model():
         start_time = time.time()
         
         model = AutoModel(
-            model="paraformer-zh",
-            vad_model="fsmn-vad",
-            punc_model="ct-punc",
-
+            model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+            vad_model="damo/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+            punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
             disable_update=True
-
         )
         
         load_time = time.time() - start_time
@@ -343,6 +341,7 @@ def setup_model():
     except Exception as e:
         logger.error(f"模型加载失败: {e}")
         raise
+
 
 
 def transcribe_audio(model, audio_path: Path) -> Optional[str]:
