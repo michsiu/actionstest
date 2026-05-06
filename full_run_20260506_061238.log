@@ -1,0 +1,16 @@
+funasr version: 1.3.1.
+Download: damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch failed!: HTTPSConnectionPool(host='www.modelscope.cn', port=443): Read timed out.
+WARNING:root:trust_remote_code: False
+Traceback (most recent call last):
+  File "/home/runner/work/actionstest/actionstest/transcribe.py", line 210, in <module>
+    main()
+  File "/home/runner/work/actionstest/actionstest/transcribe.py", line 170, in main
+    model = AutoModel(
+            ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/funasr/auto/auto_model.py", line 135, in __init__
+    model, kwargs = self.build_model(**kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/funasr/auto/auto_model.py", line 281, in build_model
+    assert model_class is not None, f'{kwargs["model"]} is not registered'
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch is not registered
