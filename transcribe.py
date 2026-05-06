@@ -90,7 +90,7 @@ class VideoDownloader:
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
             'Referer': 'https://www.douyin.com/',
-            'Range': 'bytes=0-'  # 支持断点续传
+            'Range': 'bytes=0-'
         }
         
         try:
@@ -111,7 +111,7 @@ class VideoDownloader:
                             percent = (downloaded / total_size) * 100
                             print(f"\r下载进度: {percent:.1f}% ({downloaded}/{total_size} bytes)", end='')
             
-            print()  # 换行
+            print()
             
             if output_path.exists() and output_path.stat().st_size > 0:
                 file_size = output_path.stat().st_size
@@ -144,7 +144,7 @@ class VideoDownloader:
         cmd = [
             'yt-dlp',
             '--no-playlist',
-            '-x',  # 提取音频
+            '-x',
             '--audio-format', 'mp3',
             '--audio-quality', '0',
             '-o', f'{output_template}.%(ext)s',
@@ -153,7 +153,6 @@ class VideoDownloader:
             '--no-warnings'
         ]
         
-        # 添加请求头
         cmd.extend([
             '--add-header', 'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
             '--add-header', 'Referer:https://www.douyin.com/'
@@ -166,7 +165,6 @@ class VideoDownloader:
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
             
             if result.returncode == 0:
-                # 查找下载的文件
                 downloaded_files = list(self.download_dir.glob(f"{output_path.stem}.*"))
                 if downloaded_files:
                     actual_file = downloaded_files[0]
@@ -195,31 +193,24 @@ class VideoDownloader:
         """
         self._log(f"处理 URL: {url}")
         
-        # 生成文件名
         timestamp = int(time.time() * 1000)
         filename = f"audio_{timestamp}"
         
-        # 判断使用哪种下载方式
         is_direct = self._is_direct_link(url)
         self._log(f"URL 类型: {'直接链接' if is_direct else '页面链接'}")
         
-        # 先尝试主要方法
         if is_direct:
-            # 直接链接：使用 requests
             temp_file = self.download_dir / f"{filename}.mp4"
             success, message = self._download_with_requests(url, temp_file)
             
             if success:
-                # 提取音频
                 audio_file = self.download_dir / f"{filename}.mp3"
                 if self._extract_audio(temp_file, audio_file):
-                    temp_file.unlink()  # 删除原视频
+                    temp_file.unlink()
                     return True, message, audio_file
                 else:
-                    # 音频提取失败，保留视频
                     return True, f"{message} (音频提取失败, 保留视频)", temp_file
             else:
-                # 下载失败，尝试用 yt-dlp 作为备选
                 self._log(f"requests 下载失败，尝试 yt-dlp...")
                 success, message = self._download_with_ytdlp(url, temp_file)
                 if success:
@@ -231,13 +222,11 @@ class VideoDownloader:
                         return True, message, temp_file
                 return False, message, None
         else:
-            # 页面链接：使用 yt-dlp
             audio_file = self.download_dir / f"{filename}.mp3"
             success, message = self._download_with_ytdlp(url, audio_file)
             if success:
                 return True, message, audio_file
             else:
-                # 如果 yt-dlp 失败，尝试作为直接链接下载
                 self._log(f"yt-dlp 失败，尝试作为直接链接下载...")
                 temp_file = self.download_dir / f"{filename}.mp4"
                 success, message = self._download_with_requests(url, temp_file)
@@ -251,7 +240,6 @@ class VideoDownloader:
     
     def _extract_audio(self, video_path: Path, audio_path: Path) -> bool:
         """使用 ffmpeg 提取音频"""
-        # 检查 ffmpeg
         try:
             subprocess.run(['ffmpeg', '-version'], capture_output=True, check=True)
         except (subprocess.CalledProcessError, FileNotFoundError):
@@ -267,10 +255,10 @@ class VideoDownloader:
         cmd = [
             'ffmpeg',
             '-i', str(video_path),
-            '-vn',  # 不处理视频
+            '-vn',
             '-acodec', 'mp3',
-            '-q:a', '2',  # 高质量
-            '-y',  # 覆盖
+            '-q:a', '2',
+            '-y',
             str(audio_path)
         ]
         
@@ -280,7 +268,8 @@ class VideoDownloader:
                 self._log(f"音频提取成功: {audio_path.name}")
                 return True
             else:
-                self._log(f"音频提取失败: {result.stderr[:200]}, "ERROR"")
+                error_msg = result.stderr[:200] if result.stderr else "未知错误"
+                self._log(f"音频提取失败: {error_msg}", "ERROR")
                 return False
         except Exception as e:
             self._log(f"音频提取异常: {str(e)}", "ERROR")
@@ -317,7 +306,6 @@ class VideoDownloader:
                 stats['failed'] += 1
                 self._log(f"❌ 失败 [{i}/{len(urls)}]: {message} (耗时: {elapsed:.2f}秒)")
         
-        # 写入统计信息
         with open(self.download_log, 'a', encoding='utf-8') as f:
             f.write(f"\n{'='*60}\n")
             f.write(f"下载统计: 总计={stats['total']}, 成功={stats['success']}, 失败={stats['failed']}\n")
@@ -381,7 +369,8 @@ def transcribe_audio(model, audio_path: Path) -> Optional[str]:
             text = result[0].get('text', '')
             logger.info(f"转录完成: {audio_path.name} (耗时: {elapsed:.2f}秒)")
             if text:
-                logger.info(f"识别文本: {text[:100]}...")
+                preview = text[:100] + "..." if len(text) > 100 else text
+                logger.info(f"识别文本: {preview}")
             return text
         else:
             logger.warning(f"转录结果为空: {audio_path.name}")
@@ -410,7 +399,6 @@ def transcribe_batch(model, audio_paths: List[Path]) -> Dict:
         else:
             fail_count += 1
     
-    # 写入结果文件
     output_file = Path("recognized_text.txt")
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(f"# 转录结果\n")
@@ -418,7 +406,8 @@ def transcribe_batch(model, audio_paths: List[Path]) -> Dict:
         f.write(f"# 成功: {success_count}, 失败: {fail_count}\n\n")
         
         for audio_path, text in results.items():
-            f.write(f"## 文件: {Path(audio_path).name}\n")
+            filename = Path(audio_path).name
+            f.write(f"## 文件: {filename}\n")
             f.write(f"{text}\n")
             f.write("\n" + "-" * 50 + "\n\n")
     
@@ -433,38 +422,32 @@ def main():
     logger.info(f"工作目录: {os.getcwd()}")
     logger.info("="*60)
     
-    # 检查是否有 URL 任务
     url_file = Path("VideoUrlTask.txt")
     has_urls = url_file.exists()
     
     audio_files = []
     download_stats = None
     
-    # 如果有 URL 任务，先下载
     if has_urls:
         logger.info("检测到 VideoUrlTask.txt，开始处理 URL 下载...")
         
-        # 读取 URLs
         with open(url_file, 'r', encoding='utf-8') as f:
             urls = [line.strip() for line in f if line.strip() and not line.startswith('#')]
         
         if not urls:
             logger.warning("VideoUrlTask.txt 中没有有效的 URL")
         else:
-            # 下载
             downloader = VideoDownloader()
             audio_files, download_stats = downloader.download_urls(urls)
             
             if not audio_files:
                 logger.error("所有 URL 下载失败，没有音频文件可转录")
-                # 创建失败标记文件
                 with open("no_results.txt", 'w', encoding='utf-8') as f:
                     f.write("任务失败：所有 URL 下载失败\n")
                     f.write(f"检查时间: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
                     f.write("请查看 logs/download.log 获取详细信息\n")
                 sys.exit(1)
     
-    # 检查命令行传入的音频文件
     audio_file_list = os.environ.get('AUDIO_FILE_LIST', '')
     if audio_file_list:
         for path_str in audio_file_list.split(','):
@@ -474,18 +457,15 @@ def main():
     
     if not audio_files:
         logger.warning("没有找到音频文件")
-        # 创建无内容提示文件
         with open("no_results.txt", 'w', encoding='utf-8') as f:
             f.write("无转录任务：没有音频文件需要处理\n")
             f.write(f"检查时间: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
         sys.exit(0)
     
-    # 加载模型并转录
     try:
         model = setup_model()
         result = transcribe_batch(model, audio_files)
         
-        # 生成汇总报告
         with open("transcription_summary.txt", 'w', encoding='utf-8') as f:
             f.write(f"转录完成时间: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"成功转录: {result['success']} 个文件\n")
