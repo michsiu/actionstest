@@ -48,3 +48,58 @@
 2026-05-06 09:25:23,321 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九，震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳。复事背景发生在一八九九年，一艘名为...
 2026-05-06 09:25:23,321 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-06 09:44:39,831 - INFO - ============================================================
+2026-05-06 09:44:39,831 - INFO - FunASR 音频转录服务启动
+2026-05-06 09:44:39,831 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-06 09:44:39,831 - INFO - ============================================================
+2026-05-06 09:44:39,831 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-06 09:44:39,832 - INFO - 
+[1/1] 处理 URL
+2026-05-06 09:44:39,832 - INFO - 处理 URL: https://v11-default.365yg.com/e50cc8a09285e262aa1ba33e298b560e/69fb3179/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG7Olmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778058564&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061709243D96F73C126EFEBBCD92
+2026-05-06 09:44:39,832 - INFO - URL 类型: 直接链接
+2026-05-06 09:44:39,832 - INFO - 开始下载 (requests): https://v11-default.365yg.com/e50cc8a09285e262aa1ba33e298b560e/69fb3179/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG7Olmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778058564&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061709243D96F73C126EFEBBCD92
+2026-05-06 09:45:25,962 - INFO - 下载成功: audio_1778060679832.mp4 (69768385 bytes)
+2026-05-06 09:45:32,936 - INFO - 音频提取成功: audio_1778060679832.mp3
+2026-05-06 09:45:32,945 - INFO - ✅ 成功 [1/1]: 成功下载 69768385 bytes (耗时: 53.11秒)
+2026-05-06 09:45:37,018 - INFO - 正在加载 FunASR 模型...
+2026-05-06 09:45:37,018 - INFO - download models from model hub: ms
+2026-05-06 09:46:46,944 - WARNING - trust_remote_code: False
+2026-05-06 09:46:48,492 - INFO - Loading pretrained params from /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 09:46:48,496 - INFO - ckpt: /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 09:46:49,231 - INFO - scope_map: ['module.', 'None']
+2026-05-06 09:46:49,231 - INFO - excludes: None
+2026-05-06 09:46:49,334 - INFO - Loading ckpt: /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 09:46:49,347 - INFO - Building VAD model.
+2026-05-06 09:46:49,347 - INFO - download models from model hub: ms
+2026-05-06 09:46:52,840 - WARNING - trust_remote_code: False
+2026-05-06 09:46:52,866 - INFO - Loading pretrained params from /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 09:46:52,867 - INFO - ckpt: /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 09:46:52,871 - INFO - scope_map: ['module.', 'None']
+2026-05-06 09:46:52,871 - INFO - excludes: None
+2026-05-06 09:46:52,872 - INFO - Loading ckpt: /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 09:46:52,872 - INFO - Building punc model.
+2026-05-06 09:46:52,873 - INFO - download models from model hub: ms
+2026-05-06 09:48:16,181 - WARNING - trust_remote_code: False
+2026-05-06 09:48:17,689 - DEBUG - Building prefix dict from the default dictionary ...
+2026-05-06 09:48:18,163 - DEBUG - Dumping model to file cache /tmp/jieba.cache
+2026-05-06 09:48:18,203 - DEBUG - Loading model cost 0.514 seconds.
+2026-05-06 09:48:18,203 - DEBUG - Prefix dict has been built successfully.
+2026-05-06 09:48:35,425 - INFO - Loading pretrained params from /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt
+2026-05-06 09:48:35,427 - INFO - ckpt: /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt
+2026-05-06 09:48:35,841 - INFO - scope_map: ['module.', 'None']
+2026-05-06 09:48:35,841 - INFO - excludes: None
+2026-05-06 09:48:35,915 - INFO - Loading ckpt: /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt, status: <All keys matched successfully>
+2026-05-06 09:48:36,717 - INFO - 模型加载完成，耗时: 179.70 秒
+2026-05-06 09:48:36,717 - INFO - 开始批量转录，共 2 个文件
+2026-05-06 09:48:36,717 - INFO - 
+[1/2] 处理: audio_1778060679832.mp3
+2026-05-06 09:48:36,718 - INFO - 开始转录: audio_1778060679832.mp3 (9.56 MB)
+2026-05-06 09:49:25,991 - INFO - 转录完成: audio_1778060679832.mp3 (耗时: 49.27秒)
+2026-05-06 09:49:25,991 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九，震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳。复事背景发生在一八九九年，一艘名为...
+2026-05-06 09:49:25,991 - INFO - 
+[2/2] 处理: oIBC9MD09L1f4rJv4pCANRWkFIA123pfA3902EgAAY2.m4a
+2026-05-06 09:49:25,991 - INFO - 开始转录: oIBC9MD09L1f4rJv4pCANRWkFIA123pfA3902EgAAY2.m4a (7.15 MB)
+2026-05-06 09:50:50,990 - INFO - 转录完成: oIBC9MD09L1f4rJv4pCANRWkFIA123pfA3902EgAAY2.m4a (耗时: 85.00秒)
+2026-05-06 09:50:50,990 - INFO - 识别文本: 师傅，能不能开？快点，我老公被一个狐狸精拐回家了，我要去捉奸啊，我尽量哈。不过我劝你一句，事情既然发生了，就要想开点。对了，具体地址是哪里啊？华泰小区九栋八零幺，什么师傅那特？那么是我家，我白天上班，...
+2026-05-06 09:50:50,991 - INFO - 
+批量转录完成: 成功=2, 失败=0
