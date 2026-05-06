@@ -148,7 +148,6 @@ jobs:
             transcription.log
             transcription_summary.txt
             logs/
-            downloaded_audios/
           retention-days: 7
           if-no-files-found: ignore
 
