@@ -1,3 +1,17 @@
+=== Transcription Run: Wed May  6 07:37:20 UTC 2026 ===
+
+=== Download Log ===
+=== 下载开始时间: Wed May  6 07:36:19 UTC 2026 ===
+=== VideoUrlTask.txt 内容 ===
+https://v11-default.365yg.com/101754f6e44e2ffe0ba83352a96e9929/69fb1bd6/video/tos/cn/tos-cn-ve-15/81aa4f1e41794d0c980ecc70cb3d5722/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1086&bt=1086&cs=0&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGW9Xmg9eFmaeN~r12nzXT&mime_type=video_mp4&qs=0&rc=NDtlOWk2OmZoZDs4NjhlaEBpanVweXQ5cjxvOjMzNGkzM0AzMzYwNF81NTMxYjFhMy5jYSNqYTRxMmQ0cHBhLS1kLTBzcw==&btag=c0000e00038000&cquery=100o_100w_100B_100H_100K&dy_q=1778052927&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260506153527FB25A6DA77D92CE2759A
+
+=== 下载结束时间: Wed May  6 07:36:19 UTC 2026 ===
+成功: 0, 失败: 0, 总耗时: 0秒
+total 8
+drwxr-xr-x 2 runner runner 4096 May  6 07:36 .
+drwxr-xr-x 6 runner runner 4096 May  6 07:36 ..
+
+=== Transcription Log ===
 === Transcription Run: Wed May  6 07:31:11 UTC 2026 ===
 
 === Download Log ===
@@ -293,5 +307,7 @@ WARNING:root:trust_remote_code: False
 100%|[31m██████████[0m| 1/1 [02:47<00:00, 167.99s/it]rtf_avg: 0.072, time_speech:  2305.009, time_escape: 167.065: 100%|[31m██████████[0m| 1/1 [02:47<00:00, 167.99s/it]rtf_avg: 0.072, time_speech:  2305.009, time_escape: 167.065: 100%|[31m██████████[0m| 1/1 [02:47<00:00, 167.99s/it]
 
 === Transcription Completed ===
+
+=== Recognition Log ===
 
 === Recognition Log ===
