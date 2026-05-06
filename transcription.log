@@ -1,0 +1,50 @@
+2026-05-06 09:11:58,991 - INFO - ============================================================
+2026-05-06 09:11:58,991 - INFO - FunASR 音频转录服务启动
+2026-05-06 09:11:58,991 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-06 09:11:58,991 - INFO - ============================================================
+2026-05-06 09:11:58,991 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-06 09:11:58,992 - INFO - 
+[1/1] 处理 URL
+2026-05-06 09:11:58,992 - INFO - 处理 URL: https://v11-default.365yg.com/e50cc8a09285e262aa1ba33e298b560e/69fb3179/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG7Olmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778058564&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061709243D96F73C126EFEBBCD92
+2026-05-06 09:11:58,992 - INFO - URL 类型: 直接链接
+2026-05-06 09:11:58,992 - INFO - 开始下载 (requests): https://v11-default.365yg.com/e50cc8a09285e262aa1ba33e298b560e/69fb3179/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG7Olmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778058564&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061709243D96F73C126EFEBBCD92
+2026-05-06 09:12:30,901 - INFO - 下载成功: audio_1778058718992.mp4 (69768385 bytes)
+2026-05-06 09:12:37,837 - INFO - 音频提取成功: audio_1778058718992.mp3
+2026-05-06 09:12:37,845 - INFO - ✅ 成功 [1/1]: 成功下载 69768385 bytes (耗时: 38.85秒)
+2026-05-06 09:12:41,710 - INFO - 正在加载 FunASR 模型...
+2026-05-06 09:12:41,710 - INFO - download models from model hub: ms
+2026-05-06 09:17:03,831 - WARNING - trust_remote_code: False
+2026-05-06 09:17:05,239 - INFO - Loading pretrained params from /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 09:17:05,243 - INFO - ckpt: /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 09:17:06,121 - INFO - scope_map: ['module.', 'None']
+2026-05-06 09:17:06,121 - INFO - excludes: None
+2026-05-06 09:17:06,214 - INFO - Loading ckpt: /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 09:17:06,226 - INFO - Building VAD model.
+2026-05-06 09:17:06,227 - INFO - download models from model hub: ms
+2026-05-06 09:17:11,314 - WARNING - trust_remote_code: False
+2026-05-06 09:17:11,318 - INFO - Loading pretrained params from /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 09:17:11,319 - INFO - ckpt: /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 09:17:11,323 - INFO - scope_map: ['module.', 'None']
+2026-05-06 09:17:11,323 - INFO - excludes: None
+2026-05-06 09:17:11,324 - INFO - Loading ckpt: /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 09:17:11,324 - INFO - Building punc model.
+2026-05-06 09:17:11,324 - INFO - download models from model hub: ms
+2026-05-06 09:24:14,406 - WARNING - trust_remote_code: False
+2026-05-06 09:24:15,852 - DEBUG - Building prefix dict from the default dictionary ...
+2026-05-06 09:24:16,300 - DEBUG - Dumping model to file cache /tmp/jieba.cache
+2026-05-06 09:24:16,341 - DEBUG - Loading model cost 0.488 seconds.
+2026-05-06 09:24:16,341 - DEBUG - Prefix dict has been built successfully.
+2026-05-06 09:24:33,294 - INFO - Loading pretrained params from /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt
+2026-05-06 09:24:33,295 - INFO - ckpt: /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt
+2026-05-06 09:24:33,717 - INFO - scope_map: ['module.', 'None']
+2026-05-06 09:24:33,717 - INFO - excludes: None
+2026-05-06 09:24:33,789 - INFO - Loading ckpt: /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt, status: <All keys matched successfully>
+2026-05-06 09:24:34,552 - INFO - 模型加载完成，耗时: 712.84 秒
+2026-05-06 09:24:34,552 - INFO - 开始批量转录，共 1 个文件
+2026-05-06 09:24:34,552 - INFO - 
+[1/1] 处理: audio_1778058718992.mp3
+2026-05-06 09:24:34,552 - INFO - 开始转录: audio_1778058718992.mp3 (9.56 MB)
+2026-05-06 09:25:23,320 - INFO - 转录完成: audio_1778058718992.mp3 (耗时: 48.77秒)
+2026-05-06 09:25:23,321 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九，震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳。复事背景发生在一八九九年，一艘名为...
+2026-05-06 09:25:23,321 - INFO - 
+批量转录完成: 成功=1, 失败=0
