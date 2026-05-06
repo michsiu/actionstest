@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取完整历史，用于正确检测变更
+          fetch-depth: 0
 
       # ========== 判断是否有任务 ==========
       - name: Check for tasks
@@ -86,24 +86,17 @@ jobs:
         if: steps.check-tasks.outputs.SKIP == 'true'
         run: exit 0
 
-      # ========== 安装 yt-dlp 下载工具 ==========
-      - name: Install yt-dlp
+      # ========== 安装 ffmpeg（用于音频提取） ==========
+      - name: Install ffmpeg
         if: steps.check-tasks.outputs.has_urls == 'true'
         run: |
-          echo "## 📥 Installing yt-dlp" >> $GITHUB_STEP_SUMMARY
-          
-          # 安装 ffmpeg（必需）
+          echo "## 📥 Installing ffmpeg" >> $GITHUB_STEP_SUMMARY
           sudo apt-get update
           sudo apt-get install -y ffmpeg
-          
-          # 安装 yt-dlp
-          pip3 install yt-dlp
-          
-          # 验证安装
-          yt-dlp --version >> $GITHUB_STEP_SUMMARY
-          echo "✅ yt-dlp installed successfully" >> $GITHUB_STEP_SUMMARY
+          ffmpeg -version | head -1 >> $GITHUB_STEP_SUMMARY
+          echo "✅ ffmpeg installed successfully" >> $GITHUB_STEP_SUMMARY
 
-      # ========== 下载 URL 中的视频 ==========
+      # ========== 下载 URL 中的视频（使用 curl） ==========
       - name: Download videos from URLs
         if: steps.check-tasks.outputs.has_urls == 'true'
         id: download
@@ -136,37 +129,69 @@ jobs:
             
             echo "" >> $DOWNLOAD_LOG
             echo "--- 处理 URL: $url ---" >> $DOWNLOAD_LOG
-            echo "开始下载: $url" >> $GITHUB_STEP_SUMMARY
+            echo "下载: $url" >> $GITHUB_STEP_SUMMARY
             
             START_TIME=$(date +%s.%N)
             
-            # 使用 yt-dlp 下载并提取音频
-            # --no-playlist: 不下载播放列表
-            # -x: 提取音频
-            # --audio-format mp3: 转换为 mp3
-            # --audio-quality 0: 最高音质
-            # --output: 输出文件名格式
-            # --no-overwrites: 不覆盖已存在的文件
-            yt-dlp \
-              --no-playlist \
-              -x \
-              --audio-format mp3 \
-              --audio-quality 0 \
-              --output "downloaded_audios/%(title)s.%(ext)s" \
-              --no-overwrites \
+            # 生成文件名（使用时间戳避免重复）
+            TIMESTAMP=$(date +%s%N)
+            FILENAME="video_${TIMESTAMP}.mp4"
+            OUTPUT_PATH="downloaded_audios/$FILENAME"
+            
+            # 使用 curl 下载（模拟浏览器请求头）
+            curl -L \
+              -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+              -H "Accept: */*" \
+              -H "Accept-Encoding: gzip, deflate, br" \
+              -H "Connection: keep-alive" \
+              --connect-timeout 30 \
+              --max-time 300 \
+              --progress-bar \
+              -o "$OUTPUT_PATH" \
               "$url" 2>&1 | tee -a $DOWNLOAD_LOG
             
-            if [ ${PIPESTATUS[0]} -eq 0 ]; then
-              END_TIME=$(date +%s.%N)
-              DURATION=$(echo "$END_TIME - $START_TIME" | bc)
+            CURL_EXIT=${PIPESTATUS[0]}
+            END_TIME=$(date +%s.%N)
+            DURATION=$(echo "$END_TIME - $START_TIME" | bc)
+            
+            # 检查下载是否成功
+            if [ $CURL_EXIT -eq 0 ] && [ -f "$OUTPUT_PATH" ] && [ -s "$OUTPUT_PATH" ]; then
+              FILE_SIZE=$(stat -c%s "$OUTPUT_PATH")
               TOTAL_TIME=$(echo "$TOTAL_TIME + $DURATION" | bc)
               SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
-              echo "✅ 成功: $url (耗时: ${DURATION%.*}秒)" >> $GITHUB_STEP_SUMMARY
-              echo "结果: 成功, 耗时: ${DURATION%.*}秒" >> $DOWNLOAD_LOG
+              
+              echo "✅ 成功下载: $FILENAME" >> $GITHUB_STEP_SUMMARY
+              echo "   大小: $FILE_SIZE bytes" >> $GITHUB_STEP_SUMMARY
+              echo "   耗时: ${DURATION%.*}秒" >> $GITHUB_STEP_SUMMARY
+              echo "结果: 成功, 文件: $FILENAME, 大小: $FILE_SIZE bytes, 耗时: ${DURATION%.*}秒" >> $DOWNLOAD_LOG
+              
+              # 使用 ffmpeg 提取音频
+              echo "   提取音频中..." >> $GITHUB_STEP_SUMMARY
+              AUDIO_FILENAME="${FILENAME%.*}.mp3"
+              AUDIO_PATH="downloaded_audios/$AUDIO_FILENAME"
+              
+              ffmpeg -i "$OUTPUT_PATH" -vn -acodec mp3 -q:a 2 "$AUDIO_PATH" -y 2>&1 | tee -a $DOWNLOAD_LOG
+              
+              if [ ${PIPESTATUS[0]} -eq 0 ] && [ -f "$AUDIO_PATH" ] && [ -s "$AUDIO_PATH" ]; then
+                AUDIO_SIZE=$(stat -c%s "$AUDIO_PATH")
+                echo "   音频提取成功: $AUDIO_FILENAME (${AUDIO_SIZE} bytes)" >> $GITHUB_STEP_SUMMARY
+                echo "   音频提取成功" >> $DOWNLOAD_LOG
+                # 删除原视频文件以节省空间
+                rm "$OUTPUT_PATH"
+                echo "   已删除原视频文件" >> $DOWNLOAD_LOG
+              else
+                echo "   ⚠️ 音频提取失败，保留原视频文件" >> $GITHUB_STEP_SUMMARY
+                echo "   音频提取失败" >> $DOWNLOAD_LOG
+              fi
+              
             else
               FAIL_COUNT=$((FAIL_COUNT + 1))
-              echo "❌ 失败: $url" >> $GITHUB_STEP_SUMMARY
-              echo "结果: 失败" >> $DOWNLOAD_LOG
+              echo "❌ 下载失败: $url" >> $GITHUB_STEP_SUMMARY
+              echo "   curl 退出码: $CURL_EXIT" >> $GITHUB_STEP_SUMMARY
+              echo "结果: 失败, curl exit code: $CURL_EXIT" >> $DOWNLOAD_LOG
+              
+              # 清理可能创建的空文件
+              [ -f "$OUTPUT_PATH" ] && rm "$OUTPUT_PATH"
             fi
             
           done < VideoUrlTask.txt
@@ -182,23 +207,21 @@ jobs:
           echo "=== 下载结束时间: $(date) ===" >> $DOWNLOAD_LOG
           echo "成功: $SUCCESS_COUNT, 失败: $FAIL_COUNT, 总耗时: ${TOTAL_TIME%.*}秒" >> $DOWNLOAD_LOG
           
-          # 列出下载的文件
+          # 列出下载目录内容
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 下载的文件" >> $GITHUB_STEP_SUMMARY
+          echo "### 下载目录内容" >> $GITHUB_STEP_SUMMARY
           ls -la downloaded_audios/ >> $GITHUB_STEP_SUMMARY
           ls -la downloaded_audios/ >> $DOWNLOAD_LOG
           
           # 设置输出
-          echo "download_success=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
-          echo "download_fail=$FAIL_COUNT" >> $GITHUB_OUTPUT
-          echo "download_time=${TOTAL_TIME%.*}" >> $GITHUB_OUTPUT
-          
-          # 如果有成功下载的文件，设置标记
           if [ $SUCCESS_COUNT -gt 0 ]; then
             echo "has_downloaded=true" >> $GITHUB_OUTPUT
           else
             echo "has_downloaded=false" >> $GITHUB_OUTPUT
           fi
+          echo "download_success=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+          echo "download_fail=$FAIL_COUNT" >> $GITHUB_OUTPUT
+          echo "download_time=${TOTAL_TIME%.*}" >> $GITHUB_OUTPUT
 
       # ========== 登录拉取镜像 ==========
       - name: Login to GitHub Container Registry
@@ -231,7 +254,12 @@ jobs:
           # 如果是从 URL 下载的，处理下载的文件
           if [ "$HAS_URLS" = "true" ] && [ "$HAS_DOWNLOADED" = "true" ]; then
             echo "Processing downloaded audio files..." >> $GITHUB_STEP_SUMMARY
-            AUDIO_LIST=$(find downloaded_audios -type f \( -name "*.mp3" -o -name "*.wav" -o -name "*.m4a" -o -name "*.mp4" \) | tr '\n' ',')
+            # 查找所有 mp3 文件（从视频提取的音频）
+            AUDIO_LIST=$(find downloaded_audios -type f -name "*.mp3" 2>/dev/null | tr '\n' ',')
+            # 如果没有 mp3，查找其他音频格式
+            if [ -z "$AUDIO_LIST" ]; then
+              AUDIO_LIST=$(find downloaded_audios -type f \( -name "*.wav" -o -name "*.m4a" -o -name "*.mp4" \) 2>/dev/null | tr '\n' ',')
+            fi
             echo "Audio files to process: $AUDIO_LIST" >> $GITHUB_STEP_SUMMARY
           elif [ -n "$AUDIO_FILE" ] && [ -f "$AUDIO_FILE" ]; then
             AUDIO_LIST="$AUDIO_FILE"
