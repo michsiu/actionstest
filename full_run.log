@@ -1,3 +1,17 @@
+=== Transcription Run: Wed May  6 07:31:11 UTC 2026 ===
+
+=== Download Log ===
+=== 下载开始时间: Wed May  6 07:30:00 UTC 2026 ===
+=== VideoUrlTask.txt 内容 ===
+https://v11-default.365yg.com/a0f8a1dd814521e8c63168e6a03d82ce/69fb20f2/video/tos/cn/tos-cn-ve-15c000-ce/ocE7WaE647O6icD3CgfjFfA8SvIHaHBcJdeTmB/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=481&bt=481&cs=0&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGGqXmg9eF1ZTN~r12nzXT&mime_type=video_mp4&qs=0&rc=Ojs1Omg6NDo8ZGk2NWg0OEBpajp1eHY5cnF3OjMzbGkzNEAzNmAwMl8wNjUxYTBfLjViYSNlYmZjMmQ0a3BhLS1kLWJzcw==&btag=c0000e00038000&cquery=100x_100z_100o_100w_100B&dy_q=1778052546&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061529063DAFF02E1CAD9A576AD4
+
+=== 下载结束时间: Wed May  6 07:30:00 UTC 2026 ===
+成功: 0, 失败: 0, 总耗时: 0秒
+total 8
+drwxr-xr-x 2 runner runner 4096 May  6 07:30 .
+drwxr-xr-x 6 runner runner 4096 May  6 07:30 ..
+
+=== Transcription Log ===
 funasr version: 1.3.1.
 Downloading Model from https://www.modelscope.cn to directory: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch
 WARNING:root:trust_remote_code: False
@@ -279,3 +293,5 @@ WARNING:root:trust_remote_code: False
 100%|[31m██████████[0m| 1/1 [02:47<00:00, 167.99s/it]rtf_avg: 0.072, time_speech:  2305.009, time_escape: 167.065: 100%|[31m██████████[0m| 1/1 [02:47<00:00, 167.99s/it]rtf_avg: 0.072, time_speech:  2305.009, time_escape: 167.065: 100%|[31m██████████[0m| 1/1 [02:47<00:00, 167.99s/it]
 
 === Transcription Completed ===
+
+=== Recognition Log ===
