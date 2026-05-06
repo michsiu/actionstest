@@ -1,0 +1,290 @@
+name: Debug Git Diff Commands
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug_type:
+        description: '调试类型'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - basic_diff
+          - before_after
+          - commits_list
+          - file_changes
+      custom_command:
+        description: '自定义命令（可选）'
+        required: false
+        type: string
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史，便于调试
+
+      # ========== 基础信息 ==========
+      - name: Show basic info
+        run: |
+          echo "## 📊 基础信息" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 项目 | 值 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-----|" >> $GITHUB_STEP_SUMMARY
+          echo "| 事件名称 | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 当前 SHA | ${{ github.sha }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Before SHA | ${{ github.event.before }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| After SHA | ${{ github.event.after }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 引用 | ${{ github.ref }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 同时输出到控制台
+          echo "=== 基础信息 ==="
+          echo "事件名称: ${{ github.event_name }}"
+          echo "当前 SHA: ${{ github.sha }}"
+          echo "Before SHA: ${{ github.event.before }}"
+          echo "After SHA: ${{ github.event.after }}"
+
+      # ========== 方法1: HEAD~1 HEAD ==========
+      - name: Method 1 - HEAD~1 HEAD (当前方法)
+        if: github.event.inputs.debug_type == 'all' || github.event.inputs.debug_type == 'basic_diff'
+        run: |
+          echo "## 🔍 方法1: git diff HEAD~1 HEAD" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 执行命令
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo 'git diff --name-only HEAD~1 HEAD' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          CHANGED=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "无变化或无法比较")
+          
+          echo "**结果:**" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$CHANGED" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          # 输出到控制台
+          echo "=== 方法1结果 ==="
+          echo "$CHANGED"
+          
+          # 保存到 GITHUB_OUTPUT
+          echo "method1_result<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # ========== 方法2: HEAD~2 HEAD (更早的比较) ==========
+      - name: Method 2 - HEAD~2 HEAD
+        if: github.event.inputs.debug_type == 'all' || github.event.inputs.debug_type == 'basic_diff'
+        run: |
+          echo "## 🔍 方法2: git diff HEAD~2 HEAD" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo 'git diff --name-only HEAD~2 HEAD' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          CHANGED=$(git diff --name-only HEAD~2 HEAD 2>/dev/null || echo "无法比较（历史不足）")
+          
+          echo "**结果:**" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$CHANGED" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          echo "=== 方法2结果 ==="
+          echo "$CHANGED"
+
+      # ========== 方法3: 使用 github.event.before 和 after ==========
+      - name: Method 3 - Before to After (推荐方法)
+        if: github.event.inputs.debug_type == 'all' || github.event.inputs.debug_type == 'before_after'
+        run: |
+          echo "## 🔍 方法3: git diff before..after (推荐)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          
+          echo "**Before SHA:** \`$BEFORE\`" >> $GITHUB_STEP_SUMMARY
+          echo "**After SHA:** \`$AFTER\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "首次 push，使用 git diff $AFTER" >> $GITHUB_STEP_SUMMARY
+            echo '```bash' >> $GITHUB_STEP_SUMMARY
+            echo "git diff --name-only $AFTER" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            CHANGED=$(git diff --name-only $AFTER 2>/dev/null || echo "无变化")
+          else
+            echo '```bash' >> $GITHUB_STEP_SUMMARY
+            echo "git diff --name-only $BEFORE $AFTER" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            CHANGED=$(git diff --name-only $BEFORE $AFTER 2>/dev/null || echo "无变化")
+          fi
+          
+          echo "**结果:**" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$CHANGED" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          echo "=== 方法3结果 ==="
+          echo "$CHANGED"
+          
+          # 保存到 GITHUB_OUTPUT
+          echo "method3_result<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # ========== 显示本次 push 的所有提交 ==========
+      - name: Show commits in this push
+        if: github.event.inputs.debug_type == 'all' || github.event.inputs.debug_type == 'commits_list'
+        run: |
+          echo "## 📝 本次 push 的所有提交" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          
+          if [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            echo '```bash' >> $GITHUB_STEP_SUMMARY
+            echo "git log --oneline $BEFORE..$AFTER" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            COMMITS=$(git log --oneline $BEFORE..$AFTER)
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$COMMITS" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            
+            echo "=== 提交列表 ==="
+            echo "$COMMITS"
+            
+            # 统计提交数量
+            COUNT=$(echo "$COMMITS" | grep -c '^' || echo "0")
+            echo "**本次 push 包含 $COUNT 个提交**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "首次 push，无法列出之前的提交" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      # ========== 只显示音频文件和 VideoUrlTask.txt 的变化 ==========
+      - name: Filter audio files and VideoUrlTask.txt
+        if: github.event.inputs.debug_type == 'all' || github.event.inputs.debug_type == 'file_changes'
+        run: |
+          echo "## 🎯 过滤结果（音频文件 + VideoUrlTask.txt）" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          
+          if [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            ALL_CHANGED=$(git diff --name-only $BEFORE $AFTER)
+          else
+            ALL_CHANGED=$(git diff --name-only $AFTER)
+          fi
+          
+          echo "### 所有变化的文件" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$ALL_CHANGED" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 检查 VideoUrlTask.txt
+          echo "### VideoUrlTask.txt" >> $GITHUB_STEP_SUMMARY
+          if echo "$ALL_CHANGED" | grep -q "VideoUrlTask.txt"; then
+            echo "✅ **VideoUrlTask.txt 已变化**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "变化内容：" >> $GITHUB_STEP_SUMMARY
+            echo '```diff' >> $GITHUB_STEP_SUMMARY
+            git diff $BEFORE $AFTER -- VideoUrlTask.txt | head -50 >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ VideoUrlTask.txt 未变化" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 检查音频文件
+          echo "### 音频文件" >> $GITHUB_STEP_SUMMARY
+          AUDIO_FILES=$(echo "$ALL_CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' || echo "无")
+          if [ "$AUDIO_FILES" != "无" ]; then
+            echo "✅ **检测到音频文件变化:**" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$AUDIO_FILES" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ 无音频文件变化" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # 输出到控制台
+          echo "=== 过滤结果 ==="
+          echo "VideoUrlTask.txt: $(echo "$ALL_CHANGED" | grep -q "VideoUrlTask.txt" && echo "已变化" || echo "未变化")"
+          echo "音频文件:"
+          echo "$AUDIO_FILES"
+
+      # ========== 执行自定义命令 ==========
+      - name: Run custom command
+        if: github.event.inputs.custom_command != ''
+        run: |
+          echo "## 🛠️ 自定义命令执行结果" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**命令:** \`${{ github.event.inputs.custom_command }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          
+          # 执行自定义命令并捕获输出
+          OUTPUT=$(eval "${{ github.event.inputs.custom_command }}" 2>&1)
+          echo "$OUTPUT" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          echo "=== 自定义命令输出 ==="
+          echo "$OUTPUT"
+          
+          # 保存到 GITHUB_OUTPUT
+          echo "custom_output<<EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # ========== 显示所有 GITHUB_OUTPUT 内容 ==========
+      - name: Show all GITHUB_OUTPUT variables
+        run: |
+          echo "## 📦 GITHUB_OUTPUT 变量内容" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 显示方法1的输出
+          if [ -n "${{ steps.method1.outputs.method1_result }}" ]; then
+            echo "### 方法1结果" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.method1.outputs.method1_result }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # 显示方法3的输出
+          if [ -n "${{ steps.method3.outputs.method3_result }}" ]; then
+            echo "### 方法3结果" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.method3.outputs.method3_result }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # 显示自定义命令输出
+          if [ -n "${{ steps.custom_command.outputs.custom_output }}" ]; then
+            echo "### 自定义命令结果" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.custom_command.outputs.custom_output }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      # ========== 保存调试日志为制品 ==========
+      - name: Upload debug logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-output-${{ github.run_id }}
+          path: |
+            ${{ github.workspace }}/*.log
+          retention-days: 7
