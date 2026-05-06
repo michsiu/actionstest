@@ -5,8 +5,8 @@ on:
     inputs:
       audio_file:
         description: '音频文件名'
-        required: true
-        default: 'sample.wav'
+        required: false
+        default: ''
         type: string
   push:
     paths:
@@ -14,6 +14,7 @@ on:
       - '*.mp3'
       - '*.m4a'
       - '*.mp4'
+      - 'VideoUrlTask.txt'
 
 env:
   IMAGE_NAME: funasr-transcriber
@@ -29,38 +30,179 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0  # 获取完整历史，用于正确检测变更
 
-      # ========== 查找音频文件 ==========
-      - name: Find audio/video files
-        id: find-files
+      # ========== 判断是否有任务 ==========
+      - name: Check for tasks
+        id: check-tasks
         run: |
+          # 手动触发
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "FILE=${{ github.event.inputs.audio_file }}" >> $GITHUB_OUTPUT
             echo "SKIP=false" >> $GITHUB_OUTPUT
-            echo "Source: workflow_dispatch input" >> $GITHUB_STEP_SUMMARY
-          else
-            CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD 2>/dev/null || echo "")
-            AUDIO_FILE=$(echo "$CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' | head -1)
-            if [ -z "$AUDIO_FILE" ]; then
-              echo "SKIP=true" >> $GITHUB_OUTPUT
-              echo "⚠️ No audio files in this push, skipping." >> $GITHUB_STEP_SUMMARY
-            else
-              echo "FILE=$AUDIO_FILE" >> $GITHUB_OUTPUT
-              echo "SKIP=false" >> $GITHUB_OUTPUT
-              echo "✅ Found: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
-            fi
+            echo "has_urls=false" >> $GITHUB_OUTPUT
+            echo "trigger_type=manual" >> $GITHUB_OUTPUT
+            echo "Source: workflow_dispatch" >> $GITHUB_STEP_SUMMARY
+            exit 0
           fi
 
-      - name: Skip (no audio files)
-        if: steps.find-files.outputs.SKIP == 'true'
-        run: |
-          echo "Nothing to transcribe."
-          exit 0
+          # Push 事件：获取本次 push 的所有变化
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          
+          if [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            CHANGED=$(git diff --name-only --diff-filter=AM $BEFORE $AFTER 2>/dev/null || echo "")
+          else
+            CHANGED=$(git diff --name-only $AFTER 2>/dev/null || echo "")
+          fi
+          
+          echo "Files changed in this push:" >> $GITHUB_STEP_SUMMARY
+          echo "$CHANGED" >> $GITHUB_STEP_SUMMARY
+          
+          # 检查 VideoUrlTask.txt 是否有变化
+          if echo "$CHANGED" | grep -q "VideoUrlTask.txt"; then
+            echo "SKIP=false" >> $GITHUB_OUTPUT
+            echo "has_urls=true" >> $GITHUB_OUTPUT
+            echo "trigger_type=url_task" >> $GITHUB_OUTPUT
+            echo "✅ VideoUrlTask.txt changed" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
+          # 检查音频文件是否有变化
+          AUDIO_FILE=$(echo "$CHANGED" | grep -iE '\.(wav|mp3|m4a|mp4)$' | head -1)
+          if [ -n "$AUDIO_FILE" ]; then
+            echo "SKIP=false" >> $GITHUB_OUTPUT
+            echo "has_urls=false" >> $GITHUB_OUTPUT
+            echo "trigger_type=audio_file" >> $GITHUB_STEP_SUMMARY
+            echo "audio_file=$AUDIO_FILE" >> $GITHUB_OUTPUT
+            echo "✅ Audio file changed: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
+          # 没有相关变化，跳过
+          echo "SKIP=true" >> $GITHUB_OUTPUT
+          echo "⚠️ No relevant changes, skipping." >> $GITHUB_STEP_SUMMARY
 
-      # ========== 登录并拉取镜像 ==========
+      - name: Skip
+        if: steps.check-tasks.outputs.SKIP == 'true'
+        run: exit 0
+
+      # ========== 安装 yt-dlp 下载工具 ==========
+      - name: Install yt-dlp
+        if: steps.check-tasks.outputs.has_urls == 'true'
+        run: |
+          echo "## 📥 Installing yt-dlp" >> $GITHUB_STEP_SUMMARY
+          
+          # 安装 ffmpeg（必需）
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          
+          # 安装 yt-dlp
+          pip3 install yt-dlp
+          
+          # 验证安装
+          yt-dlp --version >> $GITHUB_STEP_SUMMARY
+          echo "✅ yt-dlp installed successfully" >> $GITHUB_STEP_SUMMARY
+
+      # ========== 下载 URL 中的视频 ==========
+      - name: Download videos from URLs
+        if: steps.check-tasks.outputs.has_urls == 'true'
+        id: download
+        run: |
+          echo "## 📥 Downloading videos from URLs" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 创建下载目录和日志目录
+          mkdir -p downloaded_audios
+          mkdir -p logs
+          
+          # 初始化下载日志
+          DOWNLOAD_LOG="logs/download.log"
+          echo "=== 下载开始时间: $(date) ===" > $DOWNLOAD_LOG
+          echo "=== VideoUrlTask.txt 内容 ===" >> $DOWNLOAD_LOG
+          cat VideoUrlTask.txt >> $DOWNLOAD_LOG
+          echo "" >> $DOWNLOAD_LOG
+          
+          SUCCESS_COUNT=0
+          FAIL_COUNT=0
+          TOTAL_TIME=0
+          
+          # 读取并处理每个 URL
+          while IFS= read -r line; do
+            # 跳过空行和注释
+            [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+            
+            # 去除首尾空格
+            url=$(echo "$line" | xargs)
+            
+            echo "" >> $DOWNLOAD_LOG
+            echo "--- 处理 URL: $url ---" >> $DOWNLOAD_LOG
+            echo "开始下载: $url" >> $GITHUB_STEP_SUMMARY
+            
+            START_TIME=$(date +%s.%N)
+            
+            # 使用 yt-dlp 下载并提取音频
+            # --no-playlist: 不下载播放列表
+            # -x: 提取音频
+            # --audio-format mp3: 转换为 mp3
+            # --audio-quality 0: 最高音质
+            # --output: 输出文件名格式
+            # --no-overwrites: 不覆盖已存在的文件
+            yt-dlp \
+              --no-playlist \
+              -x \
+              --audio-format mp3 \
+              --audio-quality 0 \
+              --output "downloaded_audios/%(title)s.%(ext)s" \
+              --no-overwrites \
+              "$url" 2>&1 | tee -a $DOWNLOAD_LOG
+            
+            if [ ${PIPESTATUS[0]} -eq 0 ]; then
+              END_TIME=$(date +%s.%N)
+              DURATION=$(echo "$END_TIME - $START_TIME" | bc)
+              TOTAL_TIME=$(echo "$TOTAL_TIME + $DURATION" | bc)
+              SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+              echo "✅ 成功: $url (耗时: ${DURATION%.*}秒)" >> $GITHUB_STEP_SUMMARY
+              echo "结果: 成功, 耗时: ${DURATION%.*}秒" >> $DOWNLOAD_LOG
+            else
+              FAIL_COUNT=$((FAIL_COUNT + 1))
+              echo "❌ 失败: $url" >> $GITHUB_STEP_SUMMARY
+              echo "结果: 失败" >> $DOWNLOAD_LOG
+            fi
+            
+          done < VideoUrlTask.txt
+          
+          # 统计信息
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 下载统计" >> $GITHUB_STEP_SUMMARY
+          echo "- 成功: $SUCCESS_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- 失败: $FAIL_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- 总耗时: ${TOTAL_TIME%.*}秒" >> $GITHUB_STEP_SUMMARY
+          
+          echo "" >> $DOWNLOAD_LOG
+          echo "=== 下载结束时间: $(date) ===" >> $DOWNLOAD_LOG
+          echo "成功: $SUCCESS_COUNT, 失败: $FAIL_COUNT, 总耗时: ${TOTAL_TIME%.*}秒" >> $DOWNLOAD_LOG
+          
+          # 列出下载的文件
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 下载的文件" >> $GITHUB_STEP_SUMMARY
+          ls -la downloaded_audios/ >> $GITHUB_STEP_SUMMARY
+          ls -la downloaded_audios/ >> $DOWNLOAD_LOG
+          
+          # 设置输出
+          echo "download_success=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+          echo "download_fail=$FAIL_COUNT" >> $GITHUB_OUTPUT
+          echo "download_time=${TOTAL_TIME%.*}" >> $GITHUB_OUTPUT
+          
+          # 如果有成功下载的文件，设置标记
+          if [ $SUCCESS_COUNT -gt 0 ]; then
+            echo "has_downloaded=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_downloaded=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ========== 登录拉取镜像 ==========
       - name: Login to GitHub Container Registry
-        if: steps.find-files.outputs.SKIP != 'true'
+        if: steps.check-tasks.outputs.SKIP != 'true'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -68,33 +210,86 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull Docker image
-        if: steps.find-files.outputs.SKIP != 'true'
+        if: steps.check-tasks.outputs.SKIP != 'true'
         run: |
           docker pull ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           echo "✅ Image pulled." >> $GITHUB_STEP_SUMMARY
 
       # ========== 运行转录 ==========
-      - name: Run transcription in container
-        if: steps.find-files.outputs.SKIP != 'true'
+      - name: Run transcription
+        if: steps.check-tasks.outputs.SKIP != 'true'
         env:
-          AUDIO_FILE: ${{ steps.find-files.outputs.FILE }}
+          AUDIO_FILE: ${{ steps.check-tasks.outputs.audio_file || '' }}
+          HAS_URLS: ${{ steps.check-tasks.outputs.has_urls || 'false' }}
+          HAS_DOWNLOADED: ${{ steps.download.outputs.has_downloaded || 'false' }}
         run: |
-          # 使用宿主机的工作目录挂载，tee 输出到宿主机目录避免路径问题
+          echo "## 🎙️ Running transcription" >> $GITHUB_STEP_SUMMARY
+          
+          # 准备音频文件列表
+          AUDIO_LIST=""
+          
+          # 如果是从 URL 下载的，处理下载的文件
+          if [ "$HAS_URLS" = "true" ] && [ "$HAS_DOWNLOADED" = "true" ]; then
+            echo "Processing downloaded audio files..." >> $GITHUB_STEP_SUMMARY
+            AUDIO_LIST=$(find downloaded_audios -type f \( -name "*.mp3" -o -name "*.wav" -o -name "*.m4a" -o -name "*.mp4" \) | tr '\n' ',')
+            echo "Audio files to process: $AUDIO_LIST" >> $GITHUB_STEP_SUMMARY
+          elif [ -n "$AUDIO_FILE" ] && [ -f "$AUDIO_FILE" ]; then
+            AUDIO_LIST="$AUDIO_FILE"
+            echo "Processing single audio file: $AUDIO_FILE" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No audio files found to process" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
+          # 运行 Docker 转录
           docker run --rm \
             -v ${{ github.workspace }}:${{ github.workspace }} \
             -w ${{ github.workspace }} \
-            -e AUDIO_FILE="$AUDIO_FILE" \
+            -e AUDIO_FILE_LIST="$AUDIO_LIST" \
+            -e DOWNLOAD_LOG_PATH="logs/download.log" \
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest \
             python3 transcribe.py 2>&1 | tee ${{ github.workspace }}/full_run.log
-          echo "✅ Transcription done." >> $GITHUB_STEP_SUMMARY
+          
+          echo "✅ Transcription completed." >> $GITHUB_STEP_SUMMARY
+
+      # ========== 合并日志 ==========
+      - name: Merge logs
+        if: steps.check-tasks.outputs.SKIP != 'true'
+        run: |
+          # 合并所有日志
+          echo "=== Transcription Run: $(date) ===" > merged.log
+          echo "" >> merged.log
+          
+          if [ -f "logs/download.log" ]; then
+            echo "=== Download Log ===" >> merged.log
+            cat logs/download.log >> merged.log
+            echo "" >> merged.log
+          fi
+          
+          if [ -f "full_run.log" ]; then
+            echo "=== Transcription Log ===" >> merged.log
+            cat full_run.log >> merged.log
+            echo "" >> merged.log
+          fi
+          
+          if [ -f "transcription.log" ]; then
+            echo "=== Recognition Log ===" >> merged.log
+            cat transcription.log >> merged.log
+          fi
+          
+          # 覆盖原日志
+          cp merged.log full_run.log
 
       # ========== 提交结果 ==========
-      - name: Commit transcription results
-        if: steps.find-files.outputs.SKIP != 'true'
+      - name: Commit results
+        if: steps.check-tasks.outputs.SKIP != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add recognized_text.txt full_run.log transcription.log 2>/dev/null || true
+          
+          # 添加所有结果文件
+          git add recognized_text.txt full_run.log transcription.log logs/ downloaded_audios/ 2>/dev/null || true
+          
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
@@ -105,8 +300,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # ========== 上传制品 ==========
-      - name: Upload transcription artifacts
-        if: steps.find-files.outputs.SKIP != 'true'
+      - name: Upload artifacts
+        if: always() && steps.check-tasks.outputs.SKIP != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: transcription-results-${{ github.run_id }}
@@ -114,4 +309,6 @@ jobs:
             recognized_text.txt
             full_run.log
             transcription.log
+            logs/
+            downloaded_audios/
           retention-days: 7
