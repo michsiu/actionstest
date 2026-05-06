@@ -2389,3 +2389,49 @@
 2026-05-06 23:42:40,016 - INFO - 开始下载 (requests): 【看到最后才知道为什么叫匿杀，男孩钻进餐车，意外看到了惨烈一幕！-哔哩哔哩https://b23.tv/wd06wJL
 2026-05-06 23:42:40,018 - INFO - ❌ 失败 [1/1]: 请求错误: No connection adapters were found for '【看到最后才知道为什么叫匿杀，男孩钻进餐车，意外看到了惨烈一幕！-哔哩哔哩https://b23.tv/wd06wJL' (耗时: 0.98秒)
 2026-05-06 23:42:40,018 - ERROR - 所有 URL 下载失败，没有音频文件可转录
+2026-05-06 23:52:28,737 - INFO - ============================================================
+2026-05-06 23:52:28,737 - INFO - FunASR 音频转录服务启动
+2026-05-06 23:52:28,737 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-06 23:52:28,737 - INFO - ============================================================
+2026-05-06 23:52:28,737 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-06 23:52:28,738 - INFO - 
+[1/1] 处理 URL
+2026-05-06 23:52:28,738 - INFO - 处理 URL: https://v26-default.365yg.com/0adf2263c5e6dfd004125f24b1ddf4ce/69fbfdae/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGrWYmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100B_100H_100K_100o_100w&dy_q=1778110841&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260507074041CD3C66F674C8F81E5049
+2026-05-06 23:52:28,738 - INFO - URL 类型: 直接链接
+2026-05-06 23:52:28,738 - INFO - 开始下载 (requests): https://v26-default.365yg.com/0adf2263c5e6dfd004125f24b1ddf4ce/69fbfdae/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGrWYmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100B_100H_100K_100o_100w&dy_q=1778110841&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260507074041CD3C66F674C8F81E5049
+2026-05-06 23:52:34,243 - INFO - 下载成功: audio_1778111548738.mp4 (69768385 bytes)
+2026-05-06 23:52:41,378 - INFO - 音频提取成功: audio_1778111548738.mp3
+2026-05-06 23:52:41,388 - INFO - ✅ 成功 [1/1]: 成功下载 69768385 bytes (耗时: 12.65秒)
+2026-05-06 23:52:45,251 - INFO - 正在加载 FunASR 模型...
+2026-05-06 23:52:45,251 - INFO - download models from model hub: ms
+2026-05-06 23:52:47,809 - WARNING - trust_remote_code: False
+2026-05-06 23:52:49,071 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 23:52:49,076 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 23:52:49,725 - INFO - scope_map: ['module.', 'None']
+2026-05-06 23:52:49,725 - INFO - excludes: None
+2026-05-06 23:52:50,037 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 23:52:50,049 - INFO - Building VAD model.
+2026-05-06 23:52:50,049 - INFO - download models from model hub: ms
+2026-05-06 23:52:52,416 - WARNING - trust_remote_code: False
+2026-05-06 23:52:52,420 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 23:52:52,420 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 23:52:52,424 - INFO - scope_map: ['module.', 'None']
+2026-05-06 23:52:52,424 - INFO - excludes: None
+2026-05-06 23:52:52,425 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 23:52:52,425 - INFO - Building punc model.
+2026-05-06 23:52:52,425 - INFO - download models from model hub: ms
+2026-05-06 23:52:54,876 - WARNING - trust_remote_code: False
+2026-05-06 23:52:55,241 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-06 23:52:55,241 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-06 23:52:55,297 - INFO - scope_map: ['module.', 'None']
+2026-05-06 23:52:55,297 - INFO - excludes: None
+2026-05-06 23:52:55,315 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 23:52:55,891 - INFO - 模型加载完成，耗时: 10.64 秒
+2026-05-06 23:52:55,891 - INFO - 开始批量转录，共 1 个文件
+2026-05-06 23:52:55,891 - INFO - 
+[1/1] 处理: audio_1778111548738.mp3
+2026-05-06 23:52:55,892 - INFO - 开始转录: audio_1778111548738.mp3 (9.56 MB)
+2026-05-06 23:53:37,448 - INFO - 转录完成: audio_1778111548738.mp3 (耗时: 41.56秒)
+2026-05-06 23:53:37,448 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳复事背景发生在一八九九年，一艘名为克尔...
+2026-05-06 23:53:37,448 - INFO - 
+批量转录完成: 成功=1, 失败=0
