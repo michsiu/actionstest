@@ -89,7 +89,6 @@ class VideoDownloader:
             'Accept': '*/*',
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
-            'Referer': 'https://www.douyin.com/',
             'Range': 'bytes=0-'
         }
         
@@ -154,8 +153,7 @@ class VideoDownloader:
         ]
         
         cmd.extend([
-            '--add-header', 'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            '--add-header', 'Referer:https://www.douyin.com/'
+            '--add-header', 'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         ])
         
         cmd.append(url)
