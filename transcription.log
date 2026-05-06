@@ -213,3 +213,53 @@
 2026-05-06 11:48:29,203 - INFO - 识别文本: 明明有那么多次机会报警，为什么不去做呢？这是大家看完前半段影片最大的疑问。那我们就从揭开这个秘密开始。再看看。当徐佳怡的真实身份曝光时，她和奶奶、江秀芝的纠葛又将会何去何从呢？真正的徐佳怡的确是被她的...
 2026-05-06 11:48:29,203 - INFO - 
 批量转录完成: 成功=2, 失败=0
+2026-05-06 14:23:15,169 - INFO - ============================================================
+2026-05-06 14:23:15,169 - INFO - FunASR 音频转录服务启动
+2026-05-06 14:23:15,169 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-06 14:23:15,169 - INFO - ============================================================
+2026-05-06 14:23:15,169 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-06 14:23:15,170 - INFO - 
+[1/1] 处理 URL
+2026-05-06 14:23:15,170 - INFO - 处理 URL: https://v26-default.365yg.com/cce04586e91e9a1670dfa0f7139b343c/69fb78cd/video/tos/cn/tos-cn-ve-15/ab9067ac137548888ae42d5d74bc4df4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=894&bt=894&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGE6fmg9eFWM5tuO12nzXT&mime_type=video_mp4&qs=15&rc=Mzo0PDs6ZjppNzxkOzY0aEBpanQ3OXI5cng4OjMzNGkzM0AxNjYyXi40NWIxYDNgMTRiYSNgLi1hMmRjbXFhLS1kLWFzcw==&btag=c0000e00028000&cquery=100K_100o_100w_100B_100H&dy_q=1778077221&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260506222021B375CA5B7B515C0324C0
+2026-05-06 14:23:15,170 - INFO - URL 类型: 直接链接
+2026-05-06 14:23:15,170 - INFO - 开始下载 (requests): https://v26-default.365yg.com/cce04586e91e9a1670dfa0f7139b343c/69fb78cd/video/tos/cn/tos-cn-ve-15/ab9067ac137548888ae42d5d74bc4df4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=894&bt=894&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGE6fmg9eFWM5tuO12nzXT&mime_type=video_mp4&qs=15&rc=Mzo0PDs6ZjppNzxkOzY0aEBpanQ3OXI5cng4OjMzNGkzM0AxNjYyXi40NWIxYDNgMTRiYSNgLi1hMmRjbXFhLS1kLWFzcw==&btag=c0000e00028000&cquery=100K_100o_100w_100B_100H&dy_q=1778077221&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260506222021B375CA5B7B515C0324C0
+2026-05-06 14:23:18,697 - INFO - 下载成功: audio_1778077395170.mp4 (13847992 bytes)
+2026-05-06 14:23:20,365 - INFO - 音频提取成功: audio_1778077395170.mp3
+2026-05-06 14:23:20,367 - INFO - ✅ 成功 [1/1]: 成功下载 13847992 bytes (耗时: 5.20秒)
+2026-05-06 14:23:24,350 - INFO - 正在加载 FunASR 模型...
+2026-05-06 14:23:24,350 - INFO - download models from model hub: ms
+2026-05-06 14:24:34,894 - WARNING - trust_remote_code: False
+2026-05-06 14:24:36,298 - INFO - Loading pretrained params from /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 14:24:36,302 - INFO - ckpt: /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-06 14:24:37,047 - INFO - scope_map: ['module.', 'None']
+2026-05-06 14:24:37,048 - INFO - excludes: None
+2026-05-06 14:24:37,135 - INFO - Loading ckpt: /modelscope_cache/models/iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 14:24:37,147 - INFO - Building VAD model.
+2026-05-06 14:24:37,147 - INFO - download models from model hub: ms
+2026-05-06 14:24:41,928 - WARNING - trust_remote_code: False
+2026-05-06 14:24:41,932 - INFO - Loading pretrained params from /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 14:24:41,932 - INFO - ckpt: /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-06 14:24:41,936 - INFO - scope_map: ['module.', 'None']
+2026-05-06 14:24:41,936 - INFO - excludes: None
+2026-05-06 14:24:41,937 - INFO - Loading ckpt: /modelscope_cache/models/iic/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-06 14:24:41,938 - INFO - Building punc model.
+2026-05-06 14:24:41,938 - INFO - download models from model hub: ms
+2026-05-06 14:26:02,696 - WARNING - trust_remote_code: False
+2026-05-06 14:26:03,844 - DEBUG - Building prefix dict from the default dictionary ...
+2026-05-06 14:26:04,314 - DEBUG - Dumping model to file cache /tmp/jieba.cache
+2026-05-06 14:26:04,354 - DEBUG - Loading model cost 0.511 seconds.
+2026-05-06 14:26:04,355 - DEBUG - Prefix dict has been built successfully.
+2026-05-06 14:26:21,343 - INFO - Loading pretrained params from /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt
+2026-05-06 14:26:21,345 - INFO - ckpt: /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt
+2026-05-06 14:26:22,001 - INFO - scope_map: ['module.', 'None']
+2026-05-06 14:26:22,001 - INFO - excludes: None
+2026-05-06 14:26:22,069 - INFO - Loading ckpt: /modelscope_cache/models/iic/punc_ct-transformer_cn-en-common-vocab471067-large/model.pt, status: <All keys matched successfully>
+2026-05-06 14:26:22,901 - INFO - 模型加载完成，耗时: 178.55 秒
+2026-05-06 14:26:22,901 - INFO - 开始批量转录，共 1 个文件
+2026-05-06 14:26:22,901 - INFO - 
+[1/1] 处理: audio_1778077395170.mp3
+2026-05-06 14:26:22,901 - INFO - 开始转录: audio_1778077395170.mp3 (2.25 MB)
+2026-05-06 14:26:35,052 - INFO - 转录完成: audio_1778077395170.mp3 (耗时: 12.15秒)
+2026-05-06 14:26:35,052 - INFO - 识别文本: 李峰都找了招什么了？在过去三年犯下过十几起抢劫案，其中九次杀人，一次未遂，共有十五条人命。听到这不可置信的结果，强哥先是一愣，紧接着还不忘反问句。多少条十五条，他可是a级等缉法。过了连续三年每年下发的...
+2026-05-06 14:26:35,053 - INFO - 
+批量转录完成: 成功=1, 失败=0
