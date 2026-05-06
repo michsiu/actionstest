@@ -43,3 +43,21 @@ drwxr-xr-x 6 runner runner 4096 May  6 08:00 ..
 总耗时: 53.11秒
 结束时间: 2026-05-06 09:45:32
 ============================================================
+
+============================================================
+下载会话开始: 2026-05-06 10:28:54
+============================================================
+[2026-05-06 10:28:54] [INFO] 
+[1/1] 处理 URL
+[2026-05-06 10:28:54] [INFO] 处理 URL: https://v11-default.365yg.com/e50cc8a09285e262aa1ba33e298b560e/69fb3179/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG7Olmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778058564&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061709243D96F73C126EFEBBCD92
+[2026-05-06 10:28:54] [INFO] URL 类型: 直接链接
+[2026-05-06 10:28:54] [INFO] 开始下载 (requests): https://v11-default.365yg.com/e50cc8a09285e262aa1ba33e298b560e/69fb3179/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG7Olmg9eF0~hfJO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778058564&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605061709243D96F73C126EFEBBCD92
+[2026-05-06 10:29:33] [INFO] 下载成功: audio_1778063334991.mp4 (69768385 bytes)
+[2026-05-06 10:29:40] [INFO] 音频提取成功: audio_1778063334991.mp3
+[2026-05-06 10:29:40] [INFO] ✅ 成功 [1/1]: 成功下载 69768385 bytes (耗时: 45.84秒)
+
+============================================================
+下载统计: 总计=1, 成功=1, 失败=0
+总耗时: 45.84秒
+结束时间: 2026-05-06 10:29:40
+============================================================
