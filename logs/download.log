@@ -2099,3 +2099,21 @@ drwxr-xr-x 6 runner runner 4096 May  6 08:00 ..
 总耗时: 235.92秒
 结束时间: 2026-05-06 23:27:50
 ============================================================
+
+============================================================
+下载会话开始: 2026-05-06 23:36:00
+============================================================
+[2026-05-06 23:36:00] [INFO] 
+[1/1] 处理 URL
+[2026-05-06 23:36:00] [INFO] 处理 URL: https://b23.tv/wd06wJL
+[2026-05-06 23:36:00] [INFO] URL 类型: 页面链接
+[2026-05-06 23:36:00] [INFO] 开始下载 (yt-dlp): https://b23.tv/wd06wJL
+[2026-05-06 23:36:02] [INFO] yt-dlp 失败，尝试作为直接链接下载...
+[2026-05-06 23:36:02] [INFO] 开始下载 (requests): https://b23.tv/wd06wJL
+[2026-05-06 23:36:03] [INFO] ❌ 失败 [1/1]: 请求错误: 412 Client Error: Precondition Failed for url: https://www.bilibili.com/video/BV1RqReB4EHo?buvid=Y941F199392B25AA4675A22C201729DF965D&from_spmid=tm.recommend.0.0&is_story_h5=false&mid=vetw6SY8TCvgpYrc9VzwKQ%3D%3D&p=1&plat_id=116&share_from=ugc&share_medium=iphone_i&share_plat=ios&share_session_id=7C1A510B-EFB6-460D-A946-A75A27A8275A&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1778110420&unique_k=wd06wJL&up_id=2046017519 (耗时: 3.16秒)
+
+============================================================
+下载统计: 总计=1, 成功=0, 失败=1
+总耗时: 3.16秒
+结束时间: 2026-05-06 23:36:03
+============================================================
