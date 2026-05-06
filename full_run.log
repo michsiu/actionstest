@@ -1,14 +1,14 @@
-2026-05-06 23:36:00,110 - INFO - ============================================================
-2026-05-06 23:36:00,110 - INFO - FunASR 音频转录服务启动
-2026-05-06 23:36:00,110 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
-2026-05-06 23:36:00,110 - INFO - ============================================================
-2026-05-06 23:36:00,110 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
-2026-05-06 23:36:00,111 - INFO - 
+2026-05-06 23:42:39,038 - INFO - ============================================================
+2026-05-06 23:42:39,038 - INFO - FunASR 音频转录服务启动
+2026-05-06 23:42:39,038 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-06 23:42:39,038 - INFO - ============================================================
+2026-05-06 23:42:39,038 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-06 23:42:39,039 - INFO - 
 [1/1] 处理 URL
-2026-05-06 23:36:00,111 - INFO - 处理 URL: https://b23.tv/wd06wJL
-2026-05-06 23:36:00,111 - INFO - URL 类型: 页面链接
-2026-05-06 23:36:00,372 - INFO - 开始下载 (yt-dlp): https://b23.tv/wd06wJL
-2026-05-06 23:36:02,193 - INFO - yt-dlp 失败，尝试作为直接链接下载...
-2026-05-06 23:36:02,193 - INFO - 开始下载 (requests): https://b23.tv/wd06wJL
-2026-05-06 23:36:03,267 - INFO - ❌ 失败 [1/1]: 请求错误: 412 Client Error: Precondition Failed for url: https://www.bilibili.com/video/BV1RqReB4EHo?buvid=Y941F199392B25AA4675A22C201729DF965D&from_spmid=tm.recommend.0.0&is_story_h5=false&mid=vetw6SY8TCvgpYrc9VzwKQ%3D%3D&p=1&plat_id=116&share_from=ugc&share_medium=iphone_i&share_plat=ios&share_session_id=7C1A510B-EFB6-460D-A946-A75A27A8275A&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1778110420&unique_k=wd06wJL&up_id=2046017519 (耗时: 3.16秒)
-2026-05-06 23:36:03,267 - ERROR - 所有 URL 下载失败，没有音频文件可转录
+2026-05-06 23:42:39,039 - INFO - 处理 URL: 【看到最后才知道为什么叫匿杀，男孩钻进餐车，意外看到了惨烈一幕！-哔哩哔哩https://b23.tv/wd06wJL
+2026-05-06 23:42:39,039 - INFO - URL 类型: 页面链接
+2026-05-06 23:42:39,292 - INFO - 开始下载 (yt-dlp): 【看到最后才知道为什么叫匿杀，男孩钻进餐车，意外看到了惨烈一幕！-哔哩哔哩https://b23.tv/wd06wJL
+2026-05-06 23:42:40,016 - INFO - yt-dlp 失败，尝试作为直接链接下载...
+2026-05-06 23:42:40,016 - INFO - 开始下载 (requests): 【看到最后才知道为什么叫匿杀，男孩钻进餐车，意外看到了惨烈一幕！-哔哩哔哩https://b23.tv/wd06wJL
+2026-05-06 23:42:40,018 - INFO - ❌ 失败 [1/1]: 请求错误: No connection adapters were found for '【看到最后才知道为什么叫匿杀，男孩钻进餐车，意外看到了惨烈一幕！-哔哩哔哩https://b23.tv/wd06wJL' (耗时: 0.98秒)
+2026-05-06 23:42:40,018 - ERROR - 所有 URL 下载失败，没有音频文件可转录
