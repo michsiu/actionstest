@@ -2717,3 +2717,49 @@
 2026-05-07 04:26:32,749 - INFO - 识别文本: 为了将手里的金砖变成现金，他竟找到黑市的炼金师，只见他小心翼翼的夹起大金鱼飞快的丢进八千度高温的融化炉，然后拿出承接金水的容器，随后将融化的金水迅速倒入转手，在倒进提前准备好的金条模子。令人没想到的是...
 2026-05-07 04:26:32,749 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 04:40:11,679 - INFO - ============================================================
+2026-05-07 04:40:11,679 - INFO - FunASR 音频转录服务启动
+2026-05-07 04:40:11,679 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 04:40:11,679 - INFO - ============================================================
+2026-05-07 04:40:11,679 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 04:40:11,680 - INFO - 
+[1/1] 处理 URL
+2026-05-07 04:40:11,680 - INFO - 处理 URL: https://v26-default.365yg.com/72cfafa8f8d2856e07694008edf57f68/69fc45ad/video/tos/cn/tos-cn-ve-15/oEfajeexGBPTLZFBDyIlw2Qo4CaIKATAvs7vuA/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=961&bt=961&cs=0&ds=6&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGFtjBg9eF4qIfjO12nzXT&mime_type=video_mp4&qs=0&rc=PDZlOjU8ODg2OmU0NDM3O0BpM3k4ZXU5cmpyOjMzNGkzM0AuXzZgYTMwNjQxNS9fNi9eYSMtNi9tMmRjX2xhLS1kLWFzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778128704&feature_id=f0150a16a324336cda5d6dd0b69ed299&l=20260507123824D8C1A9ED23B4A458C50F
+2026-05-07 04:40:11,680 - INFO - URL 类型: 直接链接
+2026-05-07 04:40:11,680 - INFO - 开始下载 (requests): https://v26-default.365yg.com/72cfafa8f8d2856e07694008edf57f68/69fc45ad/video/tos/cn/tos-cn-ve-15/oEfajeexGBPTLZFBDyIlw2Qo4CaIKATAvs7vuA/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=961&bt=961&cs=0&ds=6&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGFtjBg9eF4qIfjO12nzXT&mime_type=video_mp4&qs=0&rc=PDZlOjU8ODg2OmU0NDM3O0BpM3k4ZXU5cmpyOjMzNGkzM0AuXzZgYTMwNjQxNS9fNi9eYSMtNi9tMmRjX2xhLS1kLWFzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778128704&feature_id=f0150a16a324336cda5d6dd0b69ed299&l=20260507123824D8C1A9ED23B4A458C50F
+2026-05-07 04:40:18,320 - INFO - 下载成功: audio_1778128811680.mp4 (133582457 bytes)
+2026-05-07 04:40:33,520 - INFO - 音频提取成功: audio_1778128811680.mp3
+2026-05-07 04:40:33,540 - INFO - ✅ 成功 [1/1]: 成功下载 133582457 bytes (耗时: 21.86秒)
+2026-05-07 04:40:37,458 - INFO - 正在加载 FunASR 模型...
+2026-05-07 04:40:37,459 - INFO - download models from model hub: ms
+2026-05-07 04:40:41,198 - WARNING - trust_remote_code: False
+2026-05-07 04:40:42,466 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 04:40:42,470 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 04:40:43,119 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:40:43,119 - INFO - excludes: None
+2026-05-07 04:40:43,418 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:40:43,429 - INFO - Building VAD model.
+2026-05-07 04:40:43,429 - INFO - download models from model hub: ms
+2026-05-07 04:40:46,521 - WARNING - trust_remote_code: False
+2026-05-07 04:40:46,525 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 04:40:46,526 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 04:40:46,529 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:40:46,529 - INFO - excludes: None
+2026-05-07 04:40:46,530 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:40:46,530 - INFO - Building punc model.
+2026-05-07 04:40:46,531 - INFO - download models from model hub: ms
+2026-05-07 04:40:49,415 - WARNING - trust_remote_code: False
+2026-05-07 04:40:49,778 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 04:40:49,779 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 04:40:49,833 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:40:49,833 - INFO - excludes: None
+2026-05-07 04:40:49,850 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:40:50,396 - INFO - 模型加载完成，耗时: 12.94 秒
+2026-05-07 04:40:50,396 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 04:40:50,396 - INFO - 
+[1/1] 处理: audio_1778128811680.mp3
+2026-05-07 04:40:50,396 - INFO - 开始转录: audio_1778128811680.mp3 (20.17 MB)
+2026-05-07 04:42:09,923 - INFO - 转录完成: audio_1778128811680.mp3 (耗时: 79.53秒)
+2026-05-07 04:42:09,923 - INFO - 识别文本: 二十五万让你们假扮这位美女网红的男朋友，你们干不干？我盲猜大多数人都不会干，毕竟大家都是有家有室的人了，这活留给我来干吧，还是喜剧永不过时，人们需要欢乐。大家好，我是大宇，这是初代网红大佬教授易小星从...
+2026-05-07 04:42:09,923 - INFO - 
+批量转录完成: 成功=1, 失败=0
