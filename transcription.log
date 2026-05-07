@@ -2671,3 +2671,49 @@
 2026-05-07 04:20:25,850 - INFO - 识别文本: 警察叔叔，我叫林小雅，我来替我哥自首，你哥你哥犯什么事了，他变成树了。小朋友，你家大人呢没有大人了，爸妈三年前走的就是我和我哥，我哥半个月前变成了这棵树，他让我带他来派出所，你是不是跟家里人闹别扭了，...
 2026-05-07 04:20:25,851 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 04:25:26,992 - INFO - ============================================================
+2026-05-07 04:25:26,992 - INFO - FunASR 音频转录服务启动
+2026-05-07 04:25:26,992 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 04:25:26,992 - INFO - ============================================================
+2026-05-07 04:25:26,992 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 04:25:26,992 - INFO - 
+[1/1] 处理 URL
+2026-05-07 04:25:26,993 - INFO - 处理 URL: https://v26-default.365yg.com/3262f1b5344b31b067765f9656da8851/69fc3fc7/video/tos/cn/tos-cn-ve-15/096f311dba5542d3ad15eb6c6312586b/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1446&bt=1446&cs=2&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGLfjBg9eFq9jfjO12nzXT&mime_type=video_mp4&qs=0&rc=ZDxlaWU4OTk0NWU4NTU7aEBpMzM8eHg5cjN0OjMzNGkzM0BeYS8uM2MuNjAxLzYvYGA2YSMtbnJuMmRjc3FhLS1kLWFzcw==&btag=c0000e00030000&cquery=100K_100o_100w_100B_100H&dy_q=1778127822&feature_id=9d3b25048575d8661ba702640e0735c5&l=20260507122342F48C3902C9E95CBF89D3
+2026-05-07 04:25:26,993 - INFO - URL 类型: 直接链接
+2026-05-07 04:25:26,993 - INFO - 开始下载 (requests): https://v26-default.365yg.com/3262f1b5344b31b067765f9656da8851/69fc3fc7/video/tos/cn/tos-cn-ve-15/096f311dba5542d3ad15eb6c6312586b/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1446&bt=1446&cs=2&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGLfjBg9eFq9jfjO12nzXT&mime_type=video_mp4&qs=0&rc=ZDxlaWU4OTk0NWU4NTU7aEBpMzM8eHg5cjN0OjMzNGkzM0BeYS8uM2MuNjAxLzYvYGA2YSMtbnJuMmRjc3FhLS1kLWFzcw==&btag=c0000e00030000&cquery=100K_100o_100w_100B_100H&dy_q=1778127822&feature_id=9d3b25048575d8661ba702640e0735c5&l=20260507122342F48C3902C9E95CBF89D3
+2026-05-07 04:25:34,464 - INFO - 下载成功: audio_1778127926993.mp4 (84756838 bytes)
+2026-05-07 04:25:40,498 - INFO - 音频提取成功: audio_1778127926993.mp3
+2026-05-07 04:25:40,509 - INFO - ✅ 成功 [1/1]: 成功下载 84756838 bytes (耗时: 13.52秒)
+2026-05-07 04:25:44,458 - INFO - 正在加载 FunASR 模型...
+2026-05-07 04:25:44,458 - INFO - download models from model hub: ms
+2026-05-07 04:25:47,676 - WARNING - trust_remote_code: False
+2026-05-07 04:25:49,087 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 04:25:49,092 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 04:25:49,636 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:25:49,636 - INFO - excludes: None
+2026-05-07 04:25:49,910 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:25:49,921 - INFO - Building VAD model.
+2026-05-07 04:25:49,921 - INFO - download models from model hub: ms
+2026-05-07 04:25:52,983 - WARNING - trust_remote_code: False
+2026-05-07 04:25:52,987 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 04:25:52,987 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 04:25:52,992 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:25:52,992 - INFO - excludes: None
+2026-05-07 04:25:52,993 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:25:52,993 - INFO - Building punc model.
+2026-05-07 04:25:52,993 - INFO - download models from model hub: ms
+2026-05-07 04:25:55,894 - WARNING - trust_remote_code: False
+2026-05-07 04:25:56,237 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 04:25:56,238 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 04:25:56,291 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:25:56,291 - INFO - excludes: None
+2026-05-07 04:25:56,310 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:25:56,874 - INFO - 模型加载完成，耗时: 12.42 秒
+2026-05-07 04:25:56,875 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 04:25:56,875 - INFO - 
+[1/1] 处理: audio_1778127926993.mp3
+2026-05-07 04:25:56,875 - INFO - 开始转录: audio_1778127926993.mp3 (8.65 MB)
+2026-05-07 04:26:32,748 - INFO - 转录完成: audio_1778127926993.mp3 (耗时: 35.87秒)
+2026-05-07 04:26:32,749 - INFO - 识别文本: 为了将手里的金砖变成现金，他竟找到黑市的炼金师，只见他小心翼翼的夹起大金鱼飞快的丢进八千度高温的融化炉，然后拿出承接金水的容器，随后将融化的金水迅速倒入转手，在倒进提前准备好的金条模子。令人没想到的是...
+2026-05-07 04:26:32,749 - INFO - 
+批量转录完成: 成功=1, 失败=0
