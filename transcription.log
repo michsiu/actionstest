@@ -2911,3 +2911,49 @@
 2026-05-07 13:31:56,936 - INFO - 识别文本: 就是这个搬运狗，这个叫努力动漫的账号搬运的。现在我无法更新新的视频上架，就违规，请各位粉丝朋友帮我举报一下，万分感谢。
 2026-05-07 13:31:56,936 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 13:35:56,541 - INFO - ============================================================
+2026-05-07 13:35:56,542 - INFO - FunASR 音频转录服务启动
+2026-05-07 13:35:56,542 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 13:35:56,542 - INFO - ============================================================
+2026-05-07 13:35:56,542 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 13:35:56,542 - INFO - 
+[1/1] 处理 URL
+2026-05-07 13:35:56,542 - INFO - 处理 URL: https://v26-default.365yg.com/d7688c7684bde34433f3ec98d4f02aa6/69fcc085/video/tos/cn/tos-cn-ve-15/oIqBB4VG4EAMe2Dic2J48eQ6CAIheCG7TI17hL/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1124&bt=1124&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG8PTBg9eFG-nfJO12nzXT&mime_type=video_mp4&qs=0&rc=NDU0OmVoNjVpNGk0ZmY3O0BpM3hkbnI5cjU5OjMzNGkzM0AuMTVeNGM2Xi4xNC5eXi9iYSMucF9jMmRrYmxhLS1kLTBzcw==&btag=80000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778160840&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605072134000649E5DF20C106405CAA
+2026-05-07 13:35:56,542 - INFO - URL 类型: 直接链接
+2026-05-07 13:35:56,542 - INFO - 开始下载 (requests): https://v26-default.365yg.com/d7688c7684bde34433f3ec98d4f02aa6/69fcc085/video/tos/cn/tos-cn-ve-15/oIqBB4VG4EAMe2Dic2J48eQ6CAIheCG7TI17hL/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1124&bt=1124&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG8PTBg9eFG-nfJO12nzXT&mime_type=video_mp4&qs=0&rc=NDU0OmVoNjVpNGk0ZmY3O0BpM3hkbnI5cjU5OjMzNGkzM0AuMTVeNGM2Xi4xNC5eXi9iYSMucF9jMmRrYmxhLS1kLTBzcw==&btag=80000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778160840&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605072134000649E5DF20C106405CAA
+2026-05-07 13:36:08,010 - INFO - 下载成功: audio_1778160956542.mp4 (57178703 bytes)
+2026-05-07 13:36:12,293 - INFO - 音频提取成功: audio_1778160956542.mp3
+2026-05-07 13:36:12,301 - INFO - ✅ 成功 [1/1]: 成功下载 57178703 bytes (耗时: 15.76秒)
+2026-05-07 13:36:16,253 - INFO - 正在加载 FunASR 模型...
+2026-05-07 13:36:16,253 - INFO - download models from model hub: ms
+2026-05-07 13:36:20,350 - WARNING - trust_remote_code: False
+2026-05-07 13:36:21,625 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 13:36:21,629 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 13:36:22,278 - INFO - scope_map: ['module.', 'None']
+2026-05-07 13:36:22,278 - INFO - excludes: None
+2026-05-07 13:36:22,585 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 13:36:22,597 - INFO - Building VAD model.
+2026-05-07 13:36:22,597 - INFO - download models from model hub: ms
+2026-05-07 13:36:25,469 - WARNING - trust_remote_code: False
+2026-05-07 13:36:25,474 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 13:36:25,474 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 13:36:25,477 - INFO - scope_map: ['module.', 'None']
+2026-05-07 13:36:25,478 - INFO - excludes: None
+2026-05-07 13:36:25,478 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 13:36:25,479 - INFO - Building punc model.
+2026-05-07 13:36:25,479 - INFO - download models from model hub: ms
+2026-05-07 13:36:29,267 - WARNING - trust_remote_code: False
+2026-05-07 13:36:29,633 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 13:36:29,633 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 13:36:29,688 - INFO - scope_map: ['module.', 'None']
+2026-05-07 13:36:29,688 - INFO - excludes: None
+2026-05-07 13:36:29,705 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 13:36:30,258 - INFO - 模型加载完成，耗时: 14.00 秒
+2026-05-07 13:36:30,258 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 13:36:30,258 - INFO - 
+[1/1] 处理: audio_1778160956542.mp3
+2026-05-07 13:36:30,258 - INFO - 开始转录: audio_1778160956542.mp3 (5.50 MB)
+2026-05-07 13:37:01,903 - INFO - 转录完成: audio_1778160956542.mp3 (耗时: 31.64秒)
+2026-05-07 13:37:01,903 - INFO - 识别文本:  Hello,大家好，我是晨晨。欢迎来到天猫应用系列视频的最后一期，诸位辛苦了。这期视频内容一共分为两个部分。第一部分就是如何写简历。第二部分就是重塑信息写简历，主要分两步走。第一步就是你要明确招聘单...
+2026-05-07 13:37:01,904 - INFO - 
+批量转录完成: 成功=1, 失败=0
