@@ -2865,3 +2865,49 @@
 2026-05-07 05:42:09,967 - INFO - 识别文本: 你不是喜欢拍我们吗？我现在拍，你把它给我拔了，来呀，猫子你扒我，你太好了，气死我。我看各位看官，今儿给您带来包贝尔吴越主演的动作电影伪钞重案。包贝尔在反派这条赛道上是越走越远了。眼前，这个正在指点，孩...
 2026-05-07 05:42:09,968 - INFO - 
 批量转录完成: 成功=2, 失败=0
+2026-05-07 13:31:33,149 - INFO - ============================================================
+2026-05-07 13:31:33,149 - INFO - FunASR 音频转录服务启动
+2026-05-07 13:31:33,149 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 13:31:33,149 - INFO - ============================================================
+2026-05-07 13:31:33,149 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 13:31:33,150 - INFO - 
+[1/1] 处理 URL
+2026-05-07 13:31:33,150 - INFO - 处理 URL: https://v26-default.365yg.com/e4a1bdce8d49d1d691202b28ab3ccb77/69fcbe04/video/tos/cn/tos-cn-ve-15/oEABAGdtM7TR8CfHevMq6gVHa9e7QFWAH5SB4u/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1271&bt=1271&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGzfTBg9eFwR1fjO12nzXT&mime_type=video_mp4&qs=0&rc=M2ZpOjQzZGQ5PDk0OTNkPEBpMzpsaHE5cmRvOjMzNGkzM0AuNTYvLTRjX14xX2IxLzJfYSNjcXBrMmRrLnFhLS1kLWFzcw==&btag=c0000e00008000&cquery=100K_100o_100w_100B_100H&dy_q=1778160585&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605072129453B45AABECFA262459932
+2026-05-07 13:31:33,150 - INFO - URL 类型: 直接链接
+2026-05-07 13:31:33,150 - INFO - 开始下载 (requests): https://v26-default.365yg.com/e4a1bdce8d49d1d691202b28ab3ccb77/69fcbe04/video/tos/cn/tos-cn-ve-15/oEABAGdtM7TR8CfHevMq6gVHa9e7QFWAH5SB4u/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1271&bt=1271&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGzfTBg9eFwR1fjO12nzXT&mime_type=video_mp4&qs=0&rc=M2ZpOjQzZGQ5PDk0OTNkPEBpMzpsaHE5cmRvOjMzNGkzM0AuNTYvLTRjX14xX2IxLzJfYSNjcXBrMmRrLnFhLS1kLWFzcw==&btag=c0000e00008000&cquery=100K_100o_100w_100B_100H&dy_q=1778160585&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605072129453B45AABECFA262459932
+2026-05-07 13:31:36,978 - INFO - 下载成功: audio_1778160693150.mp4 (1866623 bytes)
+2026-05-07 13:31:37,258 - INFO - 音频提取成功: audio_1778160693150.mp3
+2026-05-07 13:31:37,259 - INFO - ✅ 成功 [1/1]: 成功下载 1866623 bytes (耗时: 4.11秒)
+2026-05-07 13:31:41,319 - INFO - 正在加载 FunASR 模型...
+2026-05-07 13:31:41,319 - INFO - download models from model hub: ms
+2026-05-07 13:31:44,950 - WARNING - trust_remote_code: False
+2026-05-07 13:31:46,361 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 13:31:46,365 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 13:31:46,896 - INFO - scope_map: ['module.', 'None']
+2026-05-07 13:31:46,896 - INFO - excludes: None
+2026-05-07 13:31:47,168 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 13:31:47,180 - INFO - Building VAD model.
+2026-05-07 13:31:47,180 - INFO - download models from model hub: ms
+2026-05-07 13:31:50,937 - WARNING - trust_remote_code: False
+2026-05-07 13:31:50,941 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 13:31:50,942 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 13:31:50,946 - INFO - scope_map: ['module.', 'None']
+2026-05-07 13:31:50,946 - INFO - excludes: None
+2026-05-07 13:31:50,947 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 13:31:50,948 - INFO - Building punc model.
+2026-05-07 13:31:50,948 - INFO - download models from model hub: ms
+2026-05-07 13:31:54,149 - WARNING - trust_remote_code: False
+2026-05-07 13:31:54,492 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 13:31:54,492 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 13:31:54,550 - INFO - scope_map: ['module.', 'None']
+2026-05-07 13:31:54,550 - INFO - excludes: None
+2026-05-07 13:31:54,570 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 13:31:55,170 - INFO - 模型加载完成，耗时: 13.85 秒
+2026-05-07 13:31:55,170 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 13:31:55,170 - INFO - 
+[1/1] 处理: audio_1778160693150.mp3
+2026-05-07 13:31:55,170 - INFO - 开始转录: audio_1778160693150.mp3 (0.24 MB)
+2026-05-07 13:31:56,936 - INFO - 转录完成: audio_1778160693150.mp3 (耗时: 1.77秒)
+2026-05-07 13:31:56,936 - INFO - 识别文本: 就是这个搬运狗，这个叫努力动漫的账号搬运的。现在我无法更新新的视频上架，就违规，请各位粉丝朋友帮我举报一下，万分感谢。
+2026-05-07 13:31:56,936 - INFO - 
+批量转录完成: 成功=1, 失败=0
