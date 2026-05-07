@@ -2625,3 +2625,49 @@
 2026-05-07 01:27:37,786 - INFO - 识别文本: 究竟是一部怎样的影片，能让一个背负血海深仇的女人，把自己活成了一把裹着丝绸的刀，一支舞，一个眼神，就足以让高高在上的权贵方寸大乱。大家好，这里是黑介，看电影，本期为大家带来的是韩国最新暗黑复出爽剧夏娃...
 2026-05-07 01:27:37,787 - INFO - 
 批量转录完成: 成功=5, 失败=0
+2026-05-07 04:19:39,509 - INFO - ============================================================
+2026-05-07 04:19:39,509 - INFO - FunASR 音频转录服务启动
+2026-05-07 04:19:39,509 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 04:19:39,510 - INFO - ============================================================
+2026-05-07 04:19:39,510 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 04:19:39,510 - INFO - 
+[1/1] 处理 URL
+2026-05-07 04:19:39,510 - INFO - 处理 URL: https://v26-default.365yg.com/41dac32662802109e77372d39aa8ceaf/69fc3daa/video/tos/cn/tos-cn-ve-15/oAfPfBiAenZetigqBGafExS7cAffABJieqN0iyq/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1194&bt=1194&cs=2&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGu7jBg9eF1fYfJO12nzXT&mime_type=video_mp4&qs=0&rc=ZWk1ZjU1Ozk7Nzk7NzNkNEBpMzxkeXc5cjpvOjMzNGkzM0AzYWA2YC1iXy4xYGJjNjE2YSNpaW1lMmQ0Z3FhLS1kLWFzcw==&btag=80000e00030000&cquery=100w_100B_100H_100K_100o&dy_q=1778127477&feature_id=ffeb5ba76acc1ce63619e1ddded468c9&l=20260507121757971B460492767FE28C8E
+2026-05-07 04:19:39,510 - INFO - URL 类型: 直接链接
+2026-05-07 04:19:39,511 - INFO - 开始下载 (requests): https://v26-default.365yg.com/41dac32662802109e77372d39aa8ceaf/69fc3daa/video/tos/cn/tos-cn-ve-15/oAfPfBiAenZetigqBGafExS7cAffABJieqN0iyq/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1194&bt=1194&cs=2&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGu7jBg9eF1fYfJO12nzXT&mime_type=video_mp4&qs=0&rc=ZWk1ZjU1Ozk7Nzk7NzNkNEBpMzxkeXc5cjpvOjMzNGkzM0AzYWA2YC1iXy4xYGJjNjE2YSNpaW1lMmQ0Z3FhLS1kLWFzcw==&btag=80000e00030000&cquery=100w_100B_100H_100K_100o&dy_q=1778127477&feature_id=ffeb5ba76acc1ce63619e1ddded468c9&l=20260507121757971B460492767FE28C8E
+2026-05-07 04:19:44,607 - INFO - 下载成功: audio_1778127579510.mp4 (39983484 bytes)
+2026-05-07 04:19:48,346 - INFO - 音频提取成功: audio_1778127579510.mp3
+2026-05-07 04:19:48,351 - INFO - ✅ 成功 [1/1]: 成功下载 39983484 bytes (耗时: 8.84秒)
+2026-05-07 04:19:52,170 - INFO - 正在加载 FunASR 模型...
+2026-05-07 04:19:52,170 - INFO - download models from model hub: ms
+2026-05-07 04:19:57,832 - WARNING - trust_remote_code: False
+2026-05-07 04:19:59,103 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 04:19:59,107 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 04:19:59,743 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:19:59,743 - INFO - excludes: None
+2026-05-07 04:20:00,005 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:20:00,016 - INFO - Building VAD model.
+2026-05-07 04:20:00,016 - INFO - download models from model hub: ms
+2026-05-07 04:20:03,041 - WARNING - trust_remote_code: False
+2026-05-07 04:20:03,046 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 04:20:03,046 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 04:20:03,050 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:20:03,050 - INFO - excludes: None
+2026-05-07 04:20:03,051 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:20:03,052 - INFO - Building punc model.
+2026-05-07 04:20:03,052 - INFO - download models from model hub: ms
+2026-05-07 04:20:06,463 - WARNING - trust_remote_code: False
+2026-05-07 04:20:06,798 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 04:20:06,798 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 04:20:06,852 - INFO - scope_map: ['module.', 'None']
+2026-05-07 04:20:06,852 - INFO - excludes: None
+2026-05-07 04:20:06,870 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 04:20:07,419 - INFO - 模型加载完成，耗时: 15.25 秒
+2026-05-07 04:20:07,419 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 04:20:07,419 - INFO - 
+[1/1] 处理: audio_1778127579510.mp3
+2026-05-07 04:20:07,419 - INFO - 开始转录: audio_1778127579510.mp3 (5.55 MB)
+2026-05-07 04:20:25,850 - INFO - 转录完成: audio_1778127579510.mp3 (耗时: 18.43秒)
+2026-05-07 04:20:25,850 - INFO - 识别文本: 警察叔叔，我叫林小雅，我来替我哥自首，你哥你哥犯什么事了，他变成树了。小朋友，你家大人呢没有大人了，爸妈三年前走的就是我和我哥，我哥半个月前变成了这棵树，他让我带他来派出所，你是不是跟家里人闹别扭了，...
+2026-05-07 04:20:25,851 - INFO - 
+批量转录完成: 成功=1, 失败=0
