@@ -3151,3 +3151,49 @@
 2026-05-07 21:57:19,204 - INFO - 识别文本: 月色已归静，待归人走走走不买就走假身份。一套老板说这个坐标值这个价最好是吃就敲了个柜子。至于吧？好啊，目标进入y区，重复目标进入y区，我也去那个三百年没人维护的收队，初感温良相关河的词药。这不是防空洞...
 2026-05-07 21:57:19,204 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 22:04:40,577 - INFO - ============================================================
+2026-05-07 22:04:40,577 - INFO - FunASR 音频转录服务启动
+2026-05-07 22:04:40,577 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 22:04:40,577 - INFO - ============================================================
+2026-05-07 22:04:40,577 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 22:04:40,577 - INFO - 
+[1/1] 处理 URL
+2026-05-07 22:04:40,578 - INFO - 处理 URL: https://v26-default.365yg.com/9b2d3cea1bf6e4735a94274840f6f7b3/69fd3bb0/video/tos/cn/tos-cn-ve-15/ooEB07U77SAFABDoXiPAJxiAiDDYZQAICgfieJ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1503&bt=1503&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG-YSBg9eFtRSVIr12nzXT&mime_type=video_mp4&qs=0&rc=ZDg3NzQ5NGZnaTc8NTtmZ0BpamplM3U5cjNkOjMzNGkzM0BfMC0vMDQyNTAxLWAvYjMtYSMuL2ZoMmRjY2BhLS1kLTBzcw==&btag=80000e00038000&cquery=100B_100H_100K_100o_100w&dy_q=1778191371&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605080602511522AA3F02469F90D434
+2026-05-07 22:04:40,578 - INFO - URL 类型: 直接链接
+2026-05-07 22:04:40,578 - INFO - 开始下载 (requests): https://v26-default.365yg.com/9b2d3cea1bf6e4735a94274840f6f7b3/69fd3bb0/video/tos/cn/tos-cn-ve-15/ooEB07U77SAFABDoXiPAJxiAiDDYZQAICgfieJ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1503&bt=1503&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG-YSBg9eFtRSVIr12nzXT&mime_type=video_mp4&qs=0&rc=ZDg3NzQ5NGZnaTc8NTtmZ0BpamplM3U5cjNkOjMzNGkzM0BfMC0vMDQyNTAxLWAvYjMtYSMuL2ZoMmRjY2BhLS1kLTBzcw==&btag=80000e00038000&cquery=100B_100H_100K_100o_100w&dy_q=1778191371&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605080602511522AA3F02469F90D434
+2026-05-07 22:04:51,725 - INFO - 下载成功: audio_1778191480578.mp4 (268993034 bytes)
+2026-05-07 22:05:10,510 - INFO - 音频提取成功: audio_1778191480578.mp3
+2026-05-07 22:05:10,543 - INFO - ✅ 成功 [1/1]: 成功下载 268993034 bytes (耗时: 29.97秒)
+2026-05-07 22:05:14,343 - INFO - 正在加载 FunASR 模型...
+2026-05-07 22:05:14,343 - INFO - download models from model hub: ms
+2026-05-07 22:05:17,765 - WARNING - trust_remote_code: False
+2026-05-07 22:05:19,137 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 22:05:19,142 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 22:05:19,656 - INFO - scope_map: ['module.', 'None']
+2026-05-07 22:05:19,657 - INFO - excludes: None
+2026-05-07 22:05:19,931 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 22:05:19,943 - INFO - Building VAD model.
+2026-05-07 22:05:19,943 - INFO - download models from model hub: ms
+2026-05-07 22:05:23,106 - WARNING - trust_remote_code: False
+2026-05-07 22:05:23,110 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 22:05:23,111 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 22:05:23,115 - INFO - scope_map: ['module.', 'None']
+2026-05-07 22:05:23,115 - INFO - excludes: None
+2026-05-07 22:05:23,116 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 22:05:23,117 - INFO - Building punc model.
+2026-05-07 22:05:23,117 - INFO - download models from model hub: ms
+2026-05-07 22:05:25,850 - WARNING - trust_remote_code: False
+2026-05-07 22:05:26,186 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 22:05:26,187 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 22:05:26,245 - INFO - scope_map: ['module.', 'None']
+2026-05-07 22:05:26,246 - INFO - excludes: None
+2026-05-07 22:05:26,265 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 22:05:26,816 - INFO - 模型加载完成，耗时: 12.47 秒
+2026-05-07 22:05:26,816 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 22:05:26,816 - INFO - 
+[1/1] 处理: audio_1778191480578.mp3
+2026-05-07 22:05:26,816 - INFO - 开始转录: audio_1778191480578.mp3 (25.62 MB)
+2026-05-07 22:06:58,541 - INFO - 转录完成: audio_1778191480578.mp3 (耗时: 91.72秒)
+2026-05-07 22:06:58,541 - INFO - 识别文本: 我坐在房间里，看着电视电视屏幕雪花闪烁，片刻猛然出现画面。近期，新兴药业有限公司研制药品失败，大量药物残渣废料排入江中公司董事长被抓。接下来为大家转播审讯。新兴药业董事长画面我没有失败，相反，你们都得...
+2026-05-07 22:06:58,542 - INFO - 
+批量转录完成: 成功=1, 失败=0
