@@ -2763,3 +2763,54 @@
 2026-05-07 04:42:09,923 - INFO - 识别文本: 二十五万让你们假扮这位美女网红的男朋友，你们干不干？我盲猜大多数人都不会干，毕竟大家都是有家有室的人了，这活留给我来干吧，还是喜剧永不过时，人们需要欢乐。大家好，我是大宇，这是初代网红大佬教授易小星从...
 2026-05-07 04:42:09,923 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 05:22:28,569 - INFO - ============================================================
+2026-05-07 05:22:28,569 - INFO - FunASR 音频转录服务启动
+2026-05-07 05:22:28,569 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 05:22:28,569 - INFO - ============================================================
+2026-05-07 05:22:28,569 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 05:22:28,570 - INFO - 
+[1/1] 处理 URL
+2026-05-07 05:22:28,570 - INFO - 处理 URL: https://v26-default.365yg.com/72cfafa8f8d2856e07694008edf57f68/69fc45ad/video/tos/cn/tos-cn-ve-15/oEfajeexGBPTLZFBDyIlw2Qo4CaIKATAvs7vuA/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=961&bt=961&cs=0&ds=6&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGFtjBg9eF4qIfjO12nzXT&mime_type=video_mp4&qs=0&rc=PDZlOjU8ODg2OmU0NDM3O0BpM3k4ZXU5cmpyOjMzNGkzM0AuXzZgYTMwNjQxNS9fNi9eYSMtNi9tMmRjX2xhLS1kLWFzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778128704&feature_id=f0150a16a324336cda5d6dd0b69ed299&l=20260507123824D8C1A9ED23B4A458C50F
+2026-05-07 05:22:28,570 - INFO - URL 类型: 直接链接
+2026-05-07 05:22:28,570 - INFO - 开始下载 (requests): https://v26-default.365yg.com/72cfafa8f8d2856e07694008edf57f68/69fc45ad/video/tos/cn/tos-cn-ve-15/oEfajeexGBPTLZFBDyIlw2Qo4CaIKATAvs7vuA/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=961&bt=961&cs=0&ds=6&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGFtjBg9eF4qIfjO12nzXT&mime_type=video_mp4&qs=0&rc=PDZlOjU8ODg2OmU0NDM3O0BpM3k4ZXU5cmpyOjMzNGkzM0AuXzZgYTMwNjQxNS9fNi9eYSMtNi9tMmRjX2xhLS1kLWFzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778128704&feature_id=f0150a16a324336cda5d6dd0b69ed299&l=20260507123824D8C1A9ED23B4A458C50F
+2026-05-07 05:22:39,260 - INFO - 下载成功: audio_1778131348570.mp4 (133582457 bytes)
+2026-05-07 05:22:54,314 - INFO - 音频提取成功: audio_1778131348570.mp3
+2026-05-07 05:22:54,331 - INFO - ✅ 成功 [1/1]: 成功下载 133582457 bytes (耗时: 25.76秒)
+2026-05-07 05:22:58,094 - INFO - 正在加载 FunASR 模型...
+2026-05-07 05:22:58,094 - INFO - download models from model hub: ms
+2026-05-07 05:23:00,807 - WARNING - trust_remote_code: False
+2026-05-07 05:23:02,098 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 05:23:02,103 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 05:23:02,754 - INFO - scope_map: ['module.', 'None']
+2026-05-07 05:23:02,754 - INFO - excludes: None
+2026-05-07 05:23:03,019 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 05:23:03,030 - INFO - Building VAD model.
+2026-05-07 05:23:03,030 - INFO - download models from model hub: ms
+2026-05-07 05:23:05,487 - WARNING - trust_remote_code: False
+2026-05-07 05:23:05,491 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 05:23:05,492 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 05:23:05,496 - INFO - scope_map: ['module.', 'None']
+2026-05-07 05:23:05,496 - INFO - excludes: None
+2026-05-07 05:23:05,497 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 05:23:05,497 - INFO - Building punc model.
+2026-05-07 05:23:05,497 - INFO - download models from model hub: ms
+2026-05-07 05:23:07,444 - WARNING - trust_remote_code: False
+2026-05-07 05:23:07,780 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 05:23:07,780 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 05:23:07,836 - INFO - scope_map: ['module.', 'None']
+2026-05-07 05:23:07,836 - INFO - excludes: None
+2026-05-07 05:23:07,854 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 05:23:08,403 - INFO - 模型加载完成，耗时: 10.31 秒
+2026-05-07 05:23:08,403 - INFO - 开始批量转录，共 2 个文件
+2026-05-07 05:23:08,403 - INFO - 
+[1/2] 处理: audio_1778131348570.mp3
+2026-05-07 05:23:08,404 - INFO - 开始转录: audio_1778131348570.mp3 (20.17 MB)
+2026-05-07 05:24:25,846 - INFO - 转录完成: audio_1778131348570.mp3 (耗时: 77.44秒)
+2026-05-07 05:24:25,846 - INFO - 识别文本: 二十五万让你们假扮这位美女网红的男朋友，你们干不干？我盲猜大多数人都不会干，毕竟大家都是有家有室的人了，这活留给我来干吧，还是喜剧永不过时，人们需要欢乐。大家好，我是大宇，这是初代网红大佬教授易小星从...
+2026-05-07 05:24:25,846 - INFO - 
+[2/2] 处理: owLBG3FeCQDdT3gANSYgfnE9T1If7kPJ8xBb3C.mp4
+2026-05-07 05:24:25,846 - INFO - 开始转录: owLBG3FeCQDdT3gANSYgfnE9T1If7kPJ8xBb3C.mp4 (24.69 MB)
+2026-05-07 05:24:56,070 - INFO - 转录完成: owLBG3FeCQDdT3gANSYgfnE9T1If7kPJ8xBb3C.mp4 (耗时: 30.22秒)
+2026-05-07 05:24:56,070 - INFO - 识别文本: 马周被伟大领袖认为是超过傅悦和姜子牙的千古名相。马周早年的经历颇具传奇色彩。仁寿元年，马周出生在清河郡，持平县，自幼便失去了双亲。成人以后，马周为人豪爽，不拘小节，经常喝的酩酊大醉，并做出很多怪异的行...
+2026-05-07 05:24:56,071 - INFO - 
+批量转录完成: 成功=2, 失败=0
