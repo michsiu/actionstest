@@ -2527,3 +2527,101 @@
 2026-05-07 00:41:15,450 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳复事背景发生在一八九九年，一艘名为克尔...
 2026-05-07 00:41:15,451 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 01:21:06,816 - INFO - ============================================================
+2026-05-07 01:21:06,816 - INFO - FunASR 音频转录服务启动
+2026-05-07 01:21:06,816 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 01:21:06,816 - INFO - ============================================================
+2026-05-07 01:21:06,816 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 01:21:06,817 - INFO - 
+[1/5] 处理 URL
+2026-05-07 01:21:06,817 - INFO - 处理 URL: https://v26-default.365yg.com/7be4495b43ecd4ba8ffc067bdef8648c/69fc149e/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG_DZmg9eF5ihLCO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778116713&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605070918330E875DC2BA7B4E05EF39
+2026-05-07 01:21:06,817 - INFO - URL 类型: 直接链接
+2026-05-07 01:21:06,817 - INFO - 开始下载 (requests): https://v26-default.365yg.com/7be4495b43ecd4ba8ffc067bdef8648c/69fc149e/video/tos/cn/tos-cn-ve-15/oIjoGRCrpXAvPeD6BrFEgpDWA8A9ZRiEIBfkNp/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1053&bt=1053&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG_DZmg9eF5ihLCO12nzXT&mime_type=video_mp4&qs=0&rc=aThnOTc1PDM8NDRlOTk0NUBpang6Zm85cm88OjMzNGkzM0BfLS1eLzBeNWMxYzZeNGFfYSNpMWBkMmRraG1hLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778116713&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605070918330E875DC2BA7B4E05EF39
+2026-05-07 01:21:11,411 - INFO - 下载成功: audio_1778116866817.mp4 (69768385 bytes)
+2026-05-07 01:21:18,379 - INFO - 音频提取成功: audio_1778116866817.mp3
+2026-05-07 01:21:18,388 - INFO - ✅ 成功 [1/5]: 成功下载 69768385 bytes (耗时: 11.57秒)
+2026-05-07 01:21:18,388 - INFO - 
+[2/5] 处理 URL
+2026-05-07 01:21:18,389 - INFO - 处理 URL: https://v26-default.365yg.com/e0b6a0852433893632a0fac7bf284fbf/69fc1ba2/video/tos/cn/tos-cn-ve-15c000-ce/ocE7WaE647O6icD3CgfjFfA8SvIHaHBcJdeTmB/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=481&bt=481&cs=0&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGjDZmg9eF3x5XqO12nzXT&mime_type=video_mp4&qs=0&rc=Ojs1Omg6NDo8ZGk2NWg0OEBpajp1eHY5cnF3OjMzbGkzNEAzNmAwMl8wNjUxYTBfLjViYSNlYmZjMmQ0a3BhLS1kLWJzcw==&btag=c0000e00038000&cquery=100z_100o_100w_100B_100x&dy_q=1778116722&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260507091842E7BD38D1D8024200F8F2
+2026-05-07 01:21:18,389 - INFO - URL 类型: 直接链接
+2026-05-07 01:21:18,389 - INFO - 开始下载 (requests): https://v26-default.365yg.com/e0b6a0852433893632a0fac7bf284fbf/69fc1ba2/video/tos/cn/tos-cn-ve-15c000-ce/ocE7WaE647O6icD3CgfjFfA8SvIHaHBcJdeTmB/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=481&bt=481&cs=0&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGjDZmg9eF3x5XqO12nzXT&mime_type=video_mp4&qs=0&rc=Ojs1Omg6NDo8ZGk2NWg0OEBpajp1eHY5cnF3OjMzbGkzNEAzNmAwMl8wNjUxYTBfLjViYSNlYmZjMmQ0a3BhLS1kLWJzcw==&btag=c0000e00038000&cquery=100z_100o_100w_100B_100x&dy_q=1778116722&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260507091842E7BD38D1D8024200F8F2
+2026-05-07 01:21:37,044 - INFO - 下载成功: audio_1778116878389.mp4 (142129675 bytes)
+2026-05-07 01:22:03,194 - INFO - 音频提取成功: audio_1778116878389.mp3
+2026-05-07 01:22:03,211 - INFO - ✅ 成功 [2/5]: 成功下载 142129675 bytes (耗时: 44.82秒)
+2026-05-07 01:22:03,212 - INFO - 
+[3/5] 处理 URL
+2026-05-07 01:22:03,212 - INFO - 处理 URL: https://v26-default.365yg.com/675e2fe77dff341300a4d7c8d5e45593/69fc1323/video/tos/cn/tos-cn-ve-15/ab9067ac137548888ae42d5d74bc4df4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=894&bt=894&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGoDZmg9eFfuLVIr12nzXT&mime_type=video_mp4&qs=15&rc=Mzo0PDs6ZjppNzxkOzY0aEBpanQ3OXI5cng4OjMzNGkzM0AxNjYyXi40NWIxYDNgMTRiYSNgLi1hMmRjbXFhLS1kLWFzcw==&btag=80000e00028000&cquery=100K_100o_100w_100B_100H&dy_q=1778116731&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260507091850FD9B438745433B2E8E99
+2026-05-07 01:22:03,212 - INFO - URL 类型: 直接链接
+2026-05-07 01:22:03,212 - INFO - 开始下载 (requests): https://v26-default.365yg.com/675e2fe77dff341300a4d7c8d5e45593/69fc1323/video/tos/cn/tos-cn-ve-15/ab9067ac137548888ae42d5d74bc4df4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=894&bt=894&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGoDZmg9eFfuLVIr12nzXT&mime_type=video_mp4&qs=15&rc=Mzo0PDs6ZjppNzxkOzY0aEBpanQ3OXI5cng4OjMzNGkzM0AxNjYyXi40NWIxYDNgMTRiYSNgLi1hMmRjbXFhLS1kLWFzcw==&btag=80000e00028000&cquery=100K_100o_100w_100B_100H&dy_q=1778116731&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260507091850FD9B438745433B2E8E99
+2026-05-07 01:22:07,104 - INFO - 下载成功: audio_1778116923212.mp4 (13847992 bytes)
+2026-05-07 01:22:08,745 - INFO - 音频提取成功: audio_1778116923212.mp3
+2026-05-07 01:22:08,748 - INFO - ✅ 成功 [3/5]: 成功下载 13847992 bytes (耗时: 5.54秒)
+2026-05-07 01:22:08,748 - INFO - 
+[4/5] 处理 URL
+2026-05-07 01:22:08,748 - INFO - 处理 URL: https://v26-default.365yg.com/4ef09273d67b723889f6cca24c9bf864/69fc13f5/video/tos/cn/tos-cn-ve-15/og2nQBlIB6iaAO2PAgx2xD0IqveCfAc5iEABQz/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1473&bt=1473&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGGkZmg9eFMhoXqO12nzXT&mime_type=video_mp4&qs=0&rc=NTk7PDplZDVlO2ZoZzgzZkBpanAzdms5cnBkOjMzNGkzM0AwNC0wYC0wNWMxMl8zXjMuYSMtMjVnMmQ0X29hLS1kLTBzcw==&btag=c0000e00030000&cquery=100x_100z_100o_100w_100B&dy_q=1778116738&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605070918583AD241E92A8F103AE627
+2026-05-07 01:22:08,748 - INFO - URL 类型: 直接链接
+2026-05-07 01:22:08,748 - INFO - 开始下载 (requests): https://v26-default.365yg.com/4ef09273d67b723889f6cca24c9bf864/69fc13f5/video/tos/cn/tos-cn-ve-15/og2nQBlIB6iaAO2PAgx2xD0IqveCfAc5iEABQz/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1473&bt=1473&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGGkZmg9eFMhoXqO12nzXT&mime_type=video_mp4&qs=0&rc=NTk7PDplZDVlO2ZoZzgzZkBpanAzdms5cnBkOjMzNGkzM0AwNC0wYC0wNWMxMl8zXjMuYSMtMjVnMmQ0X29hLS1kLTBzcw==&btag=c0000e00030000&cquery=100x_100z_100o_100w_100B&dy_q=1778116738&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605070918583AD241E92A8F103AE627
+2026-05-07 01:22:12,606 - INFO - 下载成功: audio_1778116928748.mp4 (61091720 bytes)
+2026-05-07 01:22:16,671 - INFO - 音频提取成功: audio_1778116928748.mp3
+2026-05-07 01:22:16,680 - INFO - ✅ 成功 [4/5]: 成功下载 61091720 bytes (耗时: 7.93秒)
+2026-05-07 01:22:16,680 - INFO - 
+[5/5] 处理 URL
+2026-05-07 01:22:16,680 - INFO - 处理 URL: https://v26-default.365yg.com/8e866a8bd3603d495dc2887ec54cd75f/69fc1521/video/tos/cn/tos-cn-ve-15/81aa4f1e41794d0c980ecc70cb3d5722/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1086&bt=1086&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGnkZmg9eFA0YVIr12nzXT&mime_type=video_mp4&qs=0&rc=NDtlOWk2OmZoZDs4NjhlaEBpanVweXQ5cjxvOjMzNGkzM0AzMzYwNF81NTMxYjFhMy5jYSNqYTRxMmQ0cHBhLS1kLTBzcw==&btag=c0000e00038000&cquery=100H_100K_100o_100w_100B&dy_q=1778116746&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605070919067ECC91880F6DCD85DDD2
+2026-05-07 01:22:16,681 - INFO - URL 类型: 直接链接
+2026-05-07 01:22:16,681 - INFO - 开始下载 (requests): https://v26-default.365yg.com/8e866a8bd3603d495dc2887ec54cd75f/69fc1521/video/tos/cn/tos-cn-ve-15/81aa4f1e41794d0c980ecc70cb3d5722/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1086&bt=1086&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGnkZmg9eFA0YVIr12nzXT&mime_type=video_mp4&qs=0&rc=NDtlOWk2OmZoZDs4NjhlaEBpanVweXQ5cjxvOjMzNGkzM0AzMzYwNF81NTMxYjFhMy5jYSNqYTRxMmQ0cHBhLS1kLTBzcw==&btag=c0000e00038000&cquery=100H_100K_100o_100w_100B&dy_q=1778116746&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605070919067ECC91880F6DCD85DDD2
+2026-05-07 01:22:20,767 - INFO - 下载成功: audio_1778116936680.mp4 (85536756 bytes)
+2026-05-07 01:22:29,301 - INFO - 音频提取成功: audio_1778116936680.mp3
+2026-05-07 01:22:29,312 - INFO - ✅ 成功 [5/5]: 成功下载 85536756 bytes (耗时: 12.63秒)
+2026-05-07 01:22:33,154 - INFO - 正在加载 FunASR 模型...
+2026-05-07 01:22:33,155 - INFO - download models from model hub: ms
+2026-05-07 01:22:35,228 - WARNING - trust_remote_code: False
+2026-05-07 01:22:36,519 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 01:22:36,524 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 01:22:37,192 - INFO - scope_map: ['module.', 'None']
+2026-05-07 01:22:37,192 - INFO - excludes: None
+2026-05-07 01:22:37,465 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 01:22:37,476 - INFO - Building VAD model.
+2026-05-07 01:22:37,476 - INFO - download models from model hub: ms
+2026-05-07 01:22:39,573 - WARNING - trust_remote_code: False
+2026-05-07 01:22:39,578 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 01:22:39,578 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 01:22:39,582 - INFO - scope_map: ['module.', 'None']
+2026-05-07 01:22:39,582 - INFO - excludes: None
+2026-05-07 01:22:39,583 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 01:22:39,583 - INFO - Building punc model.
+2026-05-07 01:22:39,584 - INFO - download models from model hub: ms
+2026-05-07 01:22:41,903 - WARNING - trust_remote_code: False
+2026-05-07 01:22:42,239 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 01:22:42,240 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 01:22:42,294 - INFO - scope_map: ['module.', 'None']
+2026-05-07 01:22:42,294 - INFO - excludes: None
+2026-05-07 01:22:42,312 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 01:22:42,881 - INFO - 模型加载完成，耗时: 9.73 秒
+2026-05-07 01:22:42,881 - INFO - 开始批量转录，共 5 个文件
+2026-05-07 01:22:42,881 - INFO - 
+[1/5] 处理: audio_1778116866817.mp3
+2026-05-07 01:22:42,881 - INFO - 开始转录: audio_1778116866817.mp3 (9.56 MB)
+2026-05-07 01:23:22,438 - INFO - 转录完成: audio_1778116866817.mp3 (耗时: 39.56秒)
+2026-05-07 01:23:22,438 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳复事背景发生在一八九九年，一艘名为克尔...
+2026-05-07 01:23:22,438 - INFO - 
+[2/5] 处理: audio_1778116878389.mp3
+2026-05-07 01:23:22,439 - INFO - 开始转录: audio_1778116878389.mp3 (30.07 MB)
+2026-05-07 01:26:16,650 - INFO - 转录完成: audio_1778116878389.mp3 (耗时: 174.21秒)
+2026-05-07 01:26:16,650 - INFO - 识别文本: 我读完托斯妥耶夫斯基的卡拉马佐夫兄弟本人以泪洗面，像个十年前的孩子一样，抱头无业。本次书评我决定放弃分点罗列，从结构到人物的递进式说明。在我看来，如果我读完了卡拉马佐夫兄弟还要写这样理性主义的学术式解...
+2026-05-07 01:26:16,650 - INFO - 
+[3/5] 处理: audio_1778116923212.mp3
+2026-05-07 01:26:16,651 - INFO - 开始转录: audio_1778116923212.mp3 (2.25 MB)
+2026-05-07 01:26:25,995 - INFO - 转录完成: audio_1778116923212.mp3 (耗时: 9.34秒)
+2026-05-07 01:26:25,995 - INFO - 识别文本: 李峰都找了招什么了？在过去三年犯下过十几起抢劫案，其中九次杀人一次未遂，共有十五条人命听到这不可置信的结果。强哥先是一愣，紧接着还不忘反问句多少条十五条，他可是a级等缉法过了连续三年每年下发的重点缉拿...
+2026-05-07 01:26:25,995 - INFO - 
+[4/5] 处理: audio_1778116928748.mp3
+2026-05-07 01:26:25,995 - INFO - 开始转录: audio_1778116928748.mp3 (5.16 MB)
+2026-05-07 01:26:51,972 - INFO - 转录完成: audio_1778116928748.mp3 (耗时: 25.98秒)
+2026-05-07 01:26:51,972 - INFO - 识别文本: 暴雨末世突然降临，我和室友没重生，没系统、没金手指靠，直觉用了两个小时，囤了一屋子的物资。没过几天，暴雨就将外面的街道淹没到了第三天，整栋楼都停水了。紧接着第四天下午意外发生了。张老太带着他那啃老儿子...
+2026-05-07 01:26:51,973 - INFO - 
+[5/5] 处理: audio_1778116936680.mp3
+2026-05-07 01:26:51,973 - INFO - 开始转录: audio_1778116936680.mp3 (12.25 MB)
+2026-05-07 01:27:37,786 - INFO - 转录完成: audio_1778116936680.mp3 (耗时: 45.81秒)
+2026-05-07 01:27:37,786 - INFO - 识别文本: 究竟是一部怎样的影片，能让一个背负血海深仇的女人，把自己活成了一把裹着丝绸的刀，一支舞，一个眼神，就足以让高高在上的权贵方寸大乱。大家好，这里是黑介，看电影，本期为大家带来的是韩国最新暗黑复出爽剧夏娃...
+2026-05-07 01:27:37,787 - INFO - 
+批量转录完成: 成功=5, 失败=0
