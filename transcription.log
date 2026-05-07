@@ -3054,3 +3054,54 @@
 2026-05-07 18:08:44,128 - INFO - 识别文本: 究竟是一部怎样的影片，能让一个背负血海深仇的女人，把自己活成了一把裹着丝绸的刀，一支舞，一个眼神，就足以让高高在上的权贵方寸大乱。大家好，这里是黑介，看电影，本期为大家带来的是韩国最新暗黑复出爽剧夏娃...
 2026-05-07 18:08:44,129 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 18:13:23,992 - INFO - ============================================================
+2026-05-07 18:13:23,992 - INFO - FunASR 音频转录服务启动
+2026-05-07 18:13:23,992 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 18:13:23,992 - INFO - ============================================================
+2026-05-07 18:13:23,992 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 18:13:23,993 - INFO - 
+[1/1] 处理 URL
+2026-05-07 18:13:23,993 - INFO - 处理 URL: https://v26-default.365yg.com/de089f2e8531adae99182f0ac6e0edbf/69fd00df/video/tos/cn/tos-cn-ve-15/81aa4f1e41794d0c980ecc70cb3d5722/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1086&bt=1086&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG8ACBg9eF1fYfJO12nzXT&mime_type=video_mp4&qs=0&rc=NDtlOWk2OmZoZDs4NjhlaEBpanVweXQ5cjxvOjMzNGkzM0AzMzYwNF81NTMxYjFhMy5jYSNqYTRxMmQ0cHBhLS1kLTBzcw==&btag=80000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778177096&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260508020456CFC6F956B23EA64FA9E7
+2026-05-07 18:13:23,993 - INFO - URL 类型: 直接链接
+2026-05-07 18:13:23,993 - INFO - 开始下载 (requests): https://v26-default.365yg.com/de089f2e8531adae99182f0ac6e0edbf/69fd00df/video/tos/cn/tos-cn-ve-15/81aa4f1e41794d0c980ecc70cb3d5722/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1086&bt=1086&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG8ACBg9eF1fYfJO12nzXT&mime_type=video_mp4&qs=0&rc=NDtlOWk2OmZoZDs4NjhlaEBpanVweXQ5cjxvOjMzNGkzM0AzMzYwNF81NTMxYjFhMy5jYSNqYTRxMmQ0cHBhLS1kLTBzcw==&btag=80000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778177096&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=20260508020456CFC6F956B23EA64FA9E7
+2026-05-07 18:13:29,321 - INFO - 下载成功: audio_1778177603993.mp4 (85536756 bytes)
+2026-05-07 18:13:37,807 - INFO - 音频提取成功: audio_1778177603993.mp3
+2026-05-07 18:13:37,818 - INFO - ✅ 成功 [1/1]: 成功下载 85536756 bytes (耗时: 13.82秒)
+2026-05-07 18:13:41,579 - INFO - 正在加载 FunASR 模型...
+2026-05-07 18:13:41,580 - INFO - download models from model hub: ms
+2026-05-07 18:13:44,519 - WARNING - trust_remote_code: False
+2026-05-07 18:13:45,772 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 18:13:45,776 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 18:13:46,399 - INFO - scope_map: ['module.', 'None']
+2026-05-07 18:13:46,400 - INFO - excludes: None
+2026-05-07 18:13:46,661 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 18:13:46,672 - INFO - Building VAD model.
+2026-05-07 18:13:46,672 - INFO - download models from model hub: ms
+2026-05-07 18:13:49,556 - WARNING - trust_remote_code: False
+2026-05-07 18:13:49,561 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 18:13:49,561 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 18:13:49,565 - INFO - scope_map: ['module.', 'None']
+2026-05-07 18:13:49,565 - INFO - excludes: None
+2026-05-07 18:13:49,566 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 18:13:49,567 - INFO - Building punc model.
+2026-05-07 18:13:49,567 - INFO - download models from model hub: ms
+2026-05-07 18:13:52,178 - WARNING - trust_remote_code: False
+2026-05-07 18:13:52,513 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 18:13:52,513 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 18:13:52,566 - INFO - scope_map: ['module.', 'None']
+2026-05-07 18:13:52,566 - INFO - excludes: None
+2026-05-07 18:13:52,584 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 18:13:53,136 - INFO - 模型加载完成，耗时: 11.56 秒
+2026-05-07 18:13:53,136 - INFO - 开始批量转录，共 2 个文件
+2026-05-07 18:13:53,136 - INFO - 
+[1/2] 处理: audio_1778177603993.mp3
+2026-05-07 18:13:53,137 - INFO - 开始转录: audio_1778177603993.mp3 (12.25 MB)
+2026-05-07 18:14:39,122 - INFO - 转录完成: audio_1778177603993.mp3 (耗时: 45.99秒)
+2026-05-07 18:14:39,122 - INFO - 识别文本: 究竟是一部怎样的影片，能让一个背负血海深仇的女人，把自己活成了一把裹着丝绸的刀，一支舞，一个眼神，就足以让高高在上的权贵方寸大乱。大家好，这里是黑介，看电影，本期为大家带来的是韩国最新暗黑复出爽剧夏娃...
+2026-05-07 18:14:39,122 - INFO - 
+[2/2] 处理: louflower.mp4
+2026-05-07 18:14:39,122 - INFO - 开始转录: louflower.mp4 (19.89 MB)
+2026-05-07 18:14:45,978 - INFO - 转录完成: louflower.mp4 (耗时: 6.86秒)
+2026-05-07 18:14:45,979 - INFO - 识别文本: 我想起我爸其实挺搞笑的，他有很多京剧，比如说年轻的时候，我曾经失恋过，然后我在这里哭哟伤心。嗯，我哭到一半，我爸也不知道怎么安慰我，我就说我说爸爸是不是我不够漂亮，我不好看，是不是我再漂亮一点就好了。...
+2026-05-07 18:14:45,979 - INFO - 
+批量转录完成: 成功=2, 失败=0
