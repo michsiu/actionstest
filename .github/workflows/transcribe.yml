@@ -77,8 +77,6 @@ jobs:
         if: steps.check-tasks.outputs.SKIP != 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          pip3 install yt-dlp requests
           echo "✅ Dependencies installed" >> $GITHUB_STEP_SUMMARY
 
       # ========== 登录拉取镜像 ==========
