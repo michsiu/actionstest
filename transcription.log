@@ -2957,3 +2957,54 @@
 2026-05-07 13:37:01,903 - INFO - 识别文本:  Hello,大家好，我是晨晨。欢迎来到天猫应用系列视频的最后一期，诸位辛苦了。这期视频内容一共分为两个部分。第一部分就是如何写简历。第二部分就是重塑信息写简历，主要分两步走。第一步就是你要明确招聘单...
 2026-05-07 13:37:01,904 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 16:17:19,479 - INFO - ============================================================
+2026-05-07 16:17:19,479 - INFO - FunASR 音频转录服务启动
+2026-05-07 16:17:19,479 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 16:17:19,479 - INFO - ============================================================
+2026-05-07 16:17:19,479 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 16:17:19,480 - INFO - 
+[1/1] 处理 URL
+2026-05-07 16:17:19,480 - INFO - 处理 URL: https://v26-default.365yg.com/d7688c7684bde34433f3ec98d4f02aa6/69fcc085/video/tos/cn/tos-cn-ve-15/oIqBB4VG4EAMe2Dic2J48eQ6CAIheCG7TI17hL/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1124&bt=1124&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG8PTBg9eFG-nfJO12nzXT&mime_type=video_mp4&qs=0&rc=NDU0OmVoNjVpNGk0ZmY3O0BpM3hkbnI5cjU5OjMzNGkzM0AuMTVeNGM2Xi4xNC5eXi9iYSMucF9jMmRrYmxhLS1kLTBzcw==&btag=80000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778160840&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605072134000649E5DF20C106405CAA
+2026-05-07 16:17:19,480 - INFO - URL 类型: 直接链接
+2026-05-07 16:17:19,480 - INFO - 开始下载 (requests): https://v26-default.365yg.com/d7688c7684bde34433f3ec98d4f02aa6/69fcc085/video/tos/cn/tos-cn-ve-15/oIqBB4VG4EAMe2Dic2J48eQ6CAIheCG7TI17hL/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1124&bt=1124&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG8PTBg9eFG-nfJO12nzXT&mime_type=video_mp4&qs=0&rc=NDU0OmVoNjVpNGk0ZmY3O0BpM3hkbnI5cjU5OjMzNGkzM0AuMTVeNGM2Xi4xNC5eXi9iYSMucF9jMmRrYmxhLS1kLTBzcw==&btag=80000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1778160840&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605072134000649E5DF20C106405CAA
+2026-05-07 16:17:25,846 - INFO - 下载成功: audio_1778170639480.mp4 (57178703 bytes)
+2026-05-07 16:17:30,191 - INFO - 音频提取成功: audio_1778170639480.mp3
+2026-05-07 16:17:30,200 - INFO - ✅ 成功 [1/1]: 成功下载 57178703 bytes (耗时: 10.72秒)
+2026-05-07 16:17:34,313 - INFO - 正在加载 FunASR 模型...
+2026-05-07 16:17:34,313 - INFO - download models from model hub: ms
+2026-05-07 16:17:37,823 - WARNING - trust_remote_code: False
+2026-05-07 16:17:39,237 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 16:17:39,242 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 16:17:39,758 - INFO - scope_map: ['module.', 'None']
+2026-05-07 16:17:39,758 - INFO - excludes: None
+2026-05-07 16:17:40,058 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 16:17:40,070 - INFO - Building VAD model.
+2026-05-07 16:17:40,070 - INFO - download models from model hub: ms
+2026-05-07 16:17:43,781 - WARNING - trust_remote_code: False
+2026-05-07 16:17:43,786 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 16:17:43,786 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 16:17:43,790 - INFO - scope_map: ['module.', 'None']
+2026-05-07 16:17:43,790 - INFO - excludes: None
+2026-05-07 16:17:43,791 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 16:17:43,792 - INFO - Building punc model.
+2026-05-07 16:17:43,792 - INFO - download models from model hub: ms
+2026-05-07 16:17:46,582 - WARNING - trust_remote_code: False
+2026-05-07 16:17:46,961 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 16:17:46,962 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 16:17:47,021 - INFO - scope_map: ['module.', 'None']
+2026-05-07 16:17:47,021 - INFO - excludes: None
+2026-05-07 16:17:47,040 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 16:17:47,675 - INFO - 模型加载完成，耗时: 13.36 秒
+2026-05-07 16:17:47,676 - INFO - 开始批量转录，共 2 个文件
+2026-05-07 16:17:47,676 - INFO - 
+[1/2] 处理: audio_1778170639480.mp3
+2026-05-07 16:17:47,676 - INFO - 开始转录: audio_1778170639480.mp3 (5.50 MB)
+2026-05-07 16:18:20,743 - INFO - 转录完成: audio_1778170639480.mp3 (耗时: 33.07秒)
+2026-05-07 16:18:20,743 - INFO - 识别文本:  Hello,大家好，我是晨晨。欢迎来到天猫应用系列视频的最后一期，诸位辛苦了。这期视频内容一共分为两个部分。第一部分就是如何写简历。第二部分就是重塑信息写简历，主要分两步走。第一步就是你要明确招聘单...
+2026-05-07 16:18:20,743 - INFO - 
+[2/2] 处理: ox2fiLlg4vX6DTA2lay3JgIBvA4iAQD8BL0rE.mp4
+2026-05-07 16:18:20,743 - INFO - 开始转录: ox2fiLlg4vX6DTA2lay3JgIBvA4iAQD8BL0rE.mp4 (32.17 MB)
+2026-05-07 16:18:39,074 - INFO - 转录完成: ox2fiLlg4vX6DTA2lay3JgIBvA4iAQD8BL0rE.mp4 (耗时: 18.33秒)
+2026-05-07 16:18:39,074 - INFO - 识别文本: 你不是喜欢拍我们吗？我现在拍，你把它给我拔了，来呀，猫子你扒我，你太好了，气死我。我看各位看官，今儿给您带来包贝尔吴越主演的动作电影伪钞重案。包贝尔在反派这条赛道上是越走越远了。眼前，这个正在指点，孩...
+2026-05-07 16:18:39,075 - INFO - 
+批量转录完成: 成功=2, 失败=0
