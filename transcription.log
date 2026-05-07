@@ -2435,3 +2435,49 @@
 2026-05-06 23:53:37,448 - INFO - 识别文本: 网飞最新惊悚悬疑剧一八九九震撼来袭，集合诡秘惊悚烧脑悬疑于一身。本片不仅角色非常多，铺垫的线索更是极为庞大，千万不要走神，否则错过任何一个细节都可能会烧穿你的脑壳复事背景发生在一八九九年，一艘名为克尔...
 2026-05-06 23:53:37,448 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-07 00:34:09,675 - INFO - ============================================================
+2026-05-07 00:34:09,675 - INFO - FunASR 音频转录服务启动
+2026-05-07 00:34:09,675 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-07 00:34:09,676 - INFO - ============================================================
+2026-05-07 00:34:09,676 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-07 00:34:09,676 - INFO - 
+[1/1] 处理 URL
+2026-05-07 00:34:09,676 - INFO - 处理 URL: https://v26-default.365yg.com/c05cfa7be8c99c93a3479b9b4c9b8ab3/69fc0842/video/tos/cn/tos-cn-ve-15/ab9067ac137548888ae42d5d74bc4df4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=894&bt=894&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGBdYmg9eFatRVUD12nzXT&mime_type=video_mp4&qs=15&rc=Mzo0PDs6ZjppNzxkOzY0aEBpanQ3OXI5cng4OjMzNGkzM0AxNjYyXi40NWIxYDNgMTRiYSNgLi1hMmRjbXFhLS1kLWFzcw==&btag=80000e00028000&cquery=100K_100o_100w_100B_100H&dy_q=1778113946&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260507083226CE1F5DAFB4613632EE8D
+2026-05-07 00:34:09,677 - INFO - URL 类型: 直接链接
+2026-05-07 00:34:09,677 - INFO - 开始下载 (requests): https://v26-default.365yg.com/c05cfa7be8c99c93a3479b9b4c9b8ab3/69fc0842/video/tos/cn/tos-cn-ve-15/ab9067ac137548888ae42d5d74bc4df4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=894&bt=894&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGBdYmg9eFatRVUD12nzXT&mime_type=video_mp4&qs=15&rc=Mzo0PDs6ZjppNzxkOzY0aEBpanQ3OXI5cng4OjMzNGkzM0AxNjYyXi40NWIxYDNgMTRiYSNgLi1hMmRjbXFhLS1kLWFzcw==&btag=80000e00028000&cquery=100K_100o_100w_100B_100H&dy_q=1778113946&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260507083226CE1F5DAFB4613632EE8D
+2026-05-07 00:34:14,409 - INFO - 下载成功: audio_1778114049677.mp4 (13847992 bytes)
+2026-05-07 00:34:16,069 - INFO - 音频提取成功: audio_1778114049677.mp3
+2026-05-07 00:34:16,071 - INFO - ✅ 成功 [1/1]: 成功下载 13847992 bytes (耗时: 6.39秒)
+2026-05-07 00:34:20,115 - INFO - 正在加载 FunASR 模型...
+2026-05-07 00:34:20,115 - INFO - download models from model hub: ms
+2026-05-07 00:34:23,111 - WARNING - trust_remote_code: False
+2026-05-07 00:34:24,524 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 00:34:24,528 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-07 00:34:25,074 - INFO - scope_map: ['module.', 'None']
+2026-05-07 00:34:25,075 - INFO - excludes: None
+2026-05-07 00:34:25,349 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 00:34:25,360 - INFO - Building VAD model.
+2026-05-07 00:34:25,360 - INFO - download models from model hub: ms
+2026-05-07 00:34:43,449 - WARNING - trust_remote_code: False
+2026-05-07 00:34:43,455 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 00:34:43,456 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-07 00:34:43,460 - INFO - scope_map: ['module.', 'None']
+2026-05-07 00:34:43,460 - INFO - excludes: None
+2026-05-07 00:34:43,461 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 00:34:43,462 - INFO - Building punc model.
+2026-05-07 00:34:43,462 - INFO - download models from model hub: ms
+2026-05-07 00:34:46,373 - WARNING - trust_remote_code: False
+2026-05-07 00:34:46,712 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 00:34:46,712 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-07 00:34:46,773 - INFO - scope_map: ['module.', 'None']
+2026-05-07 00:34:46,773 - INFO - excludes: None
+2026-05-07 00:34:46,794 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-07 00:34:47,378 - INFO - 模型加载完成，耗时: 27.26 秒
+2026-05-07 00:34:47,378 - INFO - 开始批量转录，共 1 个文件
+2026-05-07 00:34:47,378 - INFO - 
+[1/1] 处理: audio_1778114049677.mp3
+2026-05-07 00:34:47,378 - INFO - 开始转录: audio_1778114049677.mp3 (2.25 MB)
+2026-05-07 00:34:57,028 - INFO - 转录完成: audio_1778114049677.mp3 (耗时: 9.65秒)
+2026-05-07 00:34:57,029 - INFO - 识别文本: 李峰都找了招什么了？在过去三年犯下过十几起抢劫案，其中九次杀人一次未遂，共有十五条人命听到这不可置信的结果。强哥先是一愣，紧接着还不忘反问句多少条十五条，他可是a级等缉法过了连续三年每年下发的重点缉拿...
+2026-05-07 00:34:57,029 - INFO - 
+批量转录完成: 成功=1, 失败=0
