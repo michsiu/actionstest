@@ -3308,3 +3308,49 @@
 2026-05-08 19:17:11,289 - INFO - yt-dlp 未安装，正在安装...
 2026-05-08 19:17:11,603 - INFO - ❌ 失败 [1/1]: yt-dlp 安装失败: Command '['/usr/bin/python3', '-m', 'pip', 'install', 'yt-dlp']' returned non-zero exit status 1. (耗时: 1.71秒)
 2026-05-08 19:17:11,604 - ERROR - 所有 URL 下载失败，没有音频文件可转录
+2026-05-08 19:56:45,492 - INFO - ============================================================
+2026-05-08 19:56:45,492 - INFO - FunASR 音频转录服务启动
+2026-05-08 19:56:45,493 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-08 19:56:45,493 - INFO - ============================================================
+2026-05-08 19:56:45,493 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-08 19:56:45,493 - INFO - 
+[1/1] 处理 URL
+2026-05-08 19:56:45,493 - INFO - 处理 URL: https://v11-default.365yg.com/f439103047cf6ec998b35cec1455b64f/69fe6d26/video/tos/cn/tos-cn-ve-15/oYQ6QWFmzbGCTCO9BmDAIVf07vTA5CfBrZEKfZ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1956&bt=1956&cs=2&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGySOBg9eF3x5XqO12nzXT&mime_type=video_mp4&qs=14&rc=OjhoaGVpaTc6Z2g4ZzM3ZEBpajRvdXQ5cmpzOjMzNGkzM0BfNi8yYjZiNWIxL2JhXi8vYSMybmBfMmRrXnJhLS1kLTBzcw==&btag=80000e00038000&cquery=100B_100H_100K_100o_100w&dy_q=1778270071&feature_id=2765c2a3c0e905a5b7817a2c26815441&l=202605090354313186AF2D3E76EA95CCE0
+2026-05-08 19:56:45,493 - INFO - URL 类型: 直接链接
+2026-05-08 19:56:45,494 - INFO - 开始下载 (requests): https://v11-default.365yg.com/f439103047cf6ec998b35cec1455b64f/69fe6d26/video/tos/cn/tos-cn-ve-15/oYQ6QWFmzbGCTCO9BmDAIVf07vTA5CfBrZEKfZ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1956&bt=1956&cs=2&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGySOBg9eF3x5XqO12nzXT&mime_type=video_mp4&qs=14&rc=OjhoaGVpaTc6Z2g4ZzM3ZEBpajRvdXQ5cmpzOjMzNGkzM0BfNi8yYjZiNWIxL2JhXi8vYSMybmBfMmRrXnJhLS1kLTBzcw==&btag=80000e00038000&cquery=100B_100H_100K_100o_100w&dy_q=1778270071&feature_id=2765c2a3c0e905a5b7817a2c26815441&l=202605090354313186AF2D3E76EA95CCE0
+2026-05-08 19:58:17,994 - INFO - 下载成功: audio_1778270205493.mp4 (224296840 bytes)
+2026-05-08 19:58:28,274 - INFO - 音频提取成功: audio_1778270205493.mp3
+2026-05-08 19:58:28,299 - INFO - ✅ 成功 [1/1]: 成功下载 224296840 bytes (耗时: 102.81秒)
+2026-05-08 19:58:32,034 - INFO - 正在加载 FunASR 模型...
+2026-05-08 19:58:32,034 - INFO - download models from model hub: ms
+2026-05-08 19:58:34,791 - WARNING - trust_remote_code: False
+2026-05-08 19:58:36,045 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-08 19:58:36,049 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-08 19:58:36,664 - INFO - scope_map: ['module.', 'None']
+2026-05-08 19:58:36,664 - INFO - excludes: None
+2026-05-08 19:58:36,925 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-08 19:58:36,936 - INFO - Building VAD model.
+2026-05-08 19:58:36,936 - INFO - download models from model hub: ms
+2026-05-08 19:58:39,692 - WARNING - trust_remote_code: False
+2026-05-08 19:58:39,697 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-08 19:58:39,697 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-08 19:58:39,701 - INFO - scope_map: ['module.', 'None']
+2026-05-08 19:58:39,701 - INFO - excludes: None
+2026-05-08 19:58:39,702 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-08 19:58:39,702 - INFO - Building punc model.
+2026-05-08 19:58:39,702 - INFO - download models from model hub: ms
+2026-05-08 19:58:42,223 - WARNING - trust_remote_code: False
+2026-05-08 19:58:42,558 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-08 19:58:42,559 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-08 19:58:42,613 - INFO - scope_map: ['module.', 'None']
+2026-05-08 19:58:42,613 - INFO - excludes: None
+2026-05-08 19:58:42,631 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-08 19:58:43,174 - INFO - 模型加载完成，耗时: 11.14 秒
+2026-05-08 19:58:43,174 - INFO - 开始批量转录，共 1 个文件
+2026-05-08 19:58:43,174 - INFO - 
+[1/1] 处理: audio_1778270205493.mp3
+2026-05-08 19:58:43,175 - INFO - 开始转录: audio_1778270205493.mp3 (13.37 MB)
+2026-05-08 19:59:53,338 - INFO - 转录完成: audio_1778270205493.mp3 (耗时: 70.16秒)
+2026-05-08 19:59:53,338 - INFO - 识别文本: 韩国政坛最不可名状的一幕出现了家人们事情是这样的。就在当地时间五月六号，韩国前总统尹希月的夫人第一人造人金剑熙操纵股架案的二审主审法官申宗武凌晨呢被发现死于法院内，还留下了一份遗书啊，没有提到金剑锡二...
+2026-05-08 19:59:53,338 - INFO - 
+批量转录完成: 成功=1, 失败=0
