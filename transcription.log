@@ -3354,3 +3354,62 @@
 2026-05-08 19:59:53,338 - INFO - 识别文本: 韩国政坛最不可名状的一幕出现了家人们事情是这样的。就在当地时间五月六号，韩国前总统尹希月的夫人第一人造人金剑熙操纵股架案的二审主审法官申宗武凌晨呢被发现死于法院内，还留下了一份遗书啊，没有提到金剑锡二...
 2026-05-08 19:59:53,338 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-08 20:04:52,810 - INFO - ============================================================
+2026-05-08 20:04:52,810 - INFO - FunASR 音频转录服务启动
+2026-05-08 20:04:52,810 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-08 20:04:52,810 - INFO - ============================================================
+2026-05-08 20:04:52,810 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-08 20:04:52,810 - INFO - 
+[1/2] 处理 URL
+2026-05-08 20:04:52,811 - INFO - 处理 URL: https://v11-default.365yg.com/f439103047cf6ec998b35cec1455b64f/69fe6d26/video/tos/cn/tos-cn-ve-15/oYQ6QWFmzbGCTCO9BmDAIVf07vTA5CfBrZEKfZ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1956&bt=1956&cs=2&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGySOBg9eF3x5XqO12nzXT&mime_type=video_mp4&qs=14&rc=OjhoaGVpaTc6Z2g4ZzM3ZEBpajRvdXQ5cmpzOjMzNGkzM0BfNi8yYjZiNWIxL2JhXi8vYSMybmBfMmRrXnJhLS1kLTBzcw==&btag=80000e00038000&cquery=100B_100H_100K_100o_100w&dy_q=1778270071&feature_id=2765c2a3c0e905a5b7817a2c26815441&l=202605090354313186AF2D3E76EA95CCE0
+2026-05-08 20:04:52,811 - INFO - URL 类型: 直接链接
+2026-05-08 20:04:52,811 - INFO - 开始下载 (requests): https://v11-default.365yg.com/f439103047cf6ec998b35cec1455b64f/69fe6d26/video/tos/cn/tos-cn-ve-15/oYQ6QWFmzbGCTCO9BmDAIVf07vTA5CfBrZEKfZ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1956&bt=1956&cs=2&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGySOBg9eF3x5XqO12nzXT&mime_type=video_mp4&qs=14&rc=OjhoaGVpaTc6Z2g4ZzM3ZEBpajRvdXQ5cmpzOjMzNGkzM0BfNi8yYjZiNWIxL2JhXi8vYSMybmBfMmRrXnJhLS1kLTBzcw==&btag=80000e00038000&cquery=100B_100H_100K_100o_100w&dy_q=1778270071&feature_id=2765c2a3c0e905a5b7817a2c26815441&l=202605090354313186AF2D3E76EA95CCE0
+2026-05-08 20:07:20,089 - INFO - 下载成功: audio_1778270692811.mp4 (224296840 bytes)
+2026-05-08 20:07:30,335 - INFO - 音频提取成功: audio_1778270692811.mp3
+2026-05-08 20:07:30,363 - INFO - ✅ 成功 [1/2]: 成功下载 224296840 bytes (耗时: 157.55秒)
+2026-05-08 20:07:30,363 - INFO - 
+[2/2] 处理 URL
+2026-05-08 20:07:30,363 - INFO - 处理 URL: https://v11-default.365yg.com/27faf11dea543e5f9d889e22d1f6a227/69fe7527/video/tos/cn/tos-cn-ve-15/oUImOCQ0yAeHS2dyAgL48vIGfeXM3CuICDEe8R/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1009&bt=1009&cs=0&ds=3&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG.WMBg9eFG-nfJO12nzXT&mime_type=video_mp4&qs=0&rc=OWRmZztmO2c2ZGZkOmRkPEBpM21uNGs5cjZlOTMzNGkzM0A2Y2MwNjA2NjMxMDI2NTBhYSM0b2NtMmRzZnJhLS1kLS9zcw==&btag=c0000e00038000&cquery=100w_100B_100H_102y_100o&dy_q=1778270575&feature_id=f5241e7604dff1d9d6c943fd20bd51a2&l=202605090402557AAE3430F238E8AB9094
+2026-05-08 20:07:30,363 - INFO - URL 类型: 直接链接
+2026-05-08 20:07:30,364 - INFO - 开始下载 (requests): https://v11-default.365yg.com/27faf11dea543e5f9d889e22d1f6a227/69fe7527/video/tos/cn/tos-cn-ve-15/oUImOCQ0yAeHS2dyAgL48vIGfeXM3CuICDEe8R/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1009&bt=1009&cs=0&ds=3&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG.WMBg9eFG-nfJO12nzXT&mime_type=video_mp4&qs=0&rc=OWRmZztmO2c2ZGZkOmRkPEBpM21uNGs5cjZlOTMzNGkzM0A2Y2MwNjA2NjMxMDI2NTBhYSM0b2NtMmRzZnJhLS1kLS9zcw==&btag=c0000e00038000&cquery=100w_100B_100H_102y_100o&dy_q=1778270575&feature_id=f5241e7604dff1d9d6c943fd20bd51a2&l=202605090402557AAE3430F238E8AB9094
+2026-05-08 20:09:59,820 - INFO - 下载成功: audio_1778270850363.mp4 (315350322 bytes)
+2026-05-08 20:10:34,987 - INFO - 音频提取成功: audio_1778270850363.mp3
+2026-05-08 20:10:35,026 - INFO - ✅ 成功 [2/2]: 成功下载 315350322 bytes (耗时: 184.66秒)
+2026-05-08 20:10:39,182 - INFO - 正在加载 FunASR 模型...
+2026-05-08 20:10:39,182 - INFO - download models from model hub: ms
+2026-05-08 20:10:42,383 - WARNING - trust_remote_code: False
+2026-05-08 20:10:43,667 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-08 20:10:43,671 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-08 20:10:44,339 - INFO - scope_map: ['module.', 'None']
+2026-05-08 20:10:44,339 - INFO - excludes: None
+2026-05-08 20:10:44,649 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-08 20:10:44,661 - INFO - Building VAD model.
+2026-05-08 20:10:44,661 - INFO - download models from model hub: ms
+2026-05-08 20:10:47,377 - WARNING - trust_remote_code: False
+2026-05-08 20:10:47,381 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-08 20:10:47,382 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-08 20:10:47,385 - INFO - scope_map: ['module.', 'None']
+2026-05-08 20:10:47,385 - INFO - excludes: None
+2026-05-08 20:10:47,386 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-08 20:10:47,387 - INFO - Building punc model.
+2026-05-08 20:10:47,387 - INFO - download models from model hub: ms
+2026-05-08 20:10:50,486 - WARNING - trust_remote_code: False
+2026-05-08 20:10:50,858 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-08 20:10:50,859 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-08 20:10:50,916 - INFO - scope_map: ['module.', 'None']
+2026-05-08 20:10:50,916 - INFO - excludes: None
+2026-05-08 20:10:50,934 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-08 20:10:51,552 - INFO - 模型加载完成，耗时: 12.37 秒
+2026-05-08 20:10:51,553 - INFO - 开始批量转录，共 2 个文件
+2026-05-08 20:10:51,553 - INFO - 
+[1/2] 处理: audio_1778270692811.mp3
+2026-05-08 20:10:51,553 - INFO - 开始转录: audio_1778270692811.mp3 (13.37 MB)
+2026-05-08 20:12:08,628 - INFO - 转录完成: audio_1778270692811.mp3 (耗时: 77.08秒)
+2026-05-08 20:12:08,629 - INFO - 识别文本: 韩国政坛最不可名状的一幕出现了家人们事情是这样的。就在当地时间五月六号，韩国前总统尹希月的夫人第一人造人金剑熙操纵股架案的二审主审法官申宗武凌晨呢被发现死于法院内，还留下了一份遗书啊，没有提到金剑锡二...
+2026-05-08 20:12:08,629 - INFO - 
+[2/2] 处理: audio_1778270850363.mp3
+2026-05-08 20:12:08,629 - INFO - 开始转录: audio_1778270850363.mp3 (49.79 MB)
+2026-05-08 20:15:41,628 - INFO - 转录完成: audio_1778270850363.mp3 (耗时: 213.00秒)
+2026-05-08 20:15:41,629 - INFO - 识别文本: 在这个突如其来的末日场景中，全球瞬间被伟人入侵，每个人都随机绑定了一个专属的安全屋。每当夜幕降临，便会有人前来敲门，寻求庇护，一旦误把伟人放进房间，就会遭受袭击，而若成功庇护，真人就能获取十枚金币。这...
+2026-05-08 20:15:41,630 - INFO - 
+批量转录完成: 成功=2, 失败=0
