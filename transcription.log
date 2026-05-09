@@ -3413,3 +3413,49 @@
 2026-05-08 20:15:41,629 - INFO - 识别文本: 在这个突如其来的末日场景中，全球瞬间被伟人入侵，每个人都随机绑定了一个专属的安全屋。每当夜幕降临，便会有人前来敲门，寻求庇护，一旦误把伟人放进房间，就会遭受袭击，而若成功庇护，真人就能获取十枚金币。这...
 2026-05-08 20:15:41,630 - INFO - 
 批量转录完成: 成功=2, 失败=0
+2026-05-09 04:52:26,613 - INFO - ============================================================
+2026-05-09 04:52:26,613 - INFO - FunASR 音频转录服务启动
+2026-05-09 04:52:26,613 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-09 04:52:26,613 - INFO - ============================================================
+2026-05-09 04:52:26,613 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-09 04:52:26,613 - INFO - 
+[1/1] 处理 URL
+2026-05-09 04:52:26,614 - INFO - 处理 URL: https://v11-default.365yg.com/cd610c516835533f4038722a51def3dd/69feeafb/video/tos/cn/tos-cn-ve-15/ocRoSeQIrbQke8FnAdgI2DaLFePctvDMCGeEA4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=231&bt=231&cs=0&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGPVzBg9eF1ZTN~r12nzXT&mime_type=video_mp4&qs=0&rc=MzszNjk7aDw6NzllZGY8OkBpajw7b245cjZvOjMzNGkzM0AxXjIvNTUyXy0xYDFjXmJeYSM0cGlfMmRjaHJhLS1kLTBzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778302113&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605091248338B69027D315453D71496
+2026-05-09 04:52:26,614 - INFO - URL 类型: 直接链接
+2026-05-09 04:52:26,614 - INFO - 开始下载 (requests): https://v11-default.365yg.com/cd610c516835533f4038722a51def3dd/69feeafb/video/tos/cn/tos-cn-ve-15/ocRoSeQIrbQke8FnAdgI2DaLFePctvDMCGeEA4/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=231&bt=231&cs=0&ds=4&ft=rVWEerwwZRdzskPo0PDS6kwc3RZtGPVzBg9eF1ZTN~r12nzXT&mime_type=video_mp4&qs=0&rc=MzszNjk7aDw6NzllZGY8OkBpajw7b245cjZvOjMzNGkzM0AxXjIvNTUyXy0xYDFjXmJeYSM0cGlfMmRjaHJhLS1kLTBzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1778302113&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605091248338B69027D315453D71496
+2026-05-09 04:52:44,413 - INFO - 下载成功: audio_1778302346614.mp4 (31606350 bytes)
+2026-05-09 04:52:54,338 - INFO - 音频提取成功: audio_1778302346614.mp3
+2026-05-09 04:52:54,342 - INFO - ✅ 成功 [1/1]: 成功下载 31606350 bytes (耗时: 27.73秒)
+2026-05-09 04:52:57,874 - INFO - 正在加载 FunASR 模型...
+2026-05-09 04:52:57,874 - INFO - download models from model hub: ms
+2026-05-09 04:53:01,430 - WARNING - trust_remote_code: False
+2026-05-09 04:53:02,680 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-09 04:53:02,684 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-09 04:53:03,520 - INFO - scope_map: ['module.', 'None']
+2026-05-09 04:53:03,521 - INFO - excludes: None
+2026-05-09 04:53:03,910 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-09 04:53:03,921 - INFO - Building VAD model.
+2026-05-09 04:53:03,921 - INFO - download models from model hub: ms
+2026-05-09 04:53:10,436 - WARNING - trust_remote_code: False
+2026-05-09 04:53:10,441 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-09 04:53:10,441 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-09 04:53:10,445 - INFO - scope_map: ['module.', 'None']
+2026-05-09 04:53:10,445 - INFO - excludes: None
+2026-05-09 04:53:10,446 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-09 04:53:10,447 - INFO - Building punc model.
+2026-05-09 04:53:10,447 - INFO - download models from model hub: ms
+2026-05-09 04:53:28,036 - WARNING - trust_remote_code: False
+2026-05-09 04:53:28,401 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-09 04:53:28,401 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-09 04:53:28,478 - INFO - scope_map: ['module.', 'None']
+2026-05-09 04:53:28,478 - INFO - excludes: None
+2026-05-09 04:53:28,499 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-09 04:53:29,084 - INFO - 模型加载完成，耗时: 31.21 秒
+2026-05-09 04:53:29,084 - INFO - 开始批量转录，共 1 个文件
+2026-05-09 04:53:29,084 - INFO - 
+[1/1] 处理: audio_1778302346614.mp3
+2026-05-09 04:53:29,084 - INFO - 开始转录: audio_1778302346614.mp3 (11.58 MB)
+2026-05-09 04:54:26,525 - INFO - 转录完成: audio_1778302346614.mp3 (耗时: 57.44秒)
+2026-05-09 04:54:26,525 - INFO - 识别文本: 我我想问一下，现在是嗯如果是有什么证据或达什么条件之后，就是能逼对方净身出户是吗？是男方怎么有过错是吧，还是怎么？嗯，不是，是男方现在在想逼我去净身出户是什么什么意思啊？是你老公是吧？嗯，对，是这样的...
+2026-05-09 04:54:26,525 - INFO - 
+批量转录完成: 成功=1, 失败=0
