@@ -3459,3 +3459,49 @@
 2026-05-09 04:54:26,525 - INFO - 识别文本: 我我想问一下，现在是嗯如果是有什么证据或达什么条件之后，就是能逼对方净身出户是吗？是男方怎么有过错是吧，还是怎么？嗯，不是，是男方现在在想逼我去净身出户是什么什么意思啊？是你老公是吧？嗯，对，是这样的...
 2026-05-09 04:54:26,525 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-09 05:07:49,352 - INFO - ============================================================
+2026-05-09 05:07:49,352 - INFO - FunASR 音频转录服务启动
+2026-05-09 05:07:49,352 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-09 05:07:49,353 - INFO - ============================================================
+2026-05-09 05:07:49,353 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-09 05:07:49,353 - INFO - 
+[1/1] 处理 URL
+2026-05-09 05:07:49,353 - INFO - 处理 URL: https://v11-default.365yg.com/be7690744ee19ff0fff9a70cb89cd2a9/69fef8ba/video/tos/cn/tos-cn-ve-15/oI2x2IABehnAisOUpII1EL9D2CQGwAeMeQenWA/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1252&bt=1252&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGCbtBg9eFfuLVIr12nzXT&mime_type=video_mp4&qs=0&rc=NTs8Ojs8ZjQ1NDU8Njk6Z0BpajN2NXI5cmp3OjMzNGkzM0A1MC5iNTFhXmExMjMyXzMuYSM1amdiMmQ0a3JhLS1kLTBzcw==&btag=c0000e00038000&cquery=100o_100w_100B_100H_100K&dy_q=1778303139&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=2026050913053921709D760438031361A0
+2026-05-09 05:07:49,353 - INFO - URL 类型: 直接链接
+2026-05-09 05:07:49,353 - INFO - 开始下载 (requests): https://v11-default.365yg.com/be7690744ee19ff0fff9a70cb89cd2a9/69fef8ba/video/tos/cn/tos-cn-ve-15/oI2x2IABehnAisOUpII1EL9D2CQGwAeMeQenWA/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1252&bt=1252&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGCbtBg9eFfuLVIr12nzXT&mime_type=video_mp4&qs=0&rc=NTs8Ojs8ZjQ1NDU8Njk6Z0BpajN2NXI5cmp3OjMzNGkzM0A1MC5iNTFhXmExMjMyXzMuYSM1amdiMmQ0a3JhLS1kLTBzcw==&btag=c0000e00038000&cquery=100o_100w_100B_100H_100K&dy_q=1778303139&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=2026050913053921709D760438031361A0
+2026-05-09 05:12:44,679 - INFO - 下载成功: audio_1778303269353.mp4 (570872646 bytes)
+2026-05-09 05:13:26,587 - INFO - 音频提取成功: audio_1778303269353.mp3
+2026-05-09 05:13:26,654 - INFO - ✅ 成功 [1/1]: 成功下载 570872646 bytes (耗时: 337.30秒)
+2026-05-09 05:13:30,604 - INFO - 正在加载 FunASR 模型...
+2026-05-09 05:13:30,604 - INFO - download models from model hub: ms
+2026-05-09 05:13:34,515 - WARNING - trust_remote_code: False
+2026-05-09 05:13:35,918 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-09 05:13:35,922 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-09 05:13:36,451 - INFO - scope_map: ['module.', 'None']
+2026-05-09 05:13:36,452 - INFO - excludes: None
+2026-05-09 05:13:36,801 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-09 05:13:36,813 - INFO - Building VAD model.
+2026-05-09 05:13:36,813 - INFO - download models from model hub: ms
+2026-05-09 05:13:39,632 - WARNING - trust_remote_code: False
+2026-05-09 05:13:39,636 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-09 05:13:39,636 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-09 05:13:39,640 - INFO - scope_map: ['module.', 'None']
+2026-05-09 05:13:39,640 - INFO - excludes: None
+2026-05-09 05:13:39,641 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-09 05:13:39,641 - INFO - Building punc model.
+2026-05-09 05:13:39,641 - INFO - download models from model hub: ms
+2026-05-09 05:13:42,329 - WARNING - trust_remote_code: False
+2026-05-09 05:13:42,698 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-09 05:13:42,698 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-09 05:13:42,753 - INFO - scope_map: ['module.', 'None']
+2026-05-09 05:13:42,754 - INFO - excludes: None
+2026-05-09 05:13:42,771 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-09 05:13:43,348 - INFO - 模型加载完成，耗时: 12.74 秒
+2026-05-09 05:13:43,349 - INFO - 开始批量转录，共 1 个文件
+2026-05-09 05:13:43,349 - INFO - 
+[1/1] 处理: audio_1778303269353.mp3
+2026-05-09 05:13:43,349 - INFO - 开始转录: audio_1778303269353.mp3 (54.64 MB)
+2026-05-09 05:18:03,881 - INFO - 转录完成: audio_1778303269353.mp3 (耗时: 260.53秒)
+2026-05-09 05:18:03,881 - INFO - 识别文本: 三个家伙排成排闭着眼睛，被厂长领进了厂房。这个呢是奖励给你们在巴音布鲁克打败了光哥的夜景里，我们车队拿了个第一的一个奖励。三声倒数之后，众人睁开了双眼，一辆被包裹严实的老头乐出现在三人眼前。新款奥运，...
+2026-05-09 05:18:03,882 - INFO - 
+批量转录完成: 成功=1, 失败=0
