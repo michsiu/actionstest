@@ -3597,3 +3597,54 @@
 2026-05-10 09:50:09,900 - INFO - 识别文本: 这是一幅去年爆火的油画叫做岛？请问你在里面看到了什么？是不是一个人在祈祷全身穿的光鲜亮丽，但仔细一看全是垃圾，比如泡沫、脸、塑料头、假肢、假戒假表等等。这是我能看到的所有信息。但同样一幅画，我找摄影师...
 2026-05-10 09:50:09,900 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-10 10:32:14,873 - INFO - ============================================================
+2026-05-10 10:32:14,873 - INFO - FunASR 音频转录服务启动
+2026-05-10 10:32:14,873 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-10 10:32:14,873 - INFO - ============================================================
+2026-05-10 10:32:14,873 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-10 10:32:14,873 - INFO - 
+[1/1] 处理 URL
+2026-05-10 10:32:14,873 - INFO - 处理 URL: https://v11-default.365yg.com/a0fa74ea0a2ad6ce47cf5a1af201c806/6a008049/video/tos/cn/tos-cn-ve-15/9c4210f117b14472839cc4b478eb289a/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1277&bt=1277&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGMrHkU9eF4qIfjO12nzXT&mime_type=video_mp4&qs=0&rc=Ozs5ZDY1aDdnNjU8aTU6O0BpM3l3cnk5cjd2OjMzNGkzM0AyYTItNTUxNS0xNGJfL2I0YSNpc142MmRjYDBhLS1kLS9zcw==&btag=80000e00038000&cquery=100o_100w_100B_100H_100K&dy_q=1778406304&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605101745047499521AF45CA4ED71DE
+2026-05-10 10:32:14,874 - INFO - URL 类型: 直接链接
+2026-05-10 10:32:14,874 - INFO - 开始下载 (requests): https://v11-default.365yg.com/a0fa74ea0a2ad6ce47cf5a1af201c806/6a008049/video/tos/cn/tos-cn-ve-15/9c4210f117b14472839cc4b478eb289a/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1277&bt=1277&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGMrHkU9eF4qIfjO12nzXT&mime_type=video_mp4&qs=0&rc=Ozs5ZDY1aDdnNjU8aTU6O0BpM3l3cnk5cjd2OjMzNGkzM0AyYTItNTUxNS0xNGJfL2I0YSNpc142MmRjYDBhLS1kLS9zcw==&btag=80000e00038000&cquery=100o_100w_100B_100H_100K&dy_q=1778406304&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605101745047499521AF45CA4ED71DE
+2026-05-10 10:33:16,912 - INFO - 下载成功: audio_1778409134874.mp4 (103638657 bytes)
+2026-05-10 10:33:25,283 - INFO - 音频提取成功: audio_1778409134874.mp3
+2026-05-10 10:33:25,292 - INFO - ✅ 成功 [1/1]: 成功下载 103638657 bytes (耗时: 70.42秒)
+2026-05-10 10:33:28,685 - INFO - 正在加载 FunASR 模型...
+2026-05-10 10:33:28,685 - INFO - download models from model hub: ms
+2026-05-10 10:33:31,620 - WARNING - trust_remote_code: False
+2026-05-10 10:33:32,860 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-10 10:33:32,864 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-10 10:33:33,515 - INFO - scope_map: ['module.', 'None']
+2026-05-10 10:33:33,515 - INFO - excludes: None
+2026-05-10 10:33:33,897 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-10 10:33:33,907 - INFO - Building VAD model.
+2026-05-10 10:33:33,907 - INFO - download models from model hub: ms
+2026-05-10 10:33:38,098 - WARNING - trust_remote_code: False
+2026-05-10 10:33:38,103 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-10 10:33:38,103 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-10 10:33:38,107 - INFO - scope_map: ['module.', 'None']
+2026-05-10 10:33:38,107 - INFO - excludes: None
+2026-05-10 10:33:38,108 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-10 10:33:38,108 - INFO - Building punc model.
+2026-05-10 10:33:38,108 - INFO - download models from model hub: ms
+2026-05-10 10:33:41,777 - WARNING - trust_remote_code: False
+2026-05-10 10:33:42,128 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-10 10:33:42,128 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-10 10:33:42,205 - INFO - scope_map: ['module.', 'None']
+2026-05-10 10:33:42,205 - INFO - excludes: None
+2026-05-10 10:33:42,226 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-10 10:33:42,777 - INFO - 模型加载完成，耗时: 14.09 秒
+2026-05-10 10:33:42,777 - INFO - 开始批量转录，共 2 个文件
+2026-05-10 10:33:42,777 - INFO - 
+[1/2] 处理: audio_1778409134874.mp3
+2026-05-10 10:33:42,777 - INFO - 开始转录: audio_1778409134874.mp3 (12.25 MB)
+2026-05-10 10:34:12,520 - INFO - 转录完成: audio_1778409134874.mp3 (耗时: 29.74秒)
+2026-05-10 10:34:12,520 - INFO - 识别文本: 这是一幅去年爆火的油画叫做岛？请问你在里面看到了什么？是不是一个人在祈祷全身穿的光鲜亮丽，但仔细一看全是垃圾，比如泡沫、脸、塑料头、假肢、假戒假表等等。这是我能看到的所有信息。但同样一幅画，我找摄影师...
+2026-05-10 10:34:12,520 - INFO - 
+[2/2] 处理: fcrs3.m4a
+2026-05-10 10:34:12,520 - INFO - 开始转录: fcrs3.m4a (22.48 MB)
+2026-05-10 10:37:03,894 - INFO - 转录完成: fcrs3.m4a (耗时: 171.37秒)
+2026-05-10 10:37:03,895 - INFO - 识别文本: 三个家伙排成排闭着眼睛，被厂长领进了厂房。这个呢是奖励给你们在巴音布鲁克打败了光哥的夜景里，我们车队拿了个第一的一个奖励。三声倒数之后，众人睁开了双眼，一辆被包裹严实的老头乐出现在三人眼前。新款奥运事...
+2026-05-10 10:37:03,895 - INFO - 
+批量转录完成: 成功=2, 失败=0
