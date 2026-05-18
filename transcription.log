@@ -3648,3 +3648,49 @@
 2026-05-10 10:37:03,895 - INFO - 识别文本: 三个家伙排成排闭着眼睛，被厂长领进了厂房。这个呢是奖励给你们在巴音布鲁克打败了光哥的夜景里，我们车队拿了个第一的一个奖励。三声倒数之后，众人睁开了双眼，一辆被包裹严实的老头乐出现在三人眼前。新款奥运事...
 2026-05-10 10:37:03,895 - INFO - 
 批量转录完成: 成功=2, 失败=0
+2026-05-18 22:14:32,132 - INFO - ============================================================
+2026-05-18 22:14:32,132 - INFO - FunASR 音频转录服务启动
+2026-05-18 22:14:32,132 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-18 22:14:32,132 - INFO - ============================================================
+2026-05-18 22:14:32,132 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-18 22:14:32,133 - INFO - 
+[1/1] 处理 URL
+2026-05-18 22:14:32,133 - INFO - 处理 URL: https://v26-default.365yg.com/d5f3a3df4bd4b75557c701b739540ff7/6a0bc26f/video/tos/cn/tos-cn-ve-15/ogf1d2ewAvBBbL1i9ciCVIvHALmyEgByXQRN1A/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=343&bt=343&cs=2&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGVNBrU9eFfuLVIr12nzXT&mime_type=video_mp4&qs=0&rc=MzU4ZTw8Ozc5ZDo6PDs3ZkBpamppdmw5cmRoOzMzNGkzM0AyNTIvYjUvXy0xLTJeMDJfYSMyYGduMmRzLzJhLS1kLWFzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1779142314&feature_id=3a3cffa6441893017beab760e71bc03f&l=20260519061154BB5283F8FCAEFA9DFE9D
+2026-05-18 22:14:32,133 - INFO - URL 类型: 直接链接
+2026-05-18 22:14:32,133 - INFO - 开始下载 (requests): https://v26-default.365yg.com/d5f3a3df4bd4b75557c701b739540ff7/6a0bc26f/video/tos/cn/tos-cn-ve-15/ogf1d2ewAvBBbL1i9ciCVIvHALmyEgByXQRN1A/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=343&bt=343&cs=2&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGVNBrU9eFfuLVIr12nzXT&mime_type=video_mp4&qs=0&rc=MzU4ZTw8Ozc5ZDo6PDs3ZkBpamppdmw5cmRoOzMzNGkzM0AyNTIvYjUvXy0xLTJeMDJfYSMyYGduMmRzLzJhLS1kLWFzcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1779142314&feature_id=3a3cffa6441893017beab760e71bc03f&l=20260519061154BB5283F8FCAEFA9DFE9D
+2026-05-18 22:14:43,068 - INFO - 下载成功: audio_1779142472133.mp4 (107737195 bytes)
+2026-05-18 22:15:09,871 - INFO - 音频提取成功: audio_1779142472133.mp3
+2026-05-18 22:15:09,885 - INFO - ✅ 成功 [1/1]: 成功下载 107737195 bytes (耗时: 37.75秒)
+2026-05-18 22:15:13,935 - INFO - 正在加载 FunASR 模型...
+2026-05-18 22:15:13,935 - INFO - download models from model hub: ms
+2026-05-18 22:15:16,815 - WARNING - trust_remote_code: False
+2026-05-18 22:15:18,116 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-18 22:15:18,120 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-18 22:15:18,812 - INFO - scope_map: ['module.', 'None']
+2026-05-18 22:15:18,812 - INFO - excludes: None
+2026-05-18 22:15:19,138 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-18 22:15:19,150 - INFO - Building VAD model.
+2026-05-18 22:15:19,150 - INFO - download models from model hub: ms
+2026-05-18 22:15:21,640 - WARNING - trust_remote_code: False
+2026-05-18 22:15:21,645 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-18 22:15:21,645 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-18 22:15:21,649 - INFO - scope_map: ['module.', 'None']
+2026-05-18 22:15:21,649 - INFO - excludes: None
+2026-05-18 22:15:21,650 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-18 22:15:21,650 - INFO - Building punc model.
+2026-05-18 22:15:21,650 - INFO - download models from model hub: ms
+2026-05-18 22:15:24,065 - WARNING - trust_remote_code: False
+2026-05-18 22:15:24,438 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-18 22:15:24,438 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-18 22:15:24,498 - INFO - scope_map: ['module.', 'None']
+2026-05-18 22:15:24,499 - INFO - excludes: None
+2026-05-18 22:15:24,517 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-18 22:15:25,103 - INFO - 模型加载完成，耗时: 11.17 秒
+2026-05-18 22:15:25,103 - INFO - 开始批量转录，共 1 个文件
+2026-05-18 22:15:25,103 - INFO - 
+[1/1] 处理: audio_1779142472133.mp3
+2026-05-18 22:15:25,103 - INFO - 开始转录: audio_1779142472133.mp3 (37.70 MB)
+2026-05-18 22:18:48,722 - INFO - 转录完成: audio_1779142472133.mp3 (耗时: 203.62秒)
+2026-05-18 22:18:48,722 - INFO - 识别文本:  Gate与github已经成为了AI时代必学必会的基本功之一了。很多AI agent的核心功能都是直接围绕着gate来运行的。好消息是，在AI时代，我们不再需要死记硬背一大堆gate命令，只需要掌握...
+2026-05-18 22:18:48,723 - INFO - 
+批量转录完成: 成功=1, 失败=0
