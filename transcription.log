@@ -3694,3 +3694,49 @@
 2026-05-18 22:18:48,722 - INFO - 识别文本:  Gate与github已经成为了AI时代必学必会的基本功之一了。很多AI agent的核心功能都是直接围绕着gate来运行的。好消息是，在AI时代，我们不再需要死记硬背一大堆gate命令，只需要掌握...
 2026-05-18 22:18:48,723 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-19 00:53:31,191 - INFO - ============================================================
+2026-05-19 00:53:31,191 - INFO - FunASR 音频转录服务启动
+2026-05-19 00:53:31,192 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-19 00:53:31,192 - INFO - ============================================================
+2026-05-19 00:53:31,192 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-19 00:53:31,192 - INFO - 
+[1/1] 处理 URL
+2026-05-19 00:53:31,192 - INFO - 处理 URL: https://v26-default.365yg.com/91d8abac57ec1436278862916532c92f/6a0bdf5e/video/tos/cn/tos-cn-ve-15/ff9c06cd6d2f441ba753cbfd21bfca72/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1128&bt=1128&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG9fPrU9eF5ihLCO12nzXT&mime_type=video_mp4&qs=0&rc=Njk3O2Q4PDxpNTw3NmU2NkBpajt4PHI5cnFnOzMzNGkzM0A1Yi9fX2MwNmAxMGNjY2JfYSNfaWhtMmRjcTBhLS1kLS9zcw==&btag=80000e00030000&cquery=100w_100B_100x_100z_100o&dy_q=1779151833&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605190850336F034F7507FA6BABB4B3
+2026-05-19 00:53:31,192 - INFO - URL 类型: 直接链接
+2026-05-19 00:53:31,193 - INFO - 开始下载 (requests): https://v26-default.365yg.com/91d8abac57ec1436278862916532c92f/6a0bdf5e/video/tos/cn/tos-cn-ve-15/ff9c06cd6d2f441ba753cbfd21bfca72/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=1128&bt=1128&cs=0&ds=4&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtG9fPrU9eF5ihLCO12nzXT&mime_type=video_mp4&qs=0&rc=Njk3O2Q4PDxpNTw3NmU2NkBpajt4PHI5cnFnOzMzNGkzM0A1Yi9fX2MwNmAxMGNjY2JfYSNfaWhtMmRjcTBhLS1kLS9zcw==&btag=80000e00030000&cquery=100w_100B_100x_100z_100o&dy_q=1779151833&feature_id=37f92ebd2877ae8e7eba995d406c5150&l=202605190850336F034F7507FA6BABB4B3
+2026-05-19 00:53:35,775 - INFO - 下载成功: audio_1779152011192.mp4 (49345069 bytes)
+2026-05-19 00:53:40,733 - INFO - 音频提取成功: audio_1779152011192.mp3
+2026-05-19 00:53:40,740 - INFO - ✅ 成功 [1/1]: 成功下载 49345069 bytes (耗时: 9.55秒)
+2026-05-19 00:53:44,588 - INFO - 正在加载 FunASR 模型...
+2026-05-19 00:53:44,589 - INFO - download models from model hub: ms
+2026-05-19 00:53:47,138 - WARNING - trust_remote_code: False
+2026-05-19 00:53:48,411 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-19 00:53:48,416 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-19 00:53:49,068 - INFO - scope_map: ['module.', 'None']
+2026-05-19 00:53:49,068 - INFO - excludes: None
+2026-05-19 00:53:49,337 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-19 00:53:49,349 - INFO - Building VAD model.
+2026-05-19 00:53:49,349 - INFO - download models from model hub: ms
+2026-05-19 00:53:51,544 - WARNING - trust_remote_code: False
+2026-05-19 00:53:51,549 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-19 00:53:51,549 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-19 00:53:51,553 - INFO - scope_map: ['module.', 'None']
+2026-05-19 00:53:51,553 - INFO - excludes: None
+2026-05-19 00:53:51,554 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-19 00:53:51,554 - INFO - Building punc model.
+2026-05-19 00:53:51,555 - INFO - download models from model hub: ms
+2026-05-19 00:53:54,931 - WARNING - trust_remote_code: False
+2026-05-19 00:53:55,267 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-19 00:53:55,267 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-19 00:53:55,325 - INFO - scope_map: ['module.', 'None']
+2026-05-19 00:53:55,325 - INFO - excludes: None
+2026-05-19 00:53:55,344 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-19 00:53:55,906 - INFO - 模型加载完成，耗时: 11.32 秒
+2026-05-19 00:53:55,906 - INFO - 开始批量转录，共 1 个文件
+2026-05-19 00:53:55,906 - INFO - 
+[1/1] 处理: audio_1779152011192.mp3
+2026-05-19 00:53:55,906 - INFO - 开始转录: audio_1779152011192.mp3 (7.21 MB)
+2026-05-19 00:54:22,994 - INFO - 转录完成: audio_1779152011192.mp3 (耗时: 27.09秒)
+2026-05-19 00:54:22,995 - INFO - 识别文本: 今天想想跟大家聊一关于怎怎么以让约约变变得更有意义？不是说大家见面吃顿顿饭，看个电影就结束了。对，很多时候就这样走走流程，就各回各家了。对，那我们就开开始吧。咱们第一趴先来聊一聊男女在约会的时候期待上...
+2026-05-19 00:54:22,995 - INFO - 
+批量转录完成: 成功=1, 失败=0
