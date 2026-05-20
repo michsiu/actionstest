@@ -15,7 +15,7 @@ env:
 jobs:
   start-transcribe-service:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: ${{ inputs.timeout_minutes }}
 
     steps:
       - uses: actions/checkout@v4
@@ -25,22 +25,50 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Cache FunASR models
-        id: cache-models
+      # ========== 缓存 ffmpeg（系统依赖） ==========
+      - name: Cache ffmpeg
+        id: cache-ffmpeg
         uses: actions/cache@v4
         with:
-          path: ~/.cache/modelscope
-          key: funasr-models-${{ runner.os }}
+          path: |
+            /usr/bin/ffmpeg
+            /usr/bin/ffprobe
+          key: ffmpeg-cache-${{ runner.os }}-v1
 
+      # ========== 缓存 Python 依赖包 ==========
+      - name: Cache Python dependencies
+        id: cache-pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-cache-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            pip-cache-${{ runner.os }}-
+
+      # ========== 安装系统依赖（仅在缓存未命中时） ==========
       - name: Install system dependencies
+        if: steps.cache-ffmpeg.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg jq
 
+      # ========== 验证 ffmpeg（无论是否命中缓存都执行） ==========
+      - name: Verify ffmpeg
+        run: |
+          ffmpeg -version | head -1
+          jq --version
+
+      # ========== 安装 Python 依赖（仅在缓存未命中时） ==========
       - name: Install Python dependencies
+        if: steps.cache-pip.outputs.cache-hit != 'true'
         run: |
           pip install --upgrade pip
           pip install websockets requests pycryptodome modelscope funasr torch torchaudio
+
+      # ========== 验证 Python 依赖（可选） ==========
+      - name: Verify Python dependencies
+        run: |
+          python -c "import websockets, requests, Crypto, modelscope, funasr, torch; print('✅ All Python packages loaded')"
 
       - name: WxPush - Service starting
         env:
@@ -82,12 +110,26 @@ jobs:
             exit 1
           fi
 
-          # ========== 下载并启动 ngrok ==========
+          # ========== 清除旧 ngrok 配置，强制获取新 URL ==========
+          echo "🔄 清除旧 ngrok 配置..."
+          pkill -f ngrok || true
+          rm -rf ~/.ngrok2
+          sleep 3
+
+          # ========== 下载并启动 ngrok（强制新隧道） ==========
           curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
           tar xzf ngrok.tgz
           chmod +x ngrok
+          
+          # 重新认证
           ./ngrok config add-authtoken $NGROK_AUTH_TOKEN
-          ./ngrok http 8765 --log=stdout --log-level=info &
+          
+          # 使用随机端口 + 时间戳强制新隧道
+          RANDOM_PORT=$((8765 + RANDOM % 200))
+          echo "🔄 使用随机端口: $RANDOM_PORT"
+          
+          # 启动 ngrok（添加 --random 参数强制随机子域名）
+          ./ngrok http $RANDOM_PORT --log=stdout --log-level=info --random &
           NGROK_PID=$!
 
           # 等待 ngrok 就绪
@@ -98,8 +140,23 @@ jobs:
             fi
           done
 
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
-          WSS_URL="${NGROK_URL/http:/wss:}"
+          # 获取新 URL（重试机制确保获取到新地址）
+          for retry in {1..5}; do
+            NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+            if [[ "$NGROK_URL" != "null" && -n "$NGROK_URL" ]]; then
+              echo "✅ 获取到 URL: $NGROK_URL"
+              break
+            fi
+            echo "⚠️ 重试获取 URL ($retry/5)..."
+            sleep 2
+          done
+          
+          if [[ -z "$NGROK_URL" || "$NGROK_URL" == "null" ]]; then
+            echo "❌ 无法获取 ngrok 公网地址"
+            exit 1
+          fi
+          
+          WSS_URL="${NGROK_URL/https:\/\//wss:\/\/}"
 
           echo "============================================"
           echo "✅ 服务已上线"
