@@ -15,7 +15,7 @@ env:
 jobs:
   start-transcribe-service:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.timeout_minutes }}
+    timeout-minutes: ${{ fromJSON(inputs.timeout_minutes) }}
 
     steps:
       - uses: actions/checkout@v4
