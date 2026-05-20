@@ -12,13 +12,12 @@ on:
 jobs:
   start-wss-test:
     runs-on: ubuntu-latest
-    # timeout-minutes 已移除，使用默认的 360 分钟
 
     steps:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq
+          sudo apt-get install -y jq curl
 
       - name: WxPush - Service starting
         env:
@@ -38,9 +37,23 @@ jobs:
               \"url\": \"\"
             }"
 
-      - name: Create test WebSocket server (Node.js)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create and start WebSocket test server
         run: |
-          cat > wss-test-server.js << 'EOF'
+          # 创建服务目录
+          mkdir -p wss-server
+          cd wss-server
+          
+          # 初始化并安装 ws
+          npm init -y
+          npm install ws
+          
+          # 创建服务器代码
+          cat > server.js << 'EOF'
           const WebSocket = require('ws');
           const wss = new WebSocket.Server({ port: 8765 });
           
@@ -84,24 +97,15 @@ jobs:
             });
           });
           
-          setInterval(() => {
-            console.log(`📊 当前连接数: ${wss.clients.size}`);
-          }, 30000);
+          console.log('✅ 服务器代码已创建');
           EOF
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install WebSocket library
-        run: npm install ws
-
-      - name: Start WebSocket test server
-        run: |
-          node wss-test-server.js &
+          
+          # 启动服务器
+          node server.js &
           SERVER_PID=$!
           echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+          cd ..
+          
           sleep 3
           
           if kill -0 $SERVER_PID 2>/dev/null; then
@@ -117,39 +121,46 @@ jobs:
           tar xzf ngrok.tgz
           chmod +x ngrok
           ./ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+          echo "✅ ngrok 配置完成"
 
       - name: Start ngrok tunnel
         run: |
-          ./ngrok http 8765 --log=stdout --log-level=info &
+          # 启动 ngrok
+          ./ngrok http 8765 --log=stdout --log-level=info > ngrok.log 2>&1 &
           NGROK_PID=$!
           echo "NGROK_PID=$NGROK_PID" >> $GITHUB_ENV
           
-          echo "⏳ 等待 ngrok 隧道建立..."
-          for i in {1..30}; do
+          echo "⏳ 等待 ngrok 启动 (最多60秒)..."
+          
+          # 等待 ngrok API 就绪
+          for i in {1..60}; do
             sleep 1
             if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
-              echo "✅ ngrok API 已就绪"
+              echo "✅ ngrok API 已就绪 (第 $i 秒)"
               break
             fi
-            if [ $i -eq 30 ]; then
-              echo "❌ ngrok 启动超时"
+            if [ $i -eq 60 ]; then
+              echo "❌ ngrok API 启动超时"
+              echo "查看 ngrok 日志:"
+              cat ngrok.log
               exit 1
             fi
           done
           
+          # 获取公网地址
           sleep 2
-          for i in {1..10}; do
+          for i in {1..20}; do
             NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
             if [ -n "$NGROK_URL" ] && [ "$NGROK_URL" != "null" ]; then
-              echo "✅ 获取到 ngrok 地址"
+              echo "✅ 获取到 ngrok 地址 (第 $i 次尝试)"
               echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
               break
             fi
-            echo "⚠️ 第 $i 次尝试获取地址失败"
+            echo "⚠️ 第 $i 次尝试获取地址失败，等待中..."
             sleep 2
           done
 
-      - name: Generate WebSocket URLs
+      - name: Generate WebSocket URL
         if: env.NGROK_URL != ''
         run: |
           WSS_URL=$(echo "$NGROK_URL" | sed 's/https:/wss:/')
@@ -172,7 +183,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{
               \"summary\": \"\",
-              \"content\": \"✅ wss 测试服务已上线\n\nWebSocket 地址: ${WSS_URL}\nHTTP 地址: ${NGROK_URL}\n\n测试方法:\n1. 使用 WebSocket 客户端连接\n2. 发送任意消息，服务器会回显\n3. 发送 ping 会收到 pong\n\n服务将运行 ${{ inputs.timeout_minutes }} 分钟后自动关闭\",
+              \"content\": \"✅ wss 测试服务已上线\n\nWebSocket 地址: ${WSS_URL}\nHTTP 地址: ${NGROK_URL}\n\n测试方法:\n1. 打开任意 WebSocket 客户端\n2. 输入以上地址连接\n3. 发送任意消息测试回显\n4. 发送 ping 测试 pong\n\n服务将运行 ${{ inputs.timeout_minutes }} 分钟后自动关闭\",
               \"contentType\": 2,
               \"appToken\": \"${WXPUSH_TOKEN}\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
@@ -191,7 +202,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{
               \"summary\": \"\",
-              \"content\": \"❌ wss 测试服务启动失败\n\n无法获取 ngrok 公网地址\n请检查 NGROK_AUTH_TOKEN 是否正确设置\",
+              \"content\": \"❌ wss 测试服务启动失败\n\n无法获取 ngrok 公网地址\n请检查:\n1. NGROK_AUTH_TOKEN 是否正确设置\n2. ngrok 账号是否有效\n3. 网络是否正常\",
               \"contentType\": 2,
               \"appToken\": \"${WXPUSH_TOKEN}\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
@@ -213,6 +224,7 @@ jobs:
             sleep 10
             if [ $((SECONDS % 30)) -eq 0 ]; then
               echo "💓 服务运行中... 已运行 $((SECONDS / 60)) 分钟"
+              echo "📊 当前连接数: 查看 ngrok 日志"
             fi
           done
           
@@ -238,7 +250,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{
               \"summary\": \"\",
-              \"content\": \"🛑 wss 测试服务已关闭\n运行ID: ${{ github.run_id }}\",
+              \"content\": \"🛑 wss 测试服务已关闭\n运行ID: ${{ github.run_id }}\n时间: $(date '+%Y-%m-%d %H:%M:%S')\",
               \"contentType\": 2,
               \"appToken\": \"${WXPUSH_TOKEN}\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
