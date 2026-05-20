@@ -1,218 +1,555 @@
-name: wss Audio Transcription Service (WebSocket + ngrok + WxPush)
+# File Name: wss_transcribe.yml
+name: WSS Audio Transcription Server
 
 on:
   workflow_dispatch:
-    inputs:
-      timeout_minutes:
-        description: '服务运行超时（分钟）'
-        required: false
-        type: number
-        default: 120
-
-env:
-  PYTHON_VERSION: '3.10'
 
 jobs:
-  start-transcribe-service:
+  wss-transcription:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(inputs.timeout_minutes) }}
+    timeout-minutes: 120
 
     steps:
-      - uses: actions/checkout@v4
+      # ==================== 安装系统依赖 ====================
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg jq
+          echo "✅ System deps installed" >> $GITHUB_STEP_SUMMARY
 
+      # ==================== 设置 Python 与缓存 ====================
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: '3.10'
 
-      # ========== 缓存 ffmpeg（系统依赖） ==========
-      - name: Cache ffmpeg
-        id: cache-ffmpeg
-        uses: actions/cache@v4
-        with:
-          path: |
-            /usr/bin/ffmpeg
-            /usr/bin/ffprobe
-          key: ffmpeg-cache-${{ runner.os }}-v1
-
-      # ========== 缓存 Python 依赖包 ==========
-      - name: Cache Python dependencies
-        id: cache-pip
+      - name: Cache pip packages
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-cache-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
+          key: pip-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}-transcription
           restore-keys: |
-            pip-cache-${{ runner.os }}-
+            pip-${{ runner.os }}-transcription
 
-      # ========== 安装系统依赖（仅在缓存未命中时） ==========
-      - name: Install system dependencies
-        if: steps.cache-ffmpeg.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg jq
-
-      # ========== 验证 ffmpeg（无论是否命中缓存都执行） ==========
-      - name: Verify ffmpeg
-        run: |
-          ffmpeg -version | head -1
-          jq --version
-
-      # ========== 安装 Python 依赖（仅在缓存未命中时） ==========
       - name: Install Python dependencies
-        if: steps.cache-pip.outputs.cache-hit != 'true'
         run: |
           pip install --upgrade pip
-          pip install websockets requests pycryptodome modelscope funasr torch torchaudio
+          pip install websockets requests pycryptodome funasr torch torchaudio soundfile
+          echo "✅ Python deps installed" >> $GITHUB_STEP_SUMMARY
 
-      # ========== 验证 Python 依赖（可选） ==========
-      - name: Verify Python dependencies
+      # ==================== 缓存 FunASR 模型 ====================
+      - name: Cache FunASR models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/modelscope
+          key: modelscope-${{ runner.os }}-paraformer-vad-punc
+          restore-keys: |
+            modelscope-${{ runner.os }}-
+
+      # ==================== 写入 HTML 客户端 ====================
+      - name: Write HTML client (wss_client.html)
         run: |
-          python -c "import websockets, requests, Crypto, modelscope, funasr, torch; print('✅ All Python packages loaded')"
+          cat > wss_client.html << 'HTMLEOF'
+          <!DOCTYPE html>
+          <html lang="zh">
+          <head>
+          <meta charset="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+          <title>WSS Transcriber Client</title>
+          <style>
+            /* 沿用原版 iOS26 风格，略作调整 */
+            html, body { margin:0; height:100%; overflow:hidden; background:#07080c; font-family:-apple-system; }
+            .bg { position:fixed; inset:0; background: radial-gradient(circle at top, #1a1f2a, #07080c 70%); }
+            #messages { position:fixed; inset:0; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:12px; padding-bottom:140px; }
+            .msg { max-width:78%; padding:12px 14px; border-radius:20px; font-size:15px; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.10); }
+            .user { align-self:flex-end; background:rgba(0,122,255,0.82); color:white; border-radius:20px 20px 6px 20px; }
+            .bot { align-self:flex-start; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.92); border-radius:20px 20px 20px 6px; }
+            .msg pre { position:relative; background:rgba(0,0,0,0.45); padding:12px; border-radius:14px; overflow-x:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12.5px; line-height:1.5; }
+            .connect { position:fixed; top:14px; left:12px; right:12px; display:flex; align-items:center; gap:10px; padding:10px; background:rgba(255,255,255,0.06); backdrop-filter:blur(22px); border-radius:18px; z-index:10; }
+            .connect.hidden { opacity:0; transform:translateY(-20px); pointer-events:none; }
+            .connect input { flex:1; height:42px; border-radius:14px; padding:0 12px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); color:white; outline:none; }
+            .icon-btn { width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10); cursor:pointer; transition:0.2s; }
+            .icon-btn:active { transform:scale(0.92); background:rgba(255,255,255,0.08); }
+            .input-area { position:fixed; bottom:16px; left:12px; right:12px; display:flex; gap:10px; align-items:center; z-index:20; }
+            .input-box { flex:1; display:flex; align-items:center; padding:12px 14px; border-radius:28px; background:rgba(20,22,28,0.65); backdrop-filter:blur(26px); border:1px solid rgba(255,255,255,0.08); }
+            .input-box input { flex:1; font-size:16px; background:transparent; border:none; outline:none; color:white; }
+            .add-btn { margin-right:8px; width:32px; height:32px; border-radius:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+            .add-btn:active { background:rgba(255,255,255,0.15); }
+            .end-dot { width:10px; height:10px; border-radius:50%; background:#ff3b30; margin-left:10px; cursor:pointer; }
+            .send-btn { width:52px; height:52px; border-radius:28px; background:rgba(0,122,255,0.25); backdrop-filter:blur(22px); border:1px solid rgba(255,255,255,0.10); display:flex; align-items:center; justify-content:center; color:white; font-size:20px; }
+            button:disabled, input:disabled { opacity:0.4; }
+          </style>
+          </head>
+          <body>
+          <div class="bg"></div>
+          <div id="connect" class="connect">
+            <input id="wssUrl" placeholder="wss://xxx.ngrok-free.app"/>
+            <div class="icon-btn" id="connectBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h10" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div id="messages"></div>
+          <div class="input-area">
+            <div class="input-box">
+              <div class="add-btn" id="addFileBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </div>
+              <input id="input" placeholder="URL or message..." disabled/>
+              <div class="end-dot" id="end"></div>
+            </div>
+            <div class="send-btn" id="send">➤</div>
+          </div>
+          <input type="file" id="fileInput" accept="video/*,audio/*" style="display:none"/>
+          <script>
+            let ws, currentBotMsg = null, streamBuffer = '';
+            const messages = document.getElementById('messages');
+            const input = document.getElementById('input');
+            const fileInput = document.getElementById('fileInput');
 
-      - name: WxPush - Service starting
-        env:
-          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
+            function scroll() { requestAnimationFrame(() => messages.scrollTop = messages.scrollHeight); }
+            function addMsg(type) {
+              const d = document.createElement('div');
+              d.className = 'msg ' + (type === 'user' ? 'user' : 'bot');
+              messages.appendChild(d);
+              scroll();
+              return d;
+            }
+
+            function handleServerMsg(data) {
+              const { user, text, stream } = data;
+              if (stream) {
+                if (!currentBotMsg) {
+                  currentBotMsg = addMsg('bot');
+                }
+                currentBotMsg.textContent = text;
+              } else {
+                if (currentBotMsg) {
+                  currentBotMsg.textContent = text;
+                  currentBotMsg = null;
+                } else {
+                  const m = addMsg('bot');
+                  m.textContent = text;
+                }
+              }
+              scroll();
+            }
+
+            document.getElementById('connectBtn').onclick = () => {
+              const url = document.getElementById('wssUrl').value.trim();
+              if (!url) return;
+              ws = new WebSocket(url);
+              ws.onopen = () => {
+                addMsg('bot').textContent = '✅ Connected';
+                input.disabled = false;
+                document.getElementById('connect').classList.add('hidden');
+              };
+              ws.onmessage = (e) => {
+                try {
+                  handleServerMsg(JSON.parse(e.data));
+                } catch {
+                  handleServerMsg({ user:'🤖System', text: e.data, stream: false });
+                }
+              };
+              ws.onclose = () => {
+                addMsg('bot').textContent = 'Disconnected';
+                input.disabled = true;
+                document.getElementById('connect').classList.remove('hidden');
+              };
+            };
+
+            document.getElementById('send').onclick = () => {
+              if (!ws || ws.readyState !== 1) return;
+              const text = input.value.trim();
+              if (!text) return;
+              addMsg('user').textContent = text;
+              ws.send(text);
+              input.value = '';
+            };
+
+            document.getElementById('end').onclick = () => {
+              if (ws) { ws.send('/bye'); addMsg('bot').textContent = 'Session ended by user'; ws.close(); input.disabled = true; }
+            };
+
+            input.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('send').click(); });
+
+            document.getElementById('addFileBtn').onclick = () => fileInput.click();
+
+            fileInput.addEventListener('change', async (e) => {
+              const file = e.target.files[0];
+              if (!file || !ws || ws.readyState !== 1) return;
+              addMsg('user').textContent = `📎 ${file.name}`;
+              // 发送文件信息头
+              ws.send(JSON.stringify({ type: 'file', filename: file.name }));
+              // 读取并发送二进制数据
+              const buffer = await file.arrayBuffer();
+              ws.send(buffer);
+              fileInput.value = '';
+            });
+          </script>
+          </body>
+          </html>
+          HTMLEOF
+          echo "✅ wss_client.html written" >> $GITHUB_STEP_SUMMARY
+
+      # ==================== 写入 Python 服务端 ====================
+      - name: Write Python server (wss_server.py)
         run: |
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"🎙️ wss 转录服务正在启动...\n仓库: ${{ github.repository }}\n触发者: ${{ github.actor }}\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
+          cat > wss_server.py << 'PYEOF'
+          import asyncio
+          import websockets
+          import json
+          import os
+          import sys
+          import time
+          import tempfile
+          import subprocess
+          import logging
+          import requests
+          from pathlib import Path
+          from urllib.parse import urlparse
+          from Crypto.Cipher import AES
+          from Crypto.Util.Padding import pad, unpad
+          import base64
+          import hashlib
 
-      - name: Create runtime directory
-        run: |
-          mkdir -p tmp_uploads logs
+          logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+          logger = logging.getLogger("WSS_Transcriber")
 
-      - name: Start WebSocket transcription server
+          # ========== 全局配置 ==========
+          MODEL = None
+          LOG_STREAM = None  # 用于向客户端推送日志的异步队列
+          connected_clients = set()
+
+          # ========== 加密工具（哇能） ==========
+          KEY = b"aaDJL2d9DfhLZO0z"
+          IV = b"412ADDSSFA342442"
+
+          def aes_encrypt(plaintext):
+              cipher = AES.new(KEY, AES.MODE_CBC, iv=IV)
+              padded = pad(plaintext.encode('utf-8'), AES.block_size)
+              ct = cipher.encrypt(padded)
+              return base64.b64encode(ct).decode()
+
+          def aes_decrypt(ciphertext):
+              cipher = AES.new(KEY, AES.MODE_CBC, iv=IV)
+              ct = base64.b64decode(ciphertext)
+              pt = cipher.decrypt(ct)
+              try:
+                  return unpad(pt, AES.block_size).decode('utf-8')
+              except:
+                  return pt.decode('utf-8', errors='ignore')
+
+          # ========== 下载与解析 ==========
+          def is_direct_link(url):
+              path = urlparse(url).path.lower()
+              if any(path.endswith(ext) for ext in ('.mp4','.avi','.mkv','.mov','.webm','.flv','.mp3','.wav','.m4a','.flac','.ogg','.aac')):
+                  return True
+              cdn_markers = ['video/tos/', '.douyinvod.com', '.ixigua.com/video', 'mime_type=video_mp4']
+              return any(m in url for m in cdn_markers)
+
+          def douyin_parse(url):
+              try:
+                  resp = requests.get("http://i.rcuts.com/update/247", timeout=10)
+                  data = resp.json()
+                  api = data.get("api")
+                  if not api:
+                      return None
+                  # 尝试 POST 表单
+                  r = requests.post(api, data={"url": url}, timeout=15)
+                  rj = r.json()
+                  video_url = rj.get("video_url") or rj.get("url") or rj.get("video")
+                  return video_url
+              except Exception as e:
+                  logger.error(f"抖音解析失败: {e}")
+                  return None
+
+          def waneng_get_direct_url(original_url):
+              try:
+                  payload = {"appType":"transcript","workUrl":original_url,"type":"text"}
+                  enc_payload = aes_encrypt(json.dumps(payload))
+                  resp = requests.post("https://www.transcriptgenerate.com/prod-api/transcript/createTask",
+                                       data=enc_payload, headers={"Content-Type":"text/plain"}, timeout=15)
+                  if resp.status_code != 200:
+                      return None
+                  decrypted = aes_decrypt(resp.text)
+                  create_res = json.loads(decrypted)
+                  if create_res.get("code") != 200:
+                      return None
+                  task_id = create_res.get("taskId") or create_res.get("data",{}).get("taskId")
+                  if not task_id:
+                      return None
+                  # 轮询查询，最多10次
+                  for _ in range(10):
+                      time.sleep(2)
+                      q_resp = requests.get(
+                          f"https://www.transcriptgenerate.com/prod-api/transcript/queryTask?taskId={task_id}",
+                          timeout=10)
+                      if q_resp.status_code == 200:
+                          q_dec = aes_decrypt(q_resp.text)
+                          q_data = json.loads(q_dec)
+                          if q_data.get("code") == 200:
+                              data = q_data.get("data", {})
+                              if data.get("taskStatus") == "SUCCESS":
+                                  video_list = data.get("videoUrlList")
+                                  if video_list and len(video_list) > 0:
+                                      return video_list[0]
+                              elif data.get("taskStatus") == "FAILURE":
+                                  break
+                  return None
+              except Exception as e:
+                  logger.error(f"哇能下载失败: {e}")
+                  return None
+
+          def download_file(url, save_path):
+              headers = {'User-Agent':'Mozilla/5.0'}
+              with requests.get(url, stream=True, headers=headers, timeout=60) as r:
+                  r.raise_for_status()
+                  with open(save_path, 'wb') as f:
+                      for chunk in r.iter_content(8192):
+                          f.write(chunk)
+              return True
+
+          def extract_audio(video_path, audio_path):
+              cmd = ['ffmpeg', '-y', '-i', str(video_path), '-vn', '-acodec', 'mp3', '-q:a', '2', str(audio_path)]
+              res = subprocess.run(cmd, capture_output=True, text=True)
+              return res.returncode == 0 and os.path.exists(audio_path) and os.path.getsize(audio_path) > 0
+
+          # ========== FunASR 转录（非流式，但分段推送日志） ==========
+          async def transcribe_audio_stream(audio_path, websocket):
+              global MODEL
+              if MODEL is None:
+                  await send_log(websocket, "⏳ 正在加载语音识别模型...\n", stream=True)
+                  from funasr import AutoModel
+                  MODEL = AutoModel(
+                      model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+                      vad_model="damo/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+                      punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
+                      disable_update=True
+                  )
+                  await send_log(websocket, "✅ 模型就绪\n", stream=True)
+              await send_log(websocket, f"🎙️ 开始转写: {os.path.basename(audio_path)}\n", stream=True)
+              try:
+                  result = MODEL.generate(input=str(audio_path), batch_size_s=300)
+                  text = result[0]['text'] if result and len(result) > 0 else ""
+                  await send_log(websocket, f"✅ 转写完成\n---\n{text}", stream=True)
+                  return text
+              except Exception as e:
+                  await send_log(websocket, f"❌ 转写错误: {e}\n", stream=True)
+                  return None
+
+          async def send_log(websocket, message, stream=False):
+              data = json.dumps({"user": "🤖System", "text": message, "stream": stream})
+              await websocket.send(data)
+
+          # ========== 处理任务 ==========
+          async def process_url(websocket, url):
+              log_prefix = f"📥 输入URL: {url}\n"
+              await send_log(websocket, log_prefix, stream=True)
+
+              direct_url = None
+              if is_direct_link(url):
+                  direct_url = url
+                  await send_log(websocket, "🔗 检测为直链\n", stream=True)
+              else:
+                  domain = urlparse(url).netloc
+                  if 'douyin.com' in domain:
+                      await send_log(websocket, "🔄 尝试抖音解析...\n", stream=True)
+                      direct_url = douyin_parse(url)
+                      if direct_url:
+                          await send_log(websocket, "✅ 抖音解析成功\n", stream=True)
+                  if not direct_url:
+                      await send_log(websocket, "🔄 尝试通用解析（哇能）...\n", stream=True)
+                      direct_url = waneng_get_direct_url(url)
+                      if direct_url:
+                          await send_log(websocket, "✅ 哇能解析成功\n", stream=True)
+                      else:
+                          await send_log(websocket, "❌ 无法获取直链，任务终止\n", stream=False)
+                          return
+
+              # 下载
+              tmp_video = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
+              tmp_video.close()
+              await send_log(websocket, f"⬇️ 开始下载视频...\n", stream=True)
+              try:
+                  download_file(direct_url, tmp_video.name)
+                  size_mb = os.path.getsize(tmp_video.name) / 1024 / 1024
+                  await send_log(websocket, f"✅ 下载完成 ({size_mb:.1f} MB)\n", stream=True)
+              except Exception as e:
+                  await send_log(websocket, f"❌ 下载失败: {e}\n", stream=False)
+                  return
+
+              # 提取音频
+              tmp_audio = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+              tmp_audio.close()
+              await send_log(websocket, "🔊 提取音频...\n", stream=True)
+              if not extract_audio(tmp_video.name, tmp_audio.name):
+                  # 如果无法提取，直接使用原文件（可能是纯音频）
+                  shutil.copy(tmp_video.name, tmp_audio.name)
+                  await send_log(websocket, "⚠️ 音频提取失败，尝试直接转写\n", stream=True)
+              os.unlink(tmp_video.name)
+
+              # 转录
+              await transcribe_audio_stream(tmp_audio.name, websocket)
+
+              # 清理
+              if os.path.exists(tmp_audio.name):
+                  os.unlink(tmp_audio.name)
+
+          async def process_file(websocket, file_data, filename):
+              await send_log(websocket, f"📎 接收文件: {filename} ({len(file_data)} bytes)\n", stream=True)
+              tmp_file = tempfile.NamedTemporaryFile(suffix=Path(filename).suffix, delete=False)
+              tmp_file.write(file_data)
+              tmp_file.close()
+              # 判断是否为视频
+              is_video = Path(filename).suffix.lower() in ['.mp4','.avi','.mkv','.mov','.webm','.flv']
+              if is_video:
+                  await send_log(websocket, "🔊 提取音频...\n", stream=True)
+                  tmp_audio = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+                  tmp_audio.close()
+                  if not extract_audio(tmp_file.name, tmp_audio.name):
+                      await send_log(websocket, "❌ 音频提取失败\n", stream=False)
+                      os.unlink(tmp_file.name)
+                      return
+                  os.unlink(tmp_file.name)
+                  audio_path = tmp_audio.name
+              else:
+                  audio_path = tmp_file.name
+
+              await transcribe_audio_stream(audio_path, websocket)
+              os.unlink(audio_path)
+
+          async def handler(websocket):
+              global LOG_STREAM
+              await send_log(websocket, "🚀 转录服务就绪，请发送URL或上传文件\n", stream=False)
+              expecting_file = False
+              expected_filename = None
+
+              async for message in websocket:
+                  if isinstance(message, bytes):
+                      if expecting_file and expected_filename:
+                          await process_file(websocket, message, expected_filename)
+                          expecting_file = False
+                          expected_filename = None
+                      else:
+                          await send_log(websocket, "⚠️ 收到意外的二进制数据，请先发送文件头\n", stream=False)
+                  else:
+                      text = message.strip()
+                      if text.startswith('{'):
+                          try:
+                              meta = json.loads(text)
+                              if meta.get('type') == 'file':
+                                  expecting_file = True
+                                  expected_filename = meta.get('filename', 'upload.bin')
+                              continue
+                          except:
+                              pass
+                      if text == '/bye':
+                          await send_log(websocket, "👋 再见，服务即将关闭\n", stream=False)
+                          break
+                      elif text.startswith('http://') or text.startswith('https://'):
+                          await process_url(websocket, text)
+                      else:
+                          await send_log(websocket, "⚠️ 请输入有效的URL或上传文件\n", stream=False)
+
+          async def main():
+              port = int(os.environ.get("PORT", 8080))
+              async with websockets.serve(handler, "0.0.0.0", port, max_size=100*1024*1024):
+                  logger.info(f"WSS 转录服务启动在 {port}")
+                  await asyncio.Future()  # 永远运行
+
+          if __name__ == "__main__":
+              asyncio.run(main())
+          PYEOF
+          echo "✅ wss_server.py written" >> $GITHUB_STEP_SUMMARY
+
+      # ==================== 启动服务、ngrok 与推送 ====================
+      - name: Start service and ngrok
         env:
           NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
           WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
         run: |
-          # ========== 启动 Python WebSocket 服务 ==========
-          echo "🚀 启动 WebSocket 转录服务..."
-          python wss_transcribe_server.py &
-          SERVER_PID=$!
-          sleep 5
+          # 推送函数
+          wxpush() {
+            local content="$1"
+            echo "📤 推送: $content"
+            curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"summary\": \"\",
+                \"content\": \"${content}\",
+                \"contentType\": 2,
+                \"appToken\": \"${WXPUSH_TOKEN}\",
+                \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
+                \"verifyPayType\": 0,
+                \"topicIds\": [],
+                \"verifyPay\": false,
+                \"url\": \"\"
+              }" > /dev/null
+          }
 
-          if kill -0 $SERVER_PID 2>/dev/null; then
-            echo "✅ 转录服务已启动 (PID: $SERVER_PID)"
-          else
-            echo "❌ 服务启动失败"
+          wxpush "🚀 WSS 转录服务正在启动..."
+
+          # 后台启动 Python 服务
+          python3 wss_server.py &
+          SERVER_PID=$!
+          sleep 3
+
+          if ! kill -0 $SERVER_PID 2>/dev/null; then
+            echo "❌ Python 服务启动失败"
+            wxpush "❌ 服务启动失败"
             exit 1
           fi
 
-          # ========== 清除旧 ngrok 配置，强制获取新 URL ==========
-          echo "🔄 清除旧 ngrok 配置..."
-          pkill -f ngrok || true
-          rm -rf ~/.ngrok2
-          sleep 3
-
-          # ========== 下载并启动 ngrok（强制新隧道） ==========
+          # 启动 ngrok
           curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
           tar xzf ngrok.tgz
-          chmod +x ngrok
-          
-          # 重新认证
           ./ngrok config add-authtoken $NGROK_AUTH_TOKEN
-          
-          # 使用随机端口 + 时间戳强制新隧道
-          RANDOM_PORT=$((8765 + RANDOM % 200))
-          echo "🔄 使用随机端口: $RANDOM_PORT"
-          
-          # 启动 ngrok（添加 --random 参数强制随机子域名）
-          ./ngrok http $RANDOM_PORT --log=stdout --log-level=info --scheme https &
+          ./ngrok http 8080 --log=stdout --log-level=info &
           NGROK_PID=$!
 
-          # 等待 ngrok 就绪
-          for i in {1..30}; do
+          # 等待 ngrok API 就绪
+          for i in $(seq 1 30); do
             sleep 1
             if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
               break
             fi
           done
 
-          # 获取新 URL（重试机制确保获取到新地址）
-          for retry in {1..5}; do
-            NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
-            if [[ "$NGROK_URL" != "null" && -n "$NGROK_URL" ]]; then
-              echo "✅ 获取到 URL: $NGROK_URL"
-              break
-            fi
-            echo "⚠️ 重试获取 URL ($retry/5)..."
-            sleep 2
-          done
-          
-          if [[ -z "$NGROK_URL" || "$NGROK_URL" == "null" ]]; then
-            echo "❌ 无法获取 ngrok 公网地址"
-            exit 1
-          fi
-          
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
           WSS_URL="${NGROK_URL/https:\/\//wss:\/\/}"
 
           echo "============================================"
           echo "✅ 服务已上线"
-          echo "🔗 WebSocket 地址: ${WSS_URL}"
+          echo "🔗 $WSS_URL"
           echo "============================================"
 
-          # 推送服务就绪通知
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"✅ wss 转录服务已上线\n地址: ${WSS_URL}\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
+          wxpush "✅ WSS 转录服务已上线\n地址: ${WSS_URL}\n发送 /bye 结束"
 
-          # 等待停止信号（由 Python 服务在空闲或任务完成后创建 /tmp/stop）
-          while [ ! -f /tmp/stop ]; do
-            sleep 5
+          # 等待 Python 进程结束或超时
+          WAIT_TIME=0
+          MAX_WAIT=6600  # 110分钟
+          while kill -0 $SERVER_PID 2>/dev/null; do
+            sleep 10
+            WAIT_TIME=$((WAIT_TIME+10))
+            if [ $WAIT_TIME -ge $MAX_WAIT ]; then
+              echo "⏰ 达到最大运行时间，强制关闭"
+              kill $SERVER_PID $NGROK_PID 2>/dev/null
+              break
+            fi
           done
 
-          STOP_REASON=$(cat /tmp/stop)
-          echo "🛑 收到停止信号: $STOP_REASON"
+          # 清理 ngrok
+          kill $NGROK_PID 2>/dev/null
+          wxpush "🛑 WSS 转录服务已关闭"
 
-          kill $SERVER_PID $NGROK_PID 2>/dev/null
-          sleep 2
-
-          # 推送关闭通知
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"🛑 wss 转录服务已关闭\n原因: ${STOP_REASON}\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
-
-      - name: Upload artifacts (logs and results)
+      # ==================== 上传产物 ====================
+      - name: Upload artifacts (client HTML and logs)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: transcription-artifacts-${{ github.run_id }}
+          name: wss-transcription-artifacts
           path: |
-            logs/
-            recognized_text.txt
-            transcription_summary.txt
-            no_results.txt
+            wss_client.html
+            wss_server.py
+            transcription.log
           retention-days: 7
-          if-no-files-found: ignore
