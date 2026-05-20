@@ -1,105 +1,71 @@
-name: WSS via ngrok
+name: wss Test Service
 
 on:
   workflow_dispatch:
-    inputs:
-      port:
-        description: "本地 WebSocket 端口"
-        required: false
-        default: "8080"
 
 jobs:
-  wss:
+  start-wss-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
-
-    env:
-      NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+    timeout-minutes: 30
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
 
-      # 纯 YAML 内直接启动 WebSocket Server
-      - name: Start WebSocket Server
+      - name: Create WebSocket server
         run: |
           npm install ws
-
-          cat > server.js <<'EOF'
+          cat > server.js << 'EOF'
           const WebSocket = require('ws');
-
-          const port = process.env.PORT || 8080;
-
-          const wss = new WebSocket.Server({
-            port
-          });
-
-          console.log("WS Server Started:", port);
-
+          const wss = new WebSocket.Server({ port: 8765 });
+          console.log('✅ WebSocket 服务运行在端口 8765');
           wss.on('connection', (ws) => {
-            console.log('Client connected');
-
-            ws.send('hello from github actions');
-
+            console.log('✅ 客户端已连接');
+            ws.send(JSON.stringify({ type: 'system', content: '已连接' }));
             ws.on('message', (msg) => {
-              console.log('recv:', msg.toString());
-              ws.send('echo: ' + msg);
-            });
-
-            ws.on('close', () => {
-              console.log('client disconnected');
+              console.log('收到:', msg.toString());
+              ws.send(JSON.stringify({ type: 'echo', content: msg.toString() }));
             });
           });
-
-          setInterval(() => {}, 1000);
           EOF
-
           node server.js &
+          echo $! > server.pid
+          sleep 2
+          echo "✅ 服务已启动"
 
       - name: Install ngrok
         run: |
-          curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
-          | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+          curl -s https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz | tar xz
+          chmod +x ngrok
+          ./ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
 
-          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
-          | sudo tee /etc/apt/sources.list.d/ngrok.list
-
-          sudo apt update
-          sudo apt install ngrok
-
-      - name: Configure ngrok
-        run: ngrok config add-authtoken $NGROK_AUTH_TOKEN
-
-      - name: Start ngrok tunnel
+      - name: Start ngrok
         run: |
-          ngrok tcp ${{ github.event.inputs.port || '8080' }} > /dev/null &
+          ./ngrok http 8765 &
+          sleep 10
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          WSS_URL=$(echo $NGROK_URL | sed 's/https/wss/')
+          echo "WSS_URL=$WSS_URL" >> $GITHUB_ENV
+          echo "============================================"
+          echo "✅ WebSocket 地址: $WSS_URL"
+          echo "============================================"
 
-      - name: Wait ngrok
-        run: sleep 8
-
-      - name: Get WSS Address
+      - name: Send WxPush
+        env:
+          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
         run: |
-          curl -s http://127.0.0.1:4040/api/tunnels > tunnels.json
+          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"content\": \"✅ WebSocket 服务已上线\n地址: $WSS_URL\",
+              \"contentType\": 2,
+              \"appToken\": \"$WXPUSH_TOKEN\",
+              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"]
+            }"
 
-          HOST=$(cat tunnels.json | jq -r '.tunnels[0].public_url')
-
-          echo ""
-          echo "=============================="
-          echo "NGROK TCP:"
-          echo "$HOST"
-          echo ""
-          echo "WSS URL:"
-          echo "$HOST"
-          echo "=============================="
-
-      - name: Keep Alive
+      - name: Keep alive
         run: |
-          echo "Running..."
-          while true; do
-            sleep 60
-          done
+          echo "服务运行中，等待超时..."
+          sleep 1800
