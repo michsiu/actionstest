@@ -39,15 +39,15 @@ jobs:
           # 日志文件
           LOG_FILE = "transcription.log"
 
+          # 设置 logging 仅用于写入文件
           logging.basicConfig(
               level=logging.INFO,
               format='%(asctime)s - %(levelname)s - %(message)s',
               handlers=[
-                  logging.FileHandler(LOG_FILE, mode='a', encoding='utf-8'),
-                  logging.StreamHandler(sys.stdout)
+                  logging.FileHandler(LOG_FILE, mode='a', encoding='utf-8')
               ]
           )
-          logger = logging.getLogger("WSS_Transcriber")
+          file_logger = logging.getLogger("WSS_Transcriber_File")
 
           MODEL = None
 
@@ -89,7 +89,7 @@ jobs:
                   video_url = rj.get("video_url") or rj.get("url") or rj.get("video")
                   return video_url
               except Exception as e:
-                  logger.error(f"抖音解析失败: {e}")
+                  print(f"抖音解析失败: {e}")
                   return None
 
           def waneng_get_direct_url(original_url):
@@ -125,7 +125,7 @@ jobs:
                                   break
                   return None
               except Exception as e:
-                  logger.error(f"哇能下载失败: {e}")
+                  print(f"哇能下载失败: {e}")
                   return None
 
           def download_file(url, save_path):
@@ -143,13 +143,14 @@ jobs:
               return res.returncode == 0 and os.path.exists(audio_path) and os.path.getsize(audio_path) > 0
 
           async def send_log(websocket, message, stream=False):
-              """推送日志到客户端，同时写入本地文件"""
-              logger.info(message.strip())
+              """推送日志到客户端，同时写入文件和标准输出"""
+              print(message.strip())
+              file_logger.info(message.strip())
               try:
                   data = json.dumps({"user": "🤖System", "text": message, "stream": stream})
                   await websocket.send(data)
               except Exception as e:
-                  logger.error(f"推送日志失败: {e}")
+                  print(f"推送日志失败: {e}")
 
           async def transcribe_audio_stream(audio_path, websocket):
               global MODEL
@@ -280,14 +281,14 @@ jobs:
                           else:
                               await send_log(websocket, "⚠️ 请输入有效的URL或上传文件\n", stream=False)
               except websockets.exceptions.ConnectionClosed:
-                  logger.info("客户端断开连接")
+                  print("客户端断开连接")
               except Exception as e:
-                  logger.error(f"处理消息异常: {e}")
+                  print(f"处理消息异常: {e}")
 
           async def main():
               port = int(os.environ.get("PORT", 8080))
+              print(f"WSS 转录服务启动在 {port}")
               async with websockets.serve(handler, "0.0.0.0", port, max_size=100*1024*1024):
-                  logger.info(f"WSS 转录服务启动在 {port}")
                   await asyncio.Future()
 
           if __name__ == "__main__":
@@ -368,6 +369,9 @@ jobs:
 
       - name: Wait for transcription service to complete
         run: |
+          docker logs -f wss-transcriber &
+          LOG_PID=$!
+
           WAIT_TIME=0
           MAX_WAIT=6600
           while true; do
@@ -383,6 +387,8 @@ jobs:
               break
             fi
           done
+
+          kill $LOG_PID 2>/dev/null
 
       - name: Cleanup
         if: always()
