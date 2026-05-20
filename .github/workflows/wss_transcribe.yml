@@ -1,0 +1,161 @@
+name: wss Audio Transcription Service (WebSocket + ngrok + WxPush)
+
+on:
+  workflow_dispatch:
+    inputs:
+      timeout_minutes:
+        description: '服务运行超时（分钟）'
+        required: false
+        default: 120
+        type: number
+
+env:
+  PYTHON_VERSION: '3.10'
+
+jobs:
+  start-transcribe-service:
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout_minutes || 120 }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache FunASR models
+        id: cache-models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/modelscope
+          key: funasr-models-${{ runner.os }}
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg jq
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install websockets requests pycryptodome modelscope funasr torch torchaudio
+
+      - name: WxPush - Service starting
+        env:
+          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
+        run: |
+          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"summary\": \"\",
+              \"content\": \"🎙️ wss 转录服务正在启动...\n仓库: ${{ github.repository }}\n触发者: ${{ github.actor }}\",
+              \"contentType\": 2,
+              \"appToken\": \"${WXPUSH_TOKEN}\",
+              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
+              \"verifyPayType\": 0,
+              \"topicIds\": [],
+              \"verifyPay\": false,
+              \"url\": \"\"
+            }"
+
+      - name: Create runtime directory
+        run: |
+          mkdir -p tmp_uploads logs
+
+      - name: Start WebSocket transcription server
+        env:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
+        run: |
+          # ========== 启动 Python WebSocket 服务 ==========
+          echo "🚀 启动 WebSocket 转录服务..."
+          python wss_transcribe_server.py &
+          SERVER_PID=$!
+          sleep 5
+
+          if kill -0 $SERVER_PID 2>/dev/null; then
+            echo "✅ 转录服务已启动 (PID: $SERVER_PID)"
+          else
+            echo "❌ 服务启动失败"
+            exit 1
+          fi
+
+          # ========== 下载并启动 ngrok ==========
+          curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
+          tar xzf ngrok.tgz
+          chmod +x ngrok
+          ./ngrok config add-authtoken $NGROK_AUTH_TOKEN
+          ./ngrok http 8765 --log=stdout --log-level=info &
+          NGROK_PID=$!
+
+          # 等待 ngrok 就绪
+          for i in {1..30}; do
+            sleep 1
+            if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
+              break
+            fi
+          done
+
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          WSS_URL="${NGROK_URL/http:/wss:}"
+
+          echo "============================================"
+          echo "✅ 服务已上线"
+          echo "🔗 WebSocket 地址: ${WSS_URL}"
+          echo "============================================"
+
+          # 推送服务就绪通知
+          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"summary\": \"\",
+              \"content\": \"✅ wss 转录服务已上线\n地址: ${WSS_URL}\",
+              \"contentType\": 2,
+              \"appToken\": \"${WXPUSH_TOKEN}\",
+              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
+              \"verifyPayType\": 0,
+              \"topicIds\": [],
+              \"verifyPay\": false,
+              \"url\": \"\"
+            }"
+
+          # 等待停止信号（由 Python 服务在空闲或任务完成后创建 /tmp/stop）
+          while [ ! -f /tmp/stop ]; do
+            sleep 5
+          done
+
+          STOP_REASON=$(cat /tmp/stop)
+          echo "🛑 收到停止信号: $STOP_REASON"
+
+          kill $SERVER_PID $NGROK_PID 2>/dev/null
+          sleep 2
+
+          # 推送关闭通知
+          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"summary\": \"\",
+              \"content\": \"🛑 wss 转录服务已关闭\n原因: ${STOP_REASON}\",
+              \"contentType\": 2,
+              \"appToken\": \"${WXPUSH_TOKEN}\",
+              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
+              \"verifyPayType\": 0,
+              \"topicIds\": [],
+              \"verifyPay\": false,
+              \"url\": \"\"
+            }"
+
+      - name: Upload artifacts (logs and results)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: transcription-artifacts-${{ github.run_id }}
+          path: |
+            logs/
+            recognized_text.txt
+            transcription_summary.txt
+            no_results.txt
+          retention-days: 7
+          if-no-files-found: ignore
