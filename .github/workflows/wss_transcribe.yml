@@ -36,10 +36,8 @@ jobs:
           from Crypto.Util.Padding import pad, unpad
           import base64
 
-          # 日志文件
           LOG_FILE = "transcription.log"
 
-          # 设置 logging 仅用于写入文件
           logging.basicConfig(
               level=logging.INFO,
               format='%(asctime)s - %(levelname)s - %(message)s',
@@ -51,7 +49,6 @@ jobs:
 
           MODEL = None
 
-          # ========== 加密工具（哇能） ==========
           KEY = b"aaDJL2d9DfhLZO0z"
           IV = b"412ADDSSFA342442"
 
@@ -143,7 +140,6 @@ jobs:
               return res.returncode == 0 and os.path.exists(audio_path) and os.path.getsize(audio_path) > 0
 
           async def send_log(websocket, message, stream=False):
-              """推送日志到客户端，同时写入文件和标准输出"""
               print(message.strip())
               file_logger.info(message.strip())
               try:
@@ -275,7 +271,8 @@ jobs:
                                   pass
                           if text == '/bye':
                               await send_log(websocket, "👋 再见，服务即将关闭\n", stream=False)
-                              break
+                              await asyncio.sleep(0.5)
+                              sys.exit(0)
                           elif text.startswith('http://') or text.startswith('https://'):
                               await process_url(websocket, text)
                           else:
