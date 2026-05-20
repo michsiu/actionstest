@@ -12,7 +12,7 @@ on:
 jobs:
   start-wss-test:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ github.event.inputs.timeout_minutes || 30 }}
+    timeout-minutes: ${{ inputs.timeout_minutes }}
 
     steps:
       - name: Install dependencies
@@ -167,14 +167,12 @@ jobs:
         if: env.NGROK_URL != ''
         env:
           WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
-          WSS_URL: ${{ env.WSS_URL }}
-          NGROK_URL: ${{ env.NGROK_URL }}
         run: |
           curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
             -H "Content-Type: application/json" \
             -d "{
               \"summary\": \"\",
-              \"content\": \"✅ wss 测试服务已上线\n\nWebSocket 地址: ${WSS_URL}\nHTTP 地址: ${NGROK_URL}\n\n测试方法:\n1. 使用 WebSocket 客户端连接\n2. 发送任意消息，服务器会回显\n3. 发送 ping 会收到 pong\n\n服务将在 ${{ github.event.inputs.timeout_minutes }} 分钟后自动关闭\",
+              \"content\": \"✅ wss 测试服务已上线\n\nWebSocket 地址: ${WSS_URL}\nHTTP 地址: ${NGROK_URL}\n\n测试方法:\n1. 使用 WebSocket 客户端连接\n2. 发送任意消息，服务器会回显\n3. 发送 ping 会收到 pong\n\n服务将在 ${{ inputs.timeout_minutes }} 分钟后自动关闭\",
               \"contentType\": 2,
               \"appToken\": \"${WXPUSH_TOKEN}\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
@@ -209,8 +207,7 @@ jobs:
           echo "🟢 测试服务运行中..."
           echo "📊 监控地址: http://localhost:4040/api/tunnels"
           
-          TIMEOUT=${{ github.event.inputs.timeout_minutes || 30 }}
-          END_TIME=$((SECONDS + TIMEOUT * 60))
+          END_TIME=$((SECONDS + ${{ inputs.timeout_minutes }} * 60))
           
           while [ ! -f /tmp/stop ] && [ $SECONDS -lt $END_TIME ]; do
             sleep 10
