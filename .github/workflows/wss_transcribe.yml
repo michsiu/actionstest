@@ -6,8 +6,8 @@ on:
       timeout_minutes:
         description: '服务运行超时（分钟）'
         required: false
-        default: 120
         type: number
+        default: 120
 
 env:
   PYTHON_VERSION: '3.10'
@@ -15,7 +15,7 @@ env:
 jobs:
   start-transcribe-service:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.timeout_minutes || 120 }}
+    timeout-minutes: 120
 
     steps:
       - uses: actions/checkout@v4
