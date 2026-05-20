@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-WebSocket 转录服务 - 修复版
-- 空闲超时基于全局连接数
-- 服务不会因单个客户端断开而退出
-- 稳定支持多客户端（按需）
+WebSocket 转录服务 - 修复保持连接版
+- 循环接收消息，不会因一条消息就断开
+- 支持多轮请求（一次连接可处理多个文件/URL）
+- 空闲超时基于无活动连接
 """
 
 import asyncio
@@ -14,8 +14,6 @@ import re
 import time
 import subprocess
 import logging
-import tempfile
-import shutil
 from pathlib import Path
 from urllib.parse import urlparse
 import requests
@@ -29,7 +27,7 @@ LOG_DIR = Path("logs")
 UPLOAD_DIR.mkdir(exist_ok=True)
 LOG_DIR.mkdir(exist_ok=True)
 
-IDLE_TIMEOUT = 300  # 无任何客户端连接时，等待5分钟后关闭服务
+IDLE_TIMEOUT = 300  # 无任何客户端连接时，5分钟后关闭服务
 
 logging.basicConfig(
     level=logging.INFO,
@@ -42,9 +40,23 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ---------- 全局状态 ----------
-active_connections = set()      # 当前活跃的 WebSocket 连接
-last_activity_time = time.time() # 最后一次有客户端活动的时间（连接或消息）
-stop_event = asyncio.Event()    # 用于通知主循环停止
+active_connections = set()
+last_activity_time = time.time()
+stop_event = asyncio.Event()
+# 模型全局加载一次
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        from funasr import AutoModel
+        _model = AutoModel(
+            model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+            vad_model="damo/speech_fsmn_vad_zh-cn-16k-common-pytorch",
+            punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
+            disable_update=True
+        )
+    return _model
 
 # ---------- 抖音解析 ----------
 def parse_douyin_url(share_url):
@@ -191,20 +203,10 @@ async def extract_audio(video_path, audio_path, websocket):
         await websocket.send(json.dumps({"type": "log", "content": f"❌ ffmpeg 错误: {str(e)}"}))
         return False
 
-# ---------- FunASR 转录 ----------
-def load_funasr_model():
-    from funasr import AutoModel
-    model = AutoModel(
-        model="damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
-        vad_model="damo/speech_fsmn_vad_zh-cn-16k-common-pytorch",
-        punc_model="damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
-        disable_update=True
-    )
-    return model
-
-async def transcribe_audio(audio_path, websocket, model):
+async def transcribe_audio(audio_path, websocket):
     await websocket.send(json.dumps({"type": "log", "content": "📝 开始转录，请稍候..."}))
     try:
+        model = get_model()
         res = model.generate(input=str(audio_path), batch_size_s=300, hotwords='')
         if res and len(res) > 0:
             text = res[0].get('text', '').strip()
@@ -223,7 +225,46 @@ async def transcribe_audio(audio_path, websocket, model):
         await websocket.send(json.dumps({"type": "log", "content": f"❌ 转录失败: {str(e)}"}))
         return False
 
-# ---------- WebSocket 处理器 ----------
+async def process_file(file_bytes, websocket):
+    """处理二进制文件上传"""
+    await websocket.send(json.dumps({"type": "log", "content": "📁 接收到文件，保存中..."}))
+    timestamp = int(time.time() * 1000)
+    input_path = UPLOAD_DIR / f"upload_{timestamp}.mp4"
+    with open(input_path, 'wb') as f:
+        f.write(file_bytes)
+    file_size = input_path.stat().st_size
+    await websocket.send(json.dumps({"type": "log", "content": f"✅ 文件已保存: {input_path.name} ({file_size} bytes)"}))
+    audio_path = input_path.with_suffix('.mp3')
+    if await extract_audio(input_path, audio_path, websocket):
+        await transcribe_audio(audio_path, websocket)
+    else:
+        await websocket.send(json.dumps({"type": "log", "content": "无法提取音频，可能文件格式不支持"}))
+    input_path.unlink(missing_ok=True)
+    audio_path.unlink(missing_ok=True)
+
+async def process_url(text, websocket):
+    """处理文本URL"""
+    await websocket.send(json.dumps({"type": "log", "content": f"🔍 解析输入: {text}"}))
+    video_url = extract_video_direct_url(text)
+    if not video_url:
+        await websocket.send(json.dumps({"type": "error", "content": "无法获取视频直链，请检查链接或尝试其他平台。"}))
+        return
+
+    await websocket.send(json.dumps({"type": "log", "content": f"✅ 获取到直链: {video_url}"}))
+    timestamp = int(time.time() * 1000)
+    video_path = UPLOAD_DIR / f"download_{timestamp}.mp4"
+    if await download_file(video_url, video_path, websocket):
+        audio_path = video_path.with_suffix('.mp3')
+        if await extract_audio(video_path, audio_path, websocket):
+            await transcribe_audio(audio_path, websocket)
+        else:
+            await websocket.send(json.dumps({"type": "log", "content": "无法提取音频"}))
+        video_path.unlink(missing_ok=True)
+        audio_path.unlink(missing_ok=True)
+    else:
+        await websocket.send(json.dumps({"type": "error", "content": "下载失败，任务终止。"}))
+
+# ---------- WebSocket 处理器（保持长连接）----------
 async def handle_client(websocket):
     global last_activity_time
     remote = websocket.remote_address
@@ -234,62 +275,26 @@ async def handle_client(websocket):
     try:
         await websocket.send(json.dumps({"type": "log", "content": "✅ 已连接到转录服务，请上传视频/音频文件或发送视频链接。"}))
 
-        # 接收第一条消息（文件或URL）
-        message = await websocket.recv()
-        last_activity_time = time.time()
-
-        if isinstance(message, bytes):
-            await websocket.send(json.dumps({"type": "log", "content": "📁 接收到文件，保存中..."}))
-            timestamp = int(time.time() * 1000)
-            input_path = UPLOAD_DIR / f"upload_{timestamp}.mp4"
-            with open(input_path, 'wb') as f:
-                f.write(message)
-            file_size = input_path.stat().st_size
-            await websocket.send(json.dumps({"type": "log", "content": f"✅ 文件已保存: {input_path.name} ({file_size} bytes)"}))
-            audio_path = input_path.with_suffix('.mp3')
-            model = load_funasr_model()
-            if await extract_audio(input_path, audio_path, websocket):
-                await transcribe_audio(audio_path, websocket, model)
+        # 循环接收消息
+        async for message in websocket:
+            last_activity_time = time.time()
+            if isinstance(message, bytes):
+                await process_file(message, websocket)
             else:
-                await websocket.send(json.dumps({"type": "log", "content": "无法提取音频，可能文件格式不支持"}))
-            input_path.unlink(missing_ok=True)
-            audio_path.unlink(missing_ok=True)
-        else:
-            text = message
-            await websocket.send(json.dumps({"type": "log", "content": f"🔍 解析输入: {text}"}))
-            video_url = extract_video_direct_url(text)
-            if not video_url:
-                await websocket.send(json.dumps({"type": "error", "content": "无法获取视频直链，请检查链接或尝试其他平台。"}))
-                return
-
-            await websocket.send(json.dumps({"type": "log", "content": f"✅ 获取到直链: {video_url}"}))
-            timestamp = int(time.time() * 1000)
-            video_path = UPLOAD_DIR / f"download_{timestamp}.mp4"
-            if await download_file(video_url, video_path, websocket):
-                audio_path = video_path.with_suffix('.mp3')
-                model = load_funasr_model()
-                if await extract_audio(video_path, audio_path, websocket):
-                    await transcribe_audio(audio_path, websocket, model)
-                else:
-                    await websocket.send(json.dumps({"type": "log", "content": "无法提取音频"}))
-                video_path.unlink(missing_ok=True)
-                audio_path.unlink(missing_ok=True)
-            else:
-                await websocket.send(json.dumps({"type": "error", "content": "下载失败，任务终止。"}))
-
-    except websockets.exceptions.ConnectionClosed:
+                await process_url(message, websocket)
+            # 处理完毕后继续等待下一条消息，连接保持
         logger.info(f"客户端断开: {remote}")
-    except Exception as e:
-        logger.error(f"处理客户端异常: {e}")
+    except websockets.exceptions.ConnectionClosed:
+        logger.info(f"客户端连接关闭: {remote}")
     finally:
         active_connections.discard(websocket)
         last_activity_time = time.time()
 
-# ---------- 空闲超时监控任务 ----------
+# ---------- 空闲超时监控 ----------
 async def idle_monitor():
     global last_activity_time
     while not stop_event.is_set():
-        await asyncio.sleep(10)  # 每10秒检查一次
+        await asyncio.sleep(10)
         if not active_connections and (time.time() - last_activity_time) > IDLE_TIMEOUT:
             logger.info("空闲超时，关闭服务")
             with open("/tmp/stop", "w") as f:
@@ -302,15 +307,14 @@ async def idle_monitor():
 async def main():
     # 预加载模型
     logger.info("预加载 FunASR 模型...")
-    load_funasr_model()
+    get_model()
     logger.info("模型加载完成")
 
-    # 启动空闲监控
     asyncio.create_task(idle_monitor())
 
     async with websockets.serve(handle_client, "0.0.0.0", 8765, ping_interval=20, ping_timeout=60):
         logger.info("WebSocket 服务启动在 0.0.0.0:8765")
-        await stop_event.wait()  # 等待停止信号
+        await stop_event.wait()
 
 if __name__ == "__main__":
     asyncio.run(main())
