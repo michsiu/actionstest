@@ -1,171 +1,31 @@
-name: wss Test Service
+name: ngrok 极简测试
 
 on:
   workflow_dispatch:
 
 env:
   NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-  WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
 
 jobs:
-  start-wss-test:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
     steps:
-      - name: 下载 ngrok
+      - name: 直接测试 ngrok
         run: |
           curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
           tar xzf ngrok.tgz
           chmod +x ngrok
-          echo "✅ ngrok 下载完成"
-
-      - name: 验证并设置 Token
-        run: |
-          echo "============================================"
-          echo "验证 NGROK_AUTH_TOKEN"
-          echo "============================================"
           
-          if [ -z "$NGROK_AUTH_TOKEN" ]; then
-            echo "❌ NGROK_AUTH_TOKEN 未设置"
-            exit 1
-          fi
-          
-          echo "Token 原始值: '$NGROK_AUTH_TOKEN'"
-          echo "Token 长度: ${#NGROK_AUTH_TOKEN}"
-          
-          # 去除可能的前后空格
-          TOKEN_CLEAN=$(echo "$NGROK_AUTH_TOKEN" | xargs)
-          echo "清理后 Token: '$TOKEN_CLEAN'"
-          
-          # 直接用环境变量启动 ngrok（不通过 config 文件）
-          echo ""
-          echo "使用 token 直接启动..."
-          
-          # 方法1: 通过 config 文件
+          # 创建配置文件
           mkdir -p ~/.ngrok
-          echo "authtoken: $TOKEN_CLEAN" > ~/.ngrok/ngrok.yml
-          cat ~/.ngrok/ngrok.yml
-          
-          echo ""
-          echo "验证配置文件..."
-          ./ngrok config check
-          
-          echo ""
-          echo "============================================"
-          echo "✅ Token 设置完成"
-          echo "============================================"
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: 创建 WebSocket 服务器
-        run: |
-          npm install ws
-          cat > server.js << 'EOF'
-          const WebSocket = require('ws');
-          const wss = new WebSocket.Server({ port: 8765 });
-          console.log('✅ WebSocket 服务运行在端口 8765');
-          wss.on('connection', (ws) => {
-            console.log('✅ 客户端已连接');
-            ws.send(JSON.stringify({ type: 'system', content: '连接成功' }));
-            ws.on('message', (msg) => {
-              console.log('📩 收到:', msg.toString());
-              ws.send(JSON.stringify({ type: 'echo', content: msg.toString() }));
-            });
-          });
+          cat > ~/.ngrok/ngrok.yml << EOF
+          version: "2"
+          authtoken: $NGROK_AUTH_TOKEN
           EOF
-          node server.js &
-          echo $! > server.pid
-          sleep 3
-          echo "✅ WebSocket 服务已启动"
-
-      - name: 启动 ngrok 并获取地址
-        run: |
-          echo "启动 ngrok 隧道..."
           
-          # 确保配置文件存在
-          ls -la ~/.ngrok/
           cat ~/.ngrok/ngrok.yml
           
-          # 启动 ngrok
-          ./ngrok http 8765 --log=stdout 2>&1 | tee ngrok.log &
-          NGROK_PID=$!
-          echo "NGROK_PID=$NGROK_PID" >> $GITHUB_ENV
-          
-          echo "⏳ 等待 ngrok 启动..."
+          # 启动
+          ./ngrok http 8080 &
           sleep 10
-          
-          # 检查进程是否还在运行
-          if ! kill -0 $NGROK_PID 2>/dev/null; then
-            echo "❌ ngrok 进程已退出"
-            cat ngrok.log
-            exit 1
-          fi
-          
-          # 等待 API 就绪
-          for i in {1..30}; do
-            if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
-              echo "✅ ngrok API 就绪 (第 $i 秒)"
-              break
-            fi
-            if [ $i -eq 30 ]; then
-              echo "❌ ngrok API 启动超时"
-              echo ""
-              echo "=== ngrok 日志 ==="
-              cat ngrok.log
-              exit 1
-            fi
-            sleep 1
-          done
-          
-          sleep 2
-          
-          echo ""
-          echo "=== 隧道信息 ==="
           curl -s http://localhost:4040/api/tunnels | jq .
-          
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url // empty')
-          
-          if [ -n "$NGROK_URL" ]; then
-            WSS_URL=$(echo "$NGROK_URL" | sed 's/https/wss/')
-            echo "WSS_URL=$WSS_URL" >> $GITHUB_ENV
-            echo ""
-            echo "============================================"
-            echo "✅ WebSocket 地址: $WSS_URL"
-            echo "============================================"
-          else
-            echo "❌ 无法获取 ngrok URL"
-            echo ""
-            echo "=== ngrok 完整日志 ==="
-            cat ngrok.log
-            exit 1
-          fi
-
-      - name: 发送微信通知
-        if: env.WSS_URL != ''
-        run: |
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"content\": \"✅ WebSocket 测试服务已上线\n\n地址: $WSS_URL\n\n发送任意消息测试\",
-              \"contentType\": 2,
-              \"appToken\": \"$WXPUSH_TOKEN\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"]
-            }"
-          echo "✅ 微信通知已发送"
-
-      - name: 保持服务运行
-        if: env.WSS_URL != ''
-        run: |
-          echo "🟢 服务运行中，30分钟后关闭..."
-          sleep 1800
-
-      - name: 清理
-        if: always()
-        run: |
-          kill $(cat server.pid) 2>/dev/null || true
-          kill $NGROK_PID 2>/dev/null || true
-          echo "✅ 清理完成"
