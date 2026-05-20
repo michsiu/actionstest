@@ -13,84 +13,171 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - name: 检查 Secrets
-        run: |
-          if [ -z "$NGROK_AUTH_TOKEN" ]; then
-            echo "❌ NGROK_AUTH_TOKEN 未设置"
-            exit 1
-          fi
-          echo "✅ NGROK_AUTH_TOKEN 已设置 (长度: ${#NGROK_AUTH_TOKEN})"
-
-      - name: 测试 ngrok 认证
+      - name: 下载 ngrok
         run: |
           curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
           tar xzf ngrok.tgz
           chmod +x ngrok
+          echo "✅ ngrok 下载完成"
+
+      - name: 验证 Token 格式
+        run: |
+          echo "============================================"
+          echo "开始验证 NGROK_AUTH_TOKEN"
+          echo "============================================"
           
-          # 测试认证是否有效
-          echo "测试 ngrok 认证..."
-          ./ngrok config add-authtoken $NGROK_AUTH_TOKEN
-          ./ngrok config check
-          echo "✅ ngrok 认证测试完成"
+          if [ -z "$NGROK_AUTH_TOKEN" ]; then
+            echo "❌ NGROK_AUTH_TOKEN 未设置"
+            exit 1
+          fi
+          
+          echo "Token 长度: ${#NGROK_AUTH_TOKEN}"
+          echo "Token 前4位: ${NGROK_AUTH_TOKEN:0:4}"
+          echo "Token 后4位: ${NGROK_AUTH_TOKEN: -4}"
+          
+          # 检查是否有空格
+          if [[ "$NGROK_AUTH_TOKEN" == *" "* ]]; then
+            echo "❌ Token 包含空格"
+            exit 1
+          fi
+          
+          # 检查是否有换行
+          if [[ "$NGROK_AUTH_TOKEN" == *$'\n'* ]]; then
+            echo "❌ Token 包含换行符"
+            exit 1
+          fi
+          
+          # 检查是否有特殊字符（只允许字母数字）
+          if [[ "$NGROK_AUTH_TOKEN" =~ [^a-zA-Z0-9] ]]; then
+            echo "⚠️ Token 包含非字母数字字符，这可能是正常的"
+          fi
+          
+          echo "✅ Token 格式检查通过"
+          
+          # 尝试配置 token
+          echo ""
+          echo "尝试配置 token..."
+          if ./ngrok config add-authtoken "$NGROK_AUTH_TOKEN"; then
+            echo "✅ token 配置成功"
+          else
+            echo "❌ token 配置失败"
+            exit 1
+          fi
+          
+          # 验证配置
+          echo ""
+          echo "验证配置..."
+          if ./ngrok config check; then
+            echo "✅ 配置验证通过"
+          else
+            echo "❌ 配置验证失败"
+            exit 1
+          fi
+          
+          echo ""
+          echo "============================================"
+          echo "✅ Token 验证全部通过"
+          echo "============================================"
 
-      - name: 启动简单 HTTP 服务器
-        run: |
-          python3 -m http.server 8765 &
-          echo $! > http.pid
-          sleep 2
-          curl -s http://localhost:8765 > /dev/null && echo "✅ HTTP 服务器运行正常"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: 启动 ngrok
+      - name: 创建 WebSocket 服务器
         run: |
-          # 前台运行 ngrok 并输出日志
+          npm install ws
+          cat > server.js << 'EOF'
+          const WebSocket = require('ws');
+          const wss = new WebSocket.Server({ port: 8765 });
+          console.log('✅ WebSocket 服务运行在端口 8765');
+          wss.on('connection', (ws) => {
+            console.log('✅ 客户端已连接');
+            ws.send(JSON.stringify({ type: 'system', content: '连接成功' }));
+            ws.on('message', (msg) => {
+              console.log('📩 收到:', msg.toString());
+              ws.send(JSON.stringify({ type: 'echo', content: msg.toString() }));
+            });
+          });
+          EOF
+          node server.js &
+          echo $! > server.pid
+          sleep 3
+          echo "✅ WebSocket 服务已启动"
+
+      - name: 启动 ngrok 并获取地址
+        run: |
+          echo "启动 ngrok 隧道..."
           ./ngrok http 8765 --log=stdout 2>&1 | tee ngrok.log &
           NGROK_PID=$!
           echo "NGROK_PID=$NGROK_PID" >> $GITHUB_ENV
           
-          echo "等待 ngrok 启动..."
+          echo "⏳ 等待 ngrok API 就绪..."
           for i in {1..30}; do
             sleep 1
-            if curl -s http://localhost:4040/api/tunnels 2>/dev/null; then
-              echo "✅ ngrok API 就绪"
+            if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
+              echo "✅ ngrok API 就绪 (第 $i 秒)"
               break
             fi
-            echo "等待中... ($i/30)"
+            if [ $i -eq 30 ]; then
+              echo "❌ ngrok API 启动超时"
+              echo ""
+              echo "=== ngrok 日志 ==="
+              cat ngrok.log
+              exit 1
+            fi
           done
           
-          # 显示隧道信息
+          sleep 2
+          
           echo ""
-          echo "=== ngrok 隧道信息 ==="
-          curl -s http://localhost:4040/api/tunnels | jq . || echo "无法获取隧道信息"
-          echo ""
+          echo "=== 获取隧道信息 ==="
+          curl -s http://localhost:4040/api/tunnels | jq .
           
           NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url // empty')
           
           if [ -n "$NGROK_URL" ]; then
             WSS_URL=$(echo "$NGROK_URL" | sed 's/https/wss/')
             echo "WSS_URL=$WSS_URL" >> $GITHUB_ENV
-            echo "✅ 获取到地址: $WSS_URL"
+            echo ""
+            echo "============================================"
+            echo "✅ WebSocket 地址: $WSS_URL"
+            echo "============================================"
           else
             echo "❌ 无法获取 ngrok URL"
             echo ""
-            echo "=== ngrok 日志 ==="
+            echo "=== ngrok 完整日志 ==="
             cat ngrok.log
             exit 1
           fi
 
       - name: 发送微信通知
         if: env.WSS_URL != ''
+        env:
+          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
         run: |
           curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
             -H "Content-Type: application/json" \
             -d "{
-              \"content\": \"✅ WebSocket 服务已上线\n地址: $WSS_URL\",
+              \"content\": \"✅ WebSocket 测试服务已上线\n\n地址: $WSS_URL\n\n使用方法:\n1. 打开 WebSocket 客户端\n2. 连接以上地址\n3. 发送任意消息测试\n\n服务将运行 30 分钟后自动关闭\",
               \"contentType\": 2,
               \"appToken\": \"$WXPUSH_TOKEN\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"]
             }"
+          echo "✅ 微信通知已发送"
 
-      - name: 保持运行
+      - name: 保持服务运行
         if: env.WSS_URL != ''
         run: |
-          echo "服务运行中，20分钟后关闭..."
-          sleep 1200
+          echo ""
+          echo "🟢 服务运行中，30分钟后自动关闭..."
+          echo "📊 监控地址: http://localhost:4040/api/tunnels"
+          echo ""
+          sleep 1800
+
+      - name: 清理
+        if: always()
+        run: |
+          kill $(cat server.pid) 2>/dev/null || true
+          kill $NGROK_PID 2>/dev/null || true
+          echo "✅ 清理完成"
