@@ -35,19 +35,37 @@ jobs:
           sleep 2
           echo "✅ 服务已启动"
 
-      - name: Install ngrok
+      - name: Install and config ngrok
         run: |
           curl -s https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz | tar xz
           chmod +x ngrok
+          echo "✅ ngrok 下载完成"
           ./ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+          echo "✅ ngrok token 已配置"
 
-      - name: Start ngrok
+      - name: Start ngrok and get URL
         run: |
-          ./ngrok http 8765 &
-          sleep 10
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          ./ngrok http 8765 > /dev/null 2>&1 &
+          echo "⏳ 等待 ngrok 启动..."
+          sleep 15
+          
+          # 获取 URL
+          for i in {1..20}; do
+            NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url // empty')
+            if [ -n "$NGROK_URL" ]; then
+              break
+            fi
+            sleep 2
+          done
+          
+          if [ -z "$NGROK_URL" ]; then
+            echo "❌ 无法获取 ngrok URL"
+            exit 1
+          fi
+          
           WSS_URL=$(echo $NGROK_URL | sed 's/https/wss/')
           echo "WSS_URL=$WSS_URL" >> $GITHUB_ENV
+          
           echo "============================================"
           echo "✅ WebSocket 地址: $WSS_URL"
           echo "============================================"
@@ -64,8 +82,9 @@ jobs:
               \"appToken\": \"$WXPUSH_TOKEN\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"]
             }"
+          echo "✅ 微信通知已发送"
 
       - name: Keep alive
         run: |
-          echo "服务运行中，等待超时..."
+          echo "服务运行中，30分钟后自动关闭..."
           sleep 1800
