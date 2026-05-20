@@ -1,265 +1,105 @@
-name: wss Test Service (Pure WebSocket + ngrok + WxPush)
+name: WSS via ngrok
 
 on:
   workflow_dispatch:
     inputs:
-      timeout_minutes:
-        description: '服务运行超时（分钟）'
+      port:
+        description: "本地 WebSocket 端口"
         required: false
-        default: 30
-        type: number
+        default: "8080"
 
 jobs:
-  start-wss-test:
+  wss:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    env:
+      NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
     steps:
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq curl
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: WxPush - Service starting
-        env:
-          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
-        run: |
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"🧪 wss 测试服务正在启动...\n仓库: ${{ github.repository }}\n触发者: ${{ github.actor }}\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
-
-      - name: Setup Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: Create and start WebSocket test server
+      # 纯 YAML 内直接启动 WebSocket Server
+      - name: Start WebSocket Server
         run: |
-          # 创建服务目录
-          mkdir -p wss-server
-          cd wss-server
-          
-          # 初始化并安装 ws
-          npm init -y
           npm install ws
-          
-          # 创建服务器代码
-          cat > server.js << 'EOF'
+
+          cat > server.js <<'EOF'
           const WebSocket = require('ws');
-          const wss = new WebSocket.Server({ port: 8765 });
-          
-          console.log('🚀 WebSocket 测试服务已启动在端口 8765');
-          
-          wss.on('connection', (ws, req) => {
-            const ip = req.socket.remoteAddress;
-            const time = new Date().toLocaleString('zh-CN');
-            console.log(`✅ 新客户端连接: ${ip} at ${time}`);
-            
-            ws.send(JSON.stringify({
-              type: 'system',
-              content: `✅ 已连接到测试服务\n时间: ${time}\nIP: ${ip}`
-            }));
-            
-            ws.on('message', (data) => {
-              const msg = data.toString();
-              console.log(`📩 收到消息: ${msg}`);
-              
-              ws.send(JSON.stringify({
-                type: 'echo',
-                content: msg,
-                timestamp: new Date().toISOString()
-              }));
-              
-              if (msg.toLowerCase() === 'ping') {
-                ws.send(JSON.stringify({
-                  type: 'pong',
-                  content: '🏓 pong!',
-                  timestamp: new Date().toISOString()
-                }));
-              }
+
+          const port = process.env.PORT || 8080;
+
+          const wss = new WebSocket.Server({
+            port
+          });
+
+          console.log("WS Server Started:", port);
+
+          wss.on('connection', (ws) => {
+            console.log('Client connected');
+
+            ws.send('hello from github actions');
+
+            ws.on('message', (msg) => {
+              console.log('recv:', msg.toString());
+              ws.send('echo: ' + msg);
             });
-            
+
             ws.on('close', () => {
-              console.log(`❌ 客户端断开: ${ip}`);
-            });
-            
-            ws.on('error', (err) => {
-              console.error(`⚠️ WebSocket 错误: ${err.message}`);
+              console.log('client disconnected');
             });
           });
-          
-          console.log('✅ 服务器代码已创建');
-          EOF
-          
-          # 启动服务器
-          node server.js &
-          SERVER_PID=$!
-          echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
-          cd ..
-          
-          sleep 3
-          
-          if kill -0 $SERVER_PID 2>/dev/null; then
-            echo "✅ WebSocket 测试服务已启动 (PID: $SERVER_PID)"
-          else
-            echo "❌ 服务启动失败"
-            exit 1
-          fi
 
-      - name: Download and setup ngrok
+          setInterval(() => {}, 1000);
+          EOF
+
+          node server.js &
+
+      - name: Install ngrok
         run: |
-          curl -sL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
-          tar xzf ngrok.tgz
-          chmod +x ngrok
-          ./ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
-          echo "✅ ngrok 配置完成"
+          curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+          | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+
+          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+          | sudo tee /etc/apt/sources.list.d/ngrok.list
+
+          sudo apt update
+          sudo apt install ngrok
+
+      - name: Configure ngrok
+        run: ngrok config add-authtoken $NGROK_AUTH_TOKEN
 
       - name: Start ngrok tunnel
         run: |
-          # 禁用更新检查，避免超时警告
-          ./ngrok http 8765 --log=stdout --log-level=info --no-update-check > ngrok.log 2>&1 &
-          NGROK_PID=$!
-          echo "NGROK_PID=$NGROK_PID" >> $GITHUB_ENV
-          
-          echo "⏳ 等待 ngrok 启动 (最多90秒)..."
-          
-          # 等待更长时间让 ngrok 完全启动
-          sleep 10
-          
-          # 等待 ngrok API 就绪
-          for i in {1..90}; do
-            if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
-              echo "✅ ngrok API 已就绪 (第 $i 秒)"
-              break
-            fi
-            if [ $i -eq 90 ]; then
-              echo "❌ ngrok API 启动超时"
-              echo "查看 ngrok 日志:"
-              cat ngrok.log
-              exit 1
-            fi
-            sleep 1
-          done
-          
-          # 额外等待确保隧道建立
-          sleep 5
-          
-          # 获取公网地址
-          for i in {1..30}; do
-            NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url // empty')
-            if [ -n "$NGROK_URL" ] && [ "$NGROK_URL" != "null" ]; then
-              echo "✅ 获取到 ngrok 地址 (第 $i 次尝试)"
-              echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
-              break
-            fi
-            echo "⚠️ 第 $i 次尝试获取地址失败，等待中..."
-            sleep 2
-          done
+          ngrok tcp ${{ github.event.inputs.port || '8080' }} > /dev/null &
 
-      - name: Generate WebSocket URL
-        if: env.NGROK_URL != ''
+      - name: Wait ngrok
+        run: sleep 8
+
+      - name: Get WSS Address
         run: |
-          WSS_URL=$(echo "$NGROK_URL" | sed 's/https:/wss:/')
-          echo "WSS_URL=$WSS_URL" >> $GITHUB_ENV
-          
+          curl -s http://127.0.0.1:4040/api/tunnels > tunnels.json
+
+          HOST=$(cat tunnels.json | jq -r '.tunnels[0].public_url')
+
           echo ""
-          echo "============================================"
-          echo "✅ WebSocket 测试服务已上线"
-          echo "🔗 WebSocket 地址: $WSS_URL"
-          echo "🔗 HTTP 地址: $NGROK_URL"
-          echo "============================================"
+          echo "=============================="
+          echo "NGROK TCP:"
+          echo "$HOST"
           echo ""
+          echo "WSS URL:"
+          echo "$HOST"
+          echo "=============================="
 
-      - name: WxPush - Service ready
-        if: env.NGROK_URL != ''
-        env:
-          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
+      - name: Keep Alive
         run: |
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"✅ wss 测试服务已上线\n\nWebSocket 地址: ${WSS_URL}\nHTTP 地址: ${NGROK_URL}\n\n测试方法:\n1. 打开任意 WebSocket 客户端\n2. 输入以上地址连接\n3. 发送任意消息测试回显\n4. 发送 ping 测试 pong\n\n服务将运行 ${{ inputs.timeout_minutes }} 分钟后自动关闭\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
-
-      - name: WxPush - Service failed
-        if: env.NGROK_URL == ''
-        env:
-          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
-        run: |
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"❌ wss 测试服务启动失败\n\n无法获取 ngrok 公网地址\n请检查:\n1. NGROK_AUTH_TOKEN 是否正确设置\n2. ngrok 账号是否有效\n3. 网络是否正常\n\nngrok 日志:\n$(cat ngrok.log | tail -20)\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
-          exit 1
-
-      - name: Keep service running
-        run: |
-          echo "🟢 测试服务运行中..."
-          echo "📊 监控地址: http://localhost:4040/api/tunnels"
-          
-          END_TIME=$((SECONDS + ${{ inputs.timeout_minutes }} * 60))
-          
-          while [ ! -f /tmp/stop ] && [ $SECONDS -lt $END_TIME ]; do
-            sleep 10
-            if [ $((SECONDS % 30)) -eq 0 ]; then
-              echo "💓 服务运行中... 已运行 $((SECONDS / 60)) 分钟"
-            fi
+          echo "Running..."
+          while true; do
+            sleep 60
           done
-          
-          if [ -f /tmp/stop ]; then
-            echo "🛑 收到停止信号"
-          else
-            echo "⏰ 超时自动关闭"
-          fi
-
-      - name: Cleanup
-        if: always()
-        run: |
-          kill $SERVER_PID $NGROK_PID 2>/dev/null || true
-          sleep 2
-          echo "✅ 服务已完全关闭"
-
-      - name: WxPush - Service closed
-        if: always()
-        env:
-          WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
-        run: |
-          curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"summary\": \"\",
-              \"content\": \"🛑 wss 测试服务已关闭\n运行ID: ${{ github.run_id }}\n时间: $(date '+%Y-%m-%d %H:%M:%S')\",
-              \"contentType\": 2,
-              \"appToken\": \"${WXPUSH_TOKEN}\",
-              \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
-              \"verifyPayType\": 0,
-              \"topicIds\": [],
-              \"verifyPay\": false,
-              \"url\": \"\"
-            }"
