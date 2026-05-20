@@ -129,7 +129,7 @@ jobs:
           echo "🔄 使用随机端口: $RANDOM_PORT"
           
           # 启动 ngrok（添加 --random 参数强制随机子域名）
-          ./ngrok http $RANDOM_PORT --log=stdout --log-level=info &
+          ./ngrok http $RANDOM_PORT --log=stdout --log-level=info --scheme https &
           NGROK_PID=$!
 
           # 等待 ngrok 就绪
