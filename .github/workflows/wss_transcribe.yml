@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 120
 
     steps:
-      # ==================== 安装系统工具（仅需 ngrok 和 jq） ====================
+      # ==================== 安装系统工具（仅需 jq） ====================
       - name: Install system tools
         run: |
           sudo apt-get update -qq
@@ -273,148 +273,6 @@ jobs:
           PYEOF
           echo "✅ wss_server.py written" >> $GITHUB_STEP_SUMMARY
 
-      # ==================== 写入 HTML 客户端（与之前相同） ====================
-      - name: Write HTML client
-        run: |
-          cat > wss_client.html << 'HTMLEOF'
-          <!DOCTYPE html>
-          <html lang="zh">
-          <head>
-          <meta charset="UTF-8"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-          <title>WSS Transcriber Client</title>
-          <style>
-            html, body { margin:0; height:100%; overflow:hidden; background:#07080c; font-family:-apple-system; }
-            .bg { position:fixed; inset:0; background: radial-gradient(circle at top, #1a1f2a, #07080c 70%); }
-            #messages { position:fixed; inset:0; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:12px; padding-bottom:140px; }
-            .msg { max-width:78%; padding:12px 14px; border-radius:20px; font-size:15px; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.10); }
-            .user { align-self:flex-end; background:rgba(0,122,255,0.82); color:white; border-radius:20px 20px 6px 20px; }
-            .bot { align-self:flex-start; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.92); border-radius:20px 20px 20px 6px; }
-            .msg pre { position:relative; background:rgba(0,0,0,0.45); padding:12px; border-radius:14px; overflow-x:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12.5px; line-height:1.5; }
-            .connect { position:fixed; top:14px; left:12px; right:12px; display:flex; align-items:center; gap:10px; padding:10px; background:rgba(255,255,255,0.06); backdrop-filter:blur(22px); border-radius:18px; z-index:10; }
-            .connect.hidden { opacity:0; transform:translateY(-20px); pointer-events:none; }
-            .connect input { flex:1; height:42px; border-radius:14px; padding:0 12px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); color:white; outline:none; }
-            .icon-btn { width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10); cursor:pointer; transition:0.2s; }
-            .icon-btn:active { transform:scale(0.92); background:rgba(255,255,255,0.08); }
-            .input-area { position:fixed; bottom:16px; left:12px; right:12px; display:flex; gap:10px; align-items:center; z-index:20; }
-            .input-box { flex:1; display:flex; align-items:center; padding:12px 14px; border-radius:28px; background:rgba(20,22,28,0.65); backdrop-filter:blur(26px); border:1px solid rgba(255,255,255,0.08); }
-            .input-box input { flex:1; font-size:16px; background:transparent; border:none; outline:none; color:white; }
-            .add-btn { margin-right:8px; width:32px; height:32px; border-radius:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; cursor:pointer; }
-            .add-btn:active { background:rgba(255,255,255,0.15); }
-            .end-dot { width:10px; height:10px; border-radius:50%; background:#ff3b30; margin-left:10px; cursor:pointer; }
-            .send-btn { width:52px; height:52px; border-radius:28px; background:rgba(0,122,255,0.25); backdrop-filter:blur(22px); border:1px solid rgba(255,255,255,0.10); display:flex; align-items:center; justify-content:center; color:white; font-size:20px; }
-            button:disabled, input:disabled { opacity:0.4; }
-          </style>
-          </head>
-          <body>
-          <div class="bg"></div>
-          <div id="connect" class="connect">
-            <input id="wssUrl" placeholder="wss://xxx.ngrok-free.app"/>
-            <div class="icon-btn" id="connectBtn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h10" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-          <div id="messages"></div>
-          <div class="input-area">
-            <div class="input-box">
-              <div class="add-btn" id="addFileBtn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
-              </div>
-              <input id="input" placeholder="URL or message..." disabled/>
-              <div class="end-dot" id="end"></div>
-            </div>
-            <div class="send-btn" id="send">➤</div>
-          </div>
-          <input type="file" id="fileInput" accept="video/*,audio/*" style="display:none"/>
-          <script>
-            let ws, currentBotMsg = null;
-            const messages = document.getElementById('messages');
-            const input = document.getElementById('input');
-            const fileInput = document.getElementById('fileInput');
-
-            function scroll() { requestAnimationFrame(() => messages.scrollTop = messages.scrollHeight); }
-            function addMsg(type) {
-              const d = document.createElement('div');
-              d.className = 'msg ' + (type === 'user' ? 'user' : 'bot');
-              messages.appendChild(d);
-              scroll();
-              return d;
-            }
-
-            function handleServerMsg(data) {
-              const { user, text, stream } = data;
-              if (stream) {
-                if (!currentBotMsg) {
-                  currentBotMsg = addMsg('bot');
-                }
-                currentBotMsg.textContent = text;
-              } else {
-                if (currentBotMsg) {
-                  currentBotMsg.textContent = text;
-                  currentBotMsg = null;
-                } else {
-                  const m = addMsg('bot');
-                  m.textContent = text;
-                }
-              }
-              scroll();
-            }
-
-            document.getElementById('connectBtn').onclick = () => {
-              const url = document.getElementById('wssUrl').value.trim();
-              if (!url) return;
-              ws = new WebSocket(url);
-              ws.onopen = () => {
-                addMsg('bot').textContent = '✅ Connected';
-                input.disabled = false;
-                document.getElementById('connect').classList.add('hidden');
-              };
-              ws.onmessage = (e) => {
-                try {
-                  handleServerMsg(JSON.parse(e.data));
-                } catch {
-                  handleServerMsg({ user:'🤖System', text: e.data, stream: false });
-                }
-              };
-              ws.onclose = () => {
-                addMsg('bot').textContent = 'Disconnected';
-                input.disabled = true;
-                document.getElementById('connect').classList.remove('hidden');
-              };
-            };
-
-            document.getElementById('send').onclick = () => {
-              if (!ws || ws.readyState !== 1) return;
-              const text = input.value.trim();
-              if (!text) return;
-              addMsg('user').textContent = text;
-              ws.send(text);
-              input.value = '';
-            };
-
-            document.getElementById('end').onclick = () => {
-              if (ws) { ws.send('/bye'); addMsg('bot').textContent = 'Session ended by user'; ws.close(); input.disabled = true; }
-            };
-
-            input.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('send').click(); });
-
-            document.getElementById('addFileBtn').onclick = () => fileInput.click();
-
-            fileInput.addEventListener('change', async (e) => {
-              const file = e.target.files[0];
-              if (!file || !ws || ws.readyState !== 1) return;
-              addMsg('user').textContent = `📎 ${file.name}`;
-              ws.send(JSON.stringify({ type: 'file', filename: file.name }));
-              const buffer = await file.arrayBuffer();
-              ws.send(buffer);
-              fileInput.value = '';
-            });
-          </script>
-          </body>
-          </html>
-          HTMLEOF
-          echo "✅ wss_client.html written" >> $GITHUB_STEP_SUMMARY
-
       # ==================== 登录 Docker Registry 并拉取镜像 ====================
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -428,21 +286,19 @@ jobs:
           docker pull ghcr.io/${{ github.repository_owner }}/funasr-transcriber:latest
           echo "✅ Image pulled" >> $GITHUB_STEP_SUMMARY
 
-      # ==================== 启动容器（后台运行，安装缺失的 pip 包） ====================
+      # ==================== 启动容器（修正 pip 安装命令） ====================
       - name: Start transcription service in Docker
         env:
           PORT: 8080
         run: |
-          # 将 wss_server.py 挂载进容器，安装 websockets 等额外依赖后运行
           docker run -d --name wss-transcriber \
             -p 8080:8080 \
             -v ${{ github.workspace }}/wss_server.py:/app/wss_server.py \
             -v /home/runner/.cache/modelscope:/root/.cache/modelscope \
             -e PORT=8080 \
             ghcr.io/${{ github.repository_owner }}/funasr-transcriber:latest \
-            /bin/bash -c "pip install websockets pycryptodome && python /app/wss_server.py"
+            /bin/bash -c "pip install --break-system-packages websockets pycryptodome && python /app/wss_server.py"
           
-          # 等待服务启动
           sleep 5
           if ! docker top wss-transcriber &>/dev/null; then
             echo "❌ Container failed to start"
@@ -495,7 +351,6 @@ jobs:
       # ==================== 等待服务结束 ====================
       - name: Wait for transcription service to complete
         run: |
-          # 监控容器，直到它退出或超时
           WAIT_TIME=0
           MAX_WAIT=6600  # 110分钟
           while true; do
@@ -518,11 +373,9 @@ jobs:
         env:
           WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN }}
         run: |
-          # 停止 ngrok 和容器
           kill $(pgrep ngrok) 2>/dev/null || true
           docker stop wss-transcriber 2>/dev/null || true
 
-          # 推送关闭通知
           wxpush() {
             local content="$1"
             curl -s -X POST "https://wxpusher.zjiecode.com/api/send/message" \
@@ -536,9 +389,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: wss-transcription-client
+          name: wss-transcription-artifacts
           path: |
-            wss_client.html
             wss_server.py
             transcription.log
           retention-days: 7
