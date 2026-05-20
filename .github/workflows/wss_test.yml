@@ -125,32 +125,37 @@ jobs:
 
       - name: Start ngrok tunnel
         run: |
-          # 启动 ngrok
-          ./ngrok http 8765 --log=stdout --log-level=info > ngrok.log 2>&1 &
+          # 禁用更新检查，避免超时警告
+          ./ngrok http 8765 --log=stdout --log-level=info --no-update-check > ngrok.log 2>&1 &
           NGROK_PID=$!
           echo "NGROK_PID=$NGROK_PID" >> $GITHUB_ENV
           
-          echo "⏳ 等待 ngrok 启动 (最多60秒)..."
+          echo "⏳ 等待 ngrok 启动 (最多90秒)..."
+          
+          # 等待更长时间让 ngrok 完全启动
+          sleep 10
           
           # 等待 ngrok API 就绪
-          for i in {1..60}; do
-            sleep 1
+          for i in {1..90}; do
             if curl -s http://localhost:4040/api/tunnels > /dev/null 2>&1; then
               echo "✅ ngrok API 已就绪 (第 $i 秒)"
               break
             fi
-            if [ $i -eq 60 ]; then
+            if [ $i -eq 90 ]; then
               echo "❌ ngrok API 启动超时"
               echo "查看 ngrok 日志:"
               cat ngrok.log
               exit 1
             fi
+            sleep 1
           done
           
+          # 额外等待确保隧道建立
+          sleep 5
+          
           # 获取公网地址
-          sleep 2
-          for i in {1..20}; do
-            NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          for i in {1..30}; do
+            NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url // empty')
             if [ -n "$NGROK_URL" ] && [ "$NGROK_URL" != "null" ]; then
               echo "✅ 获取到 ngrok 地址 (第 $i 次尝试)"
               echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
@@ -202,7 +207,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{
               \"summary\": \"\",
-              \"content\": \"❌ wss 测试服务启动失败\n\n无法获取 ngrok 公网地址\n请检查:\n1. NGROK_AUTH_TOKEN 是否正确设置\n2. ngrok 账号是否有效\n3. 网络是否正常\",
+              \"content\": \"❌ wss 测试服务启动失败\n\n无法获取 ngrok 公网地址\n请检查:\n1. NGROK_AUTH_TOKEN 是否正确设置\n2. ngrok 账号是否有效\n3. 网络是否正常\n\nngrok 日志:\n$(cat ngrok.log | tail -20)\",
               \"contentType\": 2,
               \"appToken\": \"${WXPUSH_TOKEN}\",
               \"uids\": [\"UID_KBXInZxCNq5gyruvkqaFhZ1cyAlX\"],
@@ -224,7 +229,6 @@ jobs:
             sleep 10
             if [ $((SECONDS % 30)) -eq 0 ]; then
               echo "💓 服务运行中... 已运行 $((SECONDS / 60)) 分钟"
-              echo "📊 当前连接数: 查看 ngrok 日志"
             fi
           done
           
