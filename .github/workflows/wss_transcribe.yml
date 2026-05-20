@@ -36,11 +36,20 @@ jobs:
           from Crypto.Util.Padding import pad, unpad
           import base64
 
-          logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+          # 日志文件
+          LOG_FILE = "transcription.log"
+
+          logging.basicConfig(
+              level=logging.INFO,
+              format='%(asctime)s - %(levelname)s - %(message)s',
+              handlers=[
+                  logging.FileHandler(LOG_FILE, mode='a', encoding='utf-8'),
+                  logging.StreamHandler(sys.stdout)
+              ]
+          )
           logger = logging.getLogger("WSS_Transcriber")
 
           MODEL = None
-          connected_clients = set()
 
           # ========== 加密工具（哇能） ==========
           KEY = b"aaDJL2d9DfhLZO0z"
@@ -133,6 +142,15 @@ jobs:
               res = subprocess.run(cmd, capture_output=True, text=True)
               return res.returncode == 0 and os.path.exists(audio_path) and os.path.getsize(audio_path) > 0
 
+          async def send_log(websocket, message, stream=False):
+              """推送日志到客户端，同时写入本地文件"""
+              logger.info(message.strip())
+              try:
+                  data = json.dumps({"user": "🤖System", "text": message, "stream": stream})
+                  await websocket.send(data)
+              except Exception as e:
+                  logger.error(f"推送日志失败: {e}")
+
           async def transcribe_audio_stream(audio_path, websocket):
               global MODEL
               if MODEL is None:
@@ -155,110 +173,116 @@ jobs:
                   await send_log(websocket, f"❌ 转写错误: {e}\n", stream=True)
                   return None
 
-          async def send_log(websocket, message, stream=False):
-              data = json.dumps({"user": "🤖System", "text": message, "stream": stream})
-              await websocket.send(data)
-
           async def process_url(websocket, url):
-              log_prefix = f"📥 输入URL: {url}\n"
-              await send_log(websocket, log_prefix, stream=True)
-
-              direct_url = None
-              if is_direct_link(url):
-                  direct_url = url
-                  await send_log(websocket, "🔗 检测为直链\n", stream=True)
-              else:
-                  domain = urlparse(url).netloc
-                  if 'douyin.com' in domain:
-                      await send_log(websocket, "🔄 尝试抖音解析...\n", stream=True)
-                      direct_url = douyin_parse(url)
-                      if direct_url:
-                          await send_log(websocket, "✅ 抖音解析成功\n", stream=True)
-                  if not direct_url:
-                      await send_log(websocket, "🔄 尝试通用解析（哇能）...\n", stream=True)
-                      direct_url = waneng_get_direct_url(url)
-                      if direct_url:
-                          await send_log(websocket, "✅ 哇能解析成功\n", stream=True)
-                      else:
-                          await send_log(websocket, "❌ 无法获取直链，任务终止\n", stream=False)
-                          return
-
-              tmp_video = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
-              tmp_video.close()
-              await send_log(websocket, f"⬇️ 开始下载视频...\n", stream=True)
               try:
-                  download_file(direct_url, tmp_video.name)
-                  size_mb = os.path.getsize(tmp_video.name) / 1024 / 1024
-                  await send_log(websocket, f"✅ 下载完成 ({size_mb:.1f} MB)\n", stream=True)
-              except Exception as e:
-                  await send_log(websocket, f"❌ 下载失败: {e}\n", stream=False)
-                  return
+                  await send_log(websocket, f"📥 输入URL: {url}\n", stream=True)
 
-              tmp_audio = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
-              tmp_audio.close()
-              await send_log(websocket, "🔊 提取音频...\n", stream=True)
-              if not extract_audio(tmp_video.name, tmp_audio.name):
-                  shutil.copy(tmp_video.name, tmp_audio.name)
-                  await send_log(websocket, "⚠️ 音频提取失败，尝试直接转写\n", stream=True)
-              os.unlink(tmp_video.name)
+                  direct_url = None
+                  if is_direct_link(url):
+                      direct_url = url
+                      await send_log(websocket, "🔗 检测为直链\n", stream=True)
+                  else:
+                      domain = urlparse(url).netloc
+                      if 'douyin.com' in domain:
+                          await send_log(websocket, "🔄 尝试抖音解析...\n", stream=True)
+                          direct_url = douyin_parse(url)
+                          if direct_url:
+                              await send_log(websocket, "✅ 抖音解析成功\n", stream=True)
+                      if not direct_url:
+                          await send_log(websocket, "🔄 尝试通用解析（哇能）...\n", stream=True)
+                          direct_url = waneng_get_direct_url(url)
+                          if direct_url:
+                              await send_log(websocket, "✅ 哇能解析成功\n", stream=True)
+                          else:
+                              await send_log(websocket, "❌ 无法获取直链，任务终止\n", stream=False)
+                              return
 
-              await transcribe_audio_stream(tmp_audio.name, websocket)
-              if os.path.exists(tmp_audio.name):
-                  os.unlink(tmp_audio.name)
+                  tmp_video = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
+                  tmp_video.close()
+                  await send_log(websocket, "⬇️ 开始下载视频...\n", stream=True)
+                  try:
+                      download_file(direct_url, tmp_video.name)
+                      size_mb = os.path.getsize(tmp_video.name) / 1024 / 1024
+                      await send_log(websocket, f"✅ 下载完成 ({size_mb:.1f} MB)\n", stream=True)
+                  except Exception as e:
+                      await send_log(websocket, f"❌ 下载失败: {e}\n", stream=False)
+                      return
 
-          async def process_file(websocket, file_data, filename):
-              await send_log(websocket, f"📎 接收文件: {filename} ({len(file_data)} bytes)\n", stream=True)
-              tmp_file = tempfile.NamedTemporaryFile(suffix=Path(filename).suffix, delete=False)
-              tmp_file.write(file_data)
-              tmp_file.close()
-              is_video = Path(filename).suffix.lower() in ['.mp4','.avi','.mkv','.mov','.webm','.flv']
-              if is_video:
-                  await send_log(websocket, "🔊 提取音频...\n", stream=True)
                   tmp_audio = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
                   tmp_audio.close()
-                  if not extract_audio(tmp_file.name, tmp_audio.name):
-                      await send_log(websocket, "❌ 音频提取失败\n", stream=False)
-                      os.unlink(tmp_file.name)
-                      return
-                  os.unlink(tmp_file.name)
-                  audio_path = tmp_audio.name
-              else:
-                  audio_path = tmp_file.name
+                  await send_log(websocket, "🔊 提取音频...\n", stream=True)
+                  if not extract_audio(tmp_video.name, tmp_audio.name):
+                      shutil.copy(tmp_video.name, tmp_audio.name)
+                      await send_log(websocket, "⚠️ 音频提取失败，尝试直接转写\n", stream=True)
+                  os.unlink(tmp_video.name)
 
-              await transcribe_audio_stream(audio_path, websocket)
-              os.unlink(audio_path)
+                  await transcribe_audio_stream(tmp_audio.name, websocket)
+                  if os.path.exists(tmp_audio.name):
+                      os.unlink(tmp_audio.name)
+              except Exception as e:
+                  await send_log(websocket, f"❌ 处理URL时发生异常: {e}\n", stream=False)
+
+          async def process_file(websocket, file_data, filename):
+              try:
+                  await send_log(websocket, f"📎 接收文件: {filename} ({len(file_data)} bytes)\n", stream=True)
+                  tmp_file = tempfile.NamedTemporaryFile(suffix=Path(filename).suffix, delete=False)
+                  tmp_file.write(file_data)
+                  tmp_file.close()
+                  is_video = Path(filename).suffix.lower() in ['.mp4','.avi','.mkv','.mov','.webm','.flv']
+                  if is_video:
+                      await send_log(websocket, "🔊 提取音频...\n", stream=True)
+                      tmp_audio = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+                      tmp_audio.close()
+                      if not extract_audio(tmp_file.name, tmp_audio.name):
+                          await send_log(websocket, "❌ 音频提取失败\n", stream=False)
+                          os.unlink(tmp_file.name)
+                          return
+                      os.unlink(tmp_file.name)
+                      audio_path = tmp_audio.name
+                  else:
+                      audio_path = tmp_file.name
+
+                  await transcribe_audio_stream(audio_path, websocket)
+                  os.unlink(audio_path)
+              except Exception as e:
+                  await send_log(websocket, f"❌ 处理文件时发生异常: {e}\n", stream=False)
 
           async def handler(websocket):
-              await send_log(websocket, "🚀 转录服务就绪，请发送URL或上传文件\n", stream=False)
-              expecting_file = False
-              expected_filename = None
+              try:
+                  await send_log(websocket, "🚀 转录服务就绪，请发送URL或上传文件\n", stream=False)
+                  expecting_file = False
+                  expected_filename = None
 
-              async for message in websocket:
-                  if isinstance(message, bytes):
-                      if expecting_file and expected_filename:
-                          await process_file(websocket, message, expected_filename)
-                          expecting_file = False
-                          expected_filename = None
+                  async for message in websocket:
+                      if isinstance(message, bytes):
+                          if expecting_file and expected_filename:
+                              await process_file(websocket, message, expected_filename)
+                              expecting_file = False
+                              expected_filename = None
+                          else:
+                              await send_log(websocket, "⚠️ 收到意外的二进制数据，请先发送文件头\n", stream=False)
                       else:
-                          await send_log(websocket, "⚠️ 收到意外的二进制数据，请先发送文件头\n", stream=False)
-                  else:
-                      text = message.strip()
-                      if text.startswith('{'):
-                          try:
-                              meta = json.loads(text)
-                              if meta.get('type') == 'file':
-                                  expecting_file = True
-                                  expected_filename = meta.get('filename', 'upload.bin')
-                              continue
-                          except:
-                              pass
-                      if text == '/bye':
-                          await send_log(websocket, "👋 再见，服务即将关闭\n", stream=False)
-                          break
-                      elif text.startswith('http://') or text.startswith('https://'):
-                          await process_url(websocket, text)
-                      else:
-                          await send_log(websocket, "⚠️ 请输入有效的URL或上传文件\n", stream=False)
+                          text = message.strip()
+                          if text.startswith('{'):
+                              try:
+                                  meta = json.loads(text)
+                                  if meta.get('type') == 'file':
+                                      expecting_file = True
+                                      expected_filename = meta.get('filename', 'upload.bin')
+                                  continue
+                              except:
+                                  pass
+                          if text == '/bye':
+                              await send_log(websocket, "👋 再见，服务即将关闭\n", stream=False)
+                              break
+                          elif text.startswith('http://') or text.startswith('https://'):
+                              await process_url(websocket, text)
+                          else:
+                              await send_log(websocket, "⚠️ 请输入有效的URL或上传文件\n", stream=False)
+              except websockets.exceptions.ConnectionClosed:
+                  logger.info("客户端断开连接")
+              except Exception as e:
+                  logger.error(f"处理消息异常: {e}")
 
           async def main():
               port = int(os.environ.get("PORT", 8080))
@@ -290,6 +314,7 @@ jobs:
           docker run -d --name wss-transcriber \
             -p 8080:8080 \
             -v ${{ github.workspace }}/wss_server.py:/app/wss_server.py \
+            -v ${{ github.workspace }}/transcription.log:/app/transcription.log \
             -v /home/runner/.cache/modelscope:/root/.cache/modelscope \
             -e PORT=8080 \
             ghcr.io/${{ github.repository_owner }}/funasr-transcriber:latest \
