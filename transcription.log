@@ -1,0 +1,46 @@
+2026-05-23 03:20:15,242 - INFO - ============================================================
+2026-05-23 03:20:15,243 - INFO - FunASR 音频转录服务启动
+2026-05-23 03:20:15,243 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-23 03:20:15,243 - INFO - ============================================================
+2026-05-23 03:20:15,243 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-23 03:20:15,244 - INFO - 
+[1/1] 处理 URL
+2026-05-23 03:20:15,244 - INFO - 处理 URL: https://v26-default.365yg.com/0b8c2f1bf46991735a144629a331a947/6a11472e/video/tos/cn/tos-cn-ve-15/o4eWATkf8AC4hFMJBBCQODIA5W73zjpj5aQQBe/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=870&bt=870&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGVXpWU9eFWM5tuO12nzXT&mime_type=video_mp4&qs=15&rc=ZWZnaTpoOGk5aGg6ZTs5OUBpaml2OWw5cmtzOjMzNGkzM0AyXy1jYTEwXjIxNDMzMWAuYSNrcjJsMmQ0ZzBhLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1779505962&feature_id=e297886ea4c3239306bb1d52ed307653&l=202605231112426CBFF1B5C1F419ABD164
+2026-05-23 03:20:15,244 - INFO - URL 类型: 直接链接
+2026-05-23 03:20:15,244 - INFO - 开始下载 (requests): https://v26-default.365yg.com/0b8c2f1bf46991735a144629a331a947/6a11472e/video/tos/cn/tos-cn-ve-15/o4eWATkf8AC4hFMJBBCQODIA5W73zjpj5aQQBe/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=870&bt=870&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGVXpWU9eFWM5tuO12nzXT&mime_type=video_mp4&qs=15&rc=ZWZnaTpoOGk5aGg6ZTs5OUBpaml2OWw5cmtzOjMzNGkzM0AyXy1jYTEwXjIxNDMzMWAuYSNrcjJsMmQ0ZzBhLS1kLWFzcw==&btag=c0000e00030000&cquery=100o_100w_100B_100H_100K&dy_q=1779505962&feature_id=e297886ea4c3239306bb1d52ed307653&l=202605231112426CBFF1B5C1F419ABD164
+2026-05-23 03:20:19,971 - INFO - 下载成功: audio_1779506415244.mp4 (52207036 bytes)
+2026-05-23 03:20:26,436 - INFO - 音频提取成功: audio_1779506415244.mp3
+2026-05-23 03:20:26,443 - INFO - ✅ 成功 [1/1]: 成功下载 52207036 bytes (耗时: 11.20秒)
+2026-05-23 03:20:30,366 - INFO - 正在加载 FunASR 模型...
+2026-05-23 03:20:30,366 - INFO - download models from model hub: ms
+2026-05-23 03:20:32,939 - WARNING - trust_remote_code: False
+2026-05-23 03:20:34,320 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-23 03:20:34,325 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-23 03:20:34,862 - INFO - scope_map: ['module.', 'None']
+2026-05-23 03:20:34,862 - INFO - excludes: None
+2026-05-23 03:20:35,123 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-23 03:20:35,134 - INFO - Building VAD model.
+2026-05-23 03:20:35,134 - INFO - download models from model hub: ms
+2026-05-23 03:20:37,097 - WARNING - trust_remote_code: False
+2026-05-23 03:20:37,101 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-23 03:20:37,101 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-23 03:20:37,105 - INFO - scope_map: ['module.', 'None']
+2026-05-23 03:20:37,106 - INFO - excludes: None
+2026-05-23 03:20:37,106 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-23 03:20:37,107 - INFO - Building punc model.
+2026-05-23 03:20:37,107 - INFO - download models from model hub: ms
+2026-05-23 03:20:39,363 - WARNING - trust_remote_code: False
+2026-05-23 03:20:39,702 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-23 03:20:39,703 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-23 03:20:39,763 - INFO - scope_map: ['module.', 'None']
+2026-05-23 03:20:39,763 - INFO - excludes: None
+2026-05-23 03:20:39,781 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-23 03:20:40,332 - INFO - 模型加载完成，耗时: 9.97 秒
+2026-05-23 03:20:40,332 - INFO - 开始批量转录，共 1 个文件
+2026-05-23 03:20:40,332 - INFO - 
+[1/1] 处理: audio_1779506415244.mp3
+2026-05-23 03:20:40,332 - INFO - 开始转录: audio_1779506415244.mp3 (7.63 MB)
+2026-05-23 03:21:15,804 - INFO - 转录完成: audio_1779506415244.mp3 (耗时: 35.47秒)
+2026-05-23 03:21:15,804 - INFO - 识别文本: 今天这个视频各位一定要收藏。看完今天这个视频是个我折服了很久的一个狠活，一直想讲，但是没敢讲的一个话题吧，绝对值得你的点赞、评论转发。但是视频能不能过程，或者说过审了之后能保存多久，我就不知道了哈。那...
+2026-05-23 03:21:15,804 - INFO - 
+批量转录完成: 成功=1, 失败=0
