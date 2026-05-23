@@ -44,3 +44,49 @@
 2026-05-23 03:21:15,804 - INFO - 识别文本: 今天这个视频各位一定要收藏。看完今天这个视频是个我折服了很久的一个狠活，一直想讲，但是没敢讲的一个话题吧，绝对值得你的点赞、评论转发。但是视频能不能过程，或者说过审了之后能保存多久，我就不知道了哈。那...
 2026-05-23 03:21:15,804 - INFO - 
 批量转录完成: 成功=1, 失败=0
+2026-05-23 04:08:15,293 - INFO - ============================================================
+2026-05-23 04:08:15,293 - INFO - FunASR 音频转录服务启动
+2026-05-23 04:08:15,293 - INFO - 工作目录: /home/runner/work/actionstest/actionstest
+2026-05-23 04:08:15,293 - INFO - ============================================================
+2026-05-23 04:08:15,293 - INFO - 检测到 VideoUrlTask.txt，开始处理 URL 下载...
+2026-05-23 04:08:15,294 - INFO - 
+[1/1] 处理 URL
+2026-05-23 04:08:15,294 - INFO - 处理 URL: https://v26-default.365yg.com/ae31bc911c0cd8573f2687e84bb2d2c0/6a11565e/video/tos/cn/tos-cn-ve-15/oYzpBbG5EluFNL3AbgTI2yp193gqDAReAfhEXC/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=886&bt=886&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGzpEWU9eFMhoXqO12nzXT&mime_type=video_mp4&qs=15&rc=aGRmM2lpODg0PDs8Ojs7M0BpM3E7cng5cnNtOjMzNGkzM0BhMjAvNDBjNmExX2MtM2ItYSNtbjJoMmRjb2FhLS1kLS9zcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1779509193&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260523120633ABA3DD2C71EB29761FF1
+2026-05-23 04:08:15,294 - INFO - URL 类型: 直接链接
+2026-05-23 04:08:15,294 - INFO - 开始下载 (requests): https://v26-default.365yg.com/ae31bc911c0cd8573f2687e84bb2d2c0/6a11565e/video/tos/cn/tos-cn-ve-15/oYzpBbG5EluFNL3AbgTI2yp193gqDAReAfhEXC/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0|0|0|3&cv=1&br=886&bt=886&cs=2&ds=10&ft=rVWEerwwZR7Gs0Po0PDS6kwc3RZtGzpEWU9eFMhoXqO12nzXT&mime_type=video_mp4&qs=15&rc=aGRmM2lpODg0PDs8Ojs7M0BpM3E7cng5cnNtOjMzNGkzM0BhMjAvNDBjNmExX2MtM2ItYSNtbjJoMmRjb2FhLS1kLS9zcw==&btag=c0000e00038000&cquery=100w_100B_100H_100K_100o&dy_q=1779509193&feature_id=e297886ea4c3239306bb1d52ed307653&l=20260523120633ABA3DD2C71EB29761FF1
+2026-05-23 04:08:34,052 - INFO - 下载成功: audio_1779509295294.mp4 (127748244 bytes)
+2026-05-23 04:08:46,588 - INFO - 音频提取成功: audio_1779509295294.mp3
+2026-05-23 04:08:46,606 - INFO - ✅ 成功 [1/1]: 成功下载 127748244 bytes (耗时: 31.31秒)
+2026-05-23 04:08:50,973 - INFO - 正在加载 FunASR 模型...
+2026-05-23 04:08:50,973 - INFO - download models from model hub: ms
+2026-05-23 04:08:53,910 - WARNING - trust_remote_code: False
+2026-05-23 04:08:55,246 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-23 04:08:55,251 - INFO - ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt
+2026-05-23 04:08:55,953 - INFO - scope_map: ['module.', 'None']
+2026-05-23 04:08:55,953 - INFO - excludes: None
+2026-05-23 04:08:56,283 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-23 04:08:56,296 - INFO - Building VAD model.
+2026-05-23 04:08:56,296 - INFO - download models from model hub: ms
+2026-05-23 04:08:59,136 - WARNING - trust_remote_code: False
+2026-05-23 04:08:59,140 - INFO - Loading pretrained params from /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-23 04:08:59,141 - INFO - ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt
+2026-05-23 04:08:59,144 - INFO - scope_map: ['module.', 'None']
+2026-05-23 04:08:59,144 - INFO - excludes: None
+2026-05-23 04:08:59,145 - INFO - Loading ckpt: /modelscope_cache/models/damo/speech_fsmn_vad_zh-cn-16k-common-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-23 04:08:59,146 - INFO - Building punc model.
+2026-05-23 04:08:59,146 - INFO - download models from model hub: ms
+2026-05-23 04:09:02,157 - WARNING - trust_remote_code: False
+2026-05-23 04:09:02,523 - INFO - Loading pretrained params from /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-23 04:09:02,523 - INFO - ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt
+2026-05-23 04:09:02,574 - INFO - scope_map: ['module.', 'None']
+2026-05-23 04:09:02,574 - INFO - excludes: None
+2026-05-23 04:09:02,587 - INFO - Loading ckpt: /modelscope_cache/models/damo/punc_ct-transformer_zh-cn-common-vocab272727-pytorch/model.pt, status: <All keys matched successfully>
+2026-05-23 04:09:03,162 - INFO - 模型加载完成，耗时: 12.19 秒
+2026-05-23 04:09:03,162 - INFO - 开始批量转录，共 1 个文件
+2026-05-23 04:09:03,162 - INFO - 
+[1/1] 处理: audio_1779509295294.mp3
+2026-05-23 04:09:03,162 - INFO - 开始转录: audio_1779509295294.mp3 (14.52 MB)
+2026-05-23 04:10:33,312 - INFO - 转录完成: audio_1779509295294.mp3 (耗时: 90.15秒)
+2026-05-23 04:10:33,312 - INFO - 识别文本: 只要还手就是互殴吗？有监控录像，却被搞了个聚众斗殴，最后还签了个认罪认罚，这事儿还能反转吗？拆解一下，大家都很想听的石门斗殴案罪名就是聚众斗殴。这个案组是在一审阶段介入的，辩护，是一种思维辩护思维决定...
+2026-05-23 04:10:33,313 - INFO - 
+批量转录完成: 成功=1, 失败=0
